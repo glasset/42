@@ -6,13 +6,13 @@
 /*   By: cmizzi <cmizzi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/20 16:59:54 by cmizzi            #+#    #+#             */
-/*   Updated: 2013/12/21 16:35:32 by cmizzi           ###   ########.fr       */
+/*   Updated: 2014/01/04 19:17:13 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/wait.h>
 #include "ft_sh1.h"
 
 void	ft_minishell_loop(char ***envp)

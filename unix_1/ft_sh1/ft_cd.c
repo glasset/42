@@ -6,7 +6,7 @@
 /*   By: cmizzi <cmizzi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/20 16:59:54 by cmizzi            #+#    #+#             */
-/*   Updated: 2013/12/21 16:35:32 by cmizzi           ###   ########.fr       */
+/*   Updated: 2014/01/04 19:18:38 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static char	*ft_pwd_back(char *pwd)
 {
 	int		i;
-	
+
 	i = ft_strlen(pwd) - 1;
 	while (i > 0 && pwd[i] != '/')
 		i--;
@@ -44,11 +44,11 @@ static void ft_chdir_setenv(char ***envp, const char *pwd)
 void	ft_cd(char **args, char ***envp)
 {
 	char	*pwd;
-	char	**env;
+//	char	**env;
 	char	**path;
 	int		i;
-	
-	env = *envp;
+
+//	env = *envp;
 	pwd = ft_getenv(envp, "PWD");
 	if (args[1] == NULL)
 	{
