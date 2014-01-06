@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 15:27:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 18:58:22 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/06 21:51:34 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <termios.h>
@@ -14,11 +14,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include "ft_select.h"
 
 int						tputs_putchar(int c)
 {
-	write(1, &c, 1);
+	int					fd;
+
+	fd = open("/dev/tty", O_WRONLY);
+	write(fd, &c, 1);
 	return (1);
 }
 

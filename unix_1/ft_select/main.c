@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 11:20:04 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 18:58:20 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/06 21:51:32 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -18,7 +18,15 @@
 
 #include <stdio.h>
 
-int			print_tlst(t_lst *print, int i)
+static void			print_reverse(char *str, int size)
+{
+			tputs(tgetstr("mr", NULL), 1, tputs_putchar);
+			write (1, str, size);
+			tputs(tgetstr("me", NULL), 1, tputs_putchar);
+			write (1, "\n", 1);
+}
+
+int					print_tlst(t_lst *print, int i)
 {
 	char	*tmp;
 	int		t;
@@ -37,10 +45,7 @@ int			print_tlst(t_lst *print, int i)
 		}
 		else
 		{
-			tputs(tgetstr("mr", NULL), 1, tputs_putchar);
-			write (1, print->str, ft_strlen(print->str));
-			tputs(tgetstr("me", NULL), 1, tputs_putchar);
-			write (1, "\n", 1);
+			print_reverse(print->str, ft_strlen(print->str));
 			t = 1;
 			i--;
 		}
@@ -57,12 +62,13 @@ int			print_tlst(t_lst *print, int i)
 
 int			main(int argc, char **argv)
 {
-//	int		fd;
+	int		fd;
 	int		i;
 	l_lst	*arg;
 	l_lst	*select;
+
 	i = 1;
-//	fd = open(ttyname(0), O_WRONLY);
+	fd =  open("/dev/tty", O_WRONLY);
 	select = lst_new();
 	arg = lst_new();
 	while (i < argc)
@@ -70,12 +76,12 @@ int			main(int argc, char **argv)
 	select = moove(arg, select);
 	while (select->start != select->end)
 	{
-		write(1, &*(select->start->str), ft_strlen(select->start->str));
-		write(1, " ", 1);
+		write(fd, &*(select->start->str), ft_strlen(select->start->str));
+		write(fd, " ", 1);
 		select->start = select->start->next;
 	}
-	write(1, &*(select->start->str), ft_strlen(select->start->str));
-	write(1, "\n", 1);
+	write(fd, &*(select->start->str), ft_strlen(select->start->str));
+	write(fd, "\n", 1);
 	return (0);
 }
 
