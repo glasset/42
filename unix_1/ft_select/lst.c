@@ -6,11 +6,18 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 16:00:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 15:05:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/07 13:57:14 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "ft_select.h"
+
+void				del_tlst(t_lst *cur)
+{
+	cur->prev->next = cur->next;
+	cur->next->prev = cur->prev;
+	free(cur);
+}
 
 l_lst				*lst_new(void)
 {
@@ -26,7 +33,7 @@ l_lst				*lst_new(void)
 	return (tmp);
 }
 
-l_lst				*lst_add_end(l_lst *l_x, char *str)
+l_lst				*lst_add_end(l_lst *l_x, char *str, int bol)
 {
 	t_lst			*tmp;
 
@@ -36,6 +43,7 @@ l_lst				*lst_add_end(l_lst *l_x, char *str)
 		if (tmp)
 		{
 			tmp->str = str;
+			tmp->bol = bol;
 			tmp->next = NULL;
 			if (l_x->end == NULL)
 			{
@@ -57,7 +65,7 @@ l_lst				*lst_add_end(l_lst *l_x, char *str)
 	return (l_x);
 }
 
-l_lst				*lst_add_start(l_lst *l_x, char *str)
+l_lst				*lst_add_start(l_lst *l_x, char *str, int bol)
 {
 	t_lst			*tmp;
 	if (l_x)
@@ -66,6 +74,7 @@ l_lst				*lst_add_start(l_lst *l_x, char *str)
 		if (tmp)
 		{
 			tmp->str = str;
+			tmp->bol = bol;
 			tmp->next = NULL;
 			if (l_x->end == NULL)
 			{

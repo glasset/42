@@ -6,82 +6,78 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 11:20:04 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 21:51:32 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/07 21:08:13 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include "ft_select.h"
 #include <termios.h>
 #include <termcap.h>
-
 #include <stdio.h>
+#include "ft_select.h"
 
-static void			print_reverse(char *str, int size)
+static void		printr(char *str, int curr, int end)
 {
-			tputs(tgetstr("mr", NULL), 1, tputs_putchar);
-			write (1, str, size);
-			tputs(tgetstr("me", NULL), 1, tputs_putchar);
-			write (1, "\n", 1);
-}
-
-int					print_tlst(t_lst *print, int i)
-{
-	char	*tmp;
-	int		t;
-
-	t = 1;
-	tmp = print->str;
-	while (print->next->str != tmp)
-	{
-		if (i == 0)
-			t = 0;
-		if (t == 1)
-		{
-			write (1, print->str, ft_strlen(print->str));
-			write (1, "\n", 1);
-			i--;
-		}
+		ft_putstr(str);
+		if ((curr + 1) != end)
+			write(1, " ", 1);
 		else
-		{
-			print_reverse(print->str, ft_strlen(print->str));
-			t = 1;
-			i--;
-		}
-		print = print->next;
-	}
-	if (i == 0)
-			tputs(tgetstr("mr", NULL), 1, tputs_putchar);
-	write (1, print->str, ft_strlen(print->str));
-	tputs(tgetstr("me", NULL), 1, tputs_putchar);
-	write (1, "\n", 1);
-	return (0);
+			write(1, "\n", 1);
 }
 
+static void		error(char *str)
+{
+	write(1, "usage: ", 7);
+	write(1, &(*str), ft_strlen(str));
+	write(1, " arg 1 arg2 ...\n", 16);
+	exit(0);
+}
+
+static int			ft_celement(l_lst *arg)
+{
+	int		i;
+	int		count;
+	t_lst	*tmp;
+
+	tmp = arg->start;
+	count = 0;
+	i = 0;
+	while (i < (int)arg->len)
+	{
+		if (tmp->bol == 2 || tmp->bol == 3)
+			count++;
+		tmp = tmp->next;
+		i++;
+	}
+	return (count);
+}
 
 int			main(int argc, char **argv)
 {
-	int		fd;
+	int		x;
 	int		i;
 	l_lst	*arg;
-	l_lst	*select;
-
 	i = 1;
-	fd =  open("/dev/tty", O_WRONLY);
-	select = lst_new();
+
+	x = 1;
+	if (argc == 1)
+		error(argv[0]);
 	arg = lst_new();
 	while (i < argc)
-		arg = lst_add_end(arg, argv[i++]);
-	select = moove(arg, select);
-	while (select->start != select->end)
 	{
-		write(fd, &*(select->start->str), ft_strlen(select->start->str));
-		write(fd, " ", 1);
-		select->start = select->start->next;
+		arg = lst_add_end(arg, argv[i++], x);
+		x = 0;
 	}
-	write(fd, &*(select->start->str), ft_strlen(select->start->str));
-	write(fd, "\n", 1);
+	ft_select(arg);
+	i = 0;
+	while (i < (int)arg->len)
+	{
+		if (arg->start->bol == 2 || arg->start->bol == 3)
+				printr(arg->start->str, x++, ft_celement(arg));
+		arg->start = arg->start->next;
+		i++;
+	}
 	return (0);
 }
 
