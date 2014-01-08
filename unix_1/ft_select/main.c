@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 11:20:04 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/07 21:08:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/08 17:43:16 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -30,7 +30,7 @@ static void		error(char *str)
 {
 	write(1, "usage: ", 7);
 	write(1, &(*str), ft_strlen(str));
-	write(1, " arg 1 arg2 ...\n", 16);
+	write(1, " arg1 arg2 ...\n", 15);
 	exit(0);
 }
 

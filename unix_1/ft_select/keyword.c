@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 13:46:52 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/07 21:08:11 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/08 18:49:11 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -59,4 +59,5 @@ void			ft_options(char *str, l_lst *arg)
 		exit(0);
 	if (check_key((*(unsigned int *)str)) != -1)
 		ft[check_key((*(unsigned int *)str))](arg->start, arg->len);
+
 }

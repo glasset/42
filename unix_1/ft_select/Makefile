@@ -6,13 +6,13 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/01/07 21:08:08 by glasset          ###   ########.fr        #
+#    Updated: 2014/01/08 18:21:56 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_select
 
-SRC = ./main.c ./lst.c ./ft_print.c ./keyword.c ./select.c ./use_key.c
+SRC = ./main.c ./lst.c ./ft_print.c ./keyword.c ./select.c ./use_key.c ./ft_resize.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -21,7 +21,7 @@ all : $(NAME)
 
 $(NAME) : $(SRC)
 	make -C libft/
-	gcc -Wall -Wextra -Werror -c $? -I libft/includes
+	gcc -g -Wall -Wextra -Werror -c $? -I libft/includes
 	gcc -o $(NAME) $(OBJ) -L libft -lft -L /usr/lib -ltermcap
 
 .PHONY: clean

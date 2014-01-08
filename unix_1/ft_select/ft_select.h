@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/06 12:28:42 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/07 21:08:06 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/08 15:15:23 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_lst
 typedef struct			p_lst
 {
 	size_t				len;
+	int					max_size;
 	struct s_lst		*start;
 	struct s_lst		*end;
 }						l_lst;
@@ -37,9 +38,13 @@ l_lst					*lst_add_end(l_lst *l_x, char *str, int bol);
 l_lst					*lst_add_start(l_lst *l_x, char *str, int bol);
 void					del_tlst(t_lst *cur);
 
-int						print(t_lst *print, int len);
+int						print(t_lst *print, int len, int max_size);
 void					ft_options(char *str, l_lst *arg);
 f						*ft_function(void);
+
+void					ft_tab(char *str, int max_size);
+int						ft_backn(int len);
+int						ft_backli(int max_size, int curw);
 
 int						check_key(unsigned int str);
 
