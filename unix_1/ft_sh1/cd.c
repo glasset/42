@@ -6,28 +6,13 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 21:12:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/15 16:03:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/15 16:23:19 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include <unistd.h>
 #include <dirent.h>
 #include "minishell.h"
-/*
-static char		*cdnull(char ***envp)
-{
-	char		*tmp;
-	char		**str;
-	int			i;
-
-	i = 0;
-	tmp = g_getenv("_", envp);
-	str = ft_strsplit(tmp, '.');
-	while (str[0][i])
-		i++;
-	str[0][i - 1] = '\0';
-	return (str[0]);
-}*/
 
 static char		*ft_pwd_back(char *pwd)
 {
