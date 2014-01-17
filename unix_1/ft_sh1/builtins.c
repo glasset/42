@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/14 15:57:33 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/15 14:14:24 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/17 14:53:57 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -20,7 +20,7 @@ int				builtins(char **arg, char ***env)
 	else if (!ft_strcmp(arg[0], "pwd"))
 		ft_putendl(g_getenv("PWD", env));
 	else if (!ft_strcmp(arg[0], "exit"))
-		kill(0, SIGQUIT);
+		kill(0, SIGINT);
 	else if (!ft_strcmp(arg[0], "getenv"))
 		ft_putendl(g_getenv(arg[1], env));
 	else if (!ft_strcmp(arg[0], "setenv"))
