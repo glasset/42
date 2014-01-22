@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 15:17:27 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/25 17:31:50 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
 
-void		print(void)
+int		ft_isalpha(int c)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
-}
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
 	return (0);
 }
-

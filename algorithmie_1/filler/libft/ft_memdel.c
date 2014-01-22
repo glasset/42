@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/25 16:47:37 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/29 13:48:12 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
+#include <stdlib.h>
 
-void		print(void)
+void	ft_memdel(void **ap)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
+	free(*ap);
+	*ap = NULL;
 }
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
-	return (0);
-}
-

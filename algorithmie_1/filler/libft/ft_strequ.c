@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/25 18:30:53 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/26 17:40:12 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
 
-void		print(void)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
-}
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
-	return (0);
+	while ( *s1 || *s2)
+	{
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+	}
+	return (1);
 }
 

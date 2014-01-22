@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 10:48:53 by glasset           #+#    #+#             */
+/*   Updated: 2014/01/06 11:26:45 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
-#include "filler.h"
 
-void		print(void)
+void		ft_putstr(char const *s)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
+	int		i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	write(1, &s, i);
 }
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
-	return (0);
-}
-

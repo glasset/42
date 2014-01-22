@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 16:25:26 by glasset           #+#    #+#             */
+/*   Updated: 2013/12/10 17:02:28 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include <unistd.h>
-#include "filler.h"
+#include "libft.h"
 
-void		print(void)
+char		*ft_strdup(const char *s1)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
+	int		i;
+	char	*s2;
+
+	i = 0;
+	s2 = (char*)malloc(sizeof(char) * ft_strlen(s1));
+	while (s1[i] != '\0')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
-	return (0);
-}
-

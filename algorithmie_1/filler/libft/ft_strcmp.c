@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 16:28:59 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/26 11:01:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
 
-void		print(void)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
-}
+	int	u;
 
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
+	u = 0;
+	while (s1[u] || s2[u])
+	{
+		if (s1[u] != s2[u])
+			return (s1[u] - s2[u]);
+		u++;
+	}
 	return (0);
 }
 

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 16:17:07 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/26 10:53:27 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
+#include <string.h>
 
-void		print(void)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
+	size_t		i;
+	char		*tmp1;
+	const char	*tmp2;
+
+	tmp1 = s1;
+	tmp2 = s2;
+	i = 0;
+	while (i < n)
+	{
+		*tmp1 = *tmp2;
+		tmp1++;
+		tmp2++;
+		i++;
+	}
+	return (s1);
 }
-
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
-	return (0);
-}
-

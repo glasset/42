@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/22 17:54:48 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 16:24:40 by glasset           #+#    #+#             */
+/*   Updated: 2013/11/30 15:17:17 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include "filler.h"
+#include <string.h>
 
-void		print(void)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	write(1, "1 4\n", 4);
-//	e->position = "1 4";
-//	ft_putstr(e->position);
-}
+	size_t		i;
+	const char	*tmp;
+	const char	*tmp2;
 
-int			main(void)
-{
-	t_env	e;
-
-	ft_read(&e);
+	tmp = s1;
+	tmp2 = s2;
+	i = 0;
+	while (i < n)
+	{
+		if (*tmp != *tmp2)
+			return (*tmp - *tmp2);
+		i++;
+		tmp++;
+		tmp2++;
+	}
 	return (0);
 }
-
