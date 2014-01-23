@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 14:39:01 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/23 16:44:09 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/23 18:20:01 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void					read_piece(t_env *e);
 void					ft_read(t_env *e);
 
 void					first_piece(t_env *e);
-
+void					freedom(t_env *e);
 #endif /* !FILLER_H */

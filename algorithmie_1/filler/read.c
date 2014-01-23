@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/23 17:48:37 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/23 18:20:05 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -103,7 +103,7 @@ void			ft_read(t_env *e)
 		read_board(e);
 		read_piece(e);
 		first_piece(e);
-		// free piece
+		freedom(e);
 	}
 	//free tab
 }
