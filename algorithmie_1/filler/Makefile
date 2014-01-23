@@ -6,13 +6,13 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/01/22 11:56:07 by glasset          ###   ########.fr        #
+#    Updated: 2014/01/23 13:29:42 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-SRC = ./main.c ./read.c\
+SRC = ./main.c ./read.c ./seek.c\
 
 OBJ = $(SRC:.c=.o)
 
