@@ -6,13 +6,13 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 16:43:08 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/28 13:04:54 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 17:08:54 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 4000
+# define BUFF_SIZE 1
 # include <string.h>
 
 typedef struct		s_read

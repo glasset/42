@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 14:39:01 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/23 18:20:01 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 13:19:14 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct			s_env
 	char				**piece;
 	int					board_size;
 	t_dot				piece_size;
-	t_dot				i;
-//	char				*position;
+	t_dot				*piece_pst;
+	t_dot				*board_pst;
+	int					nbr_board;
+	int					nbr_piece;
 }						t_env;
 
 void					read_board_size(t_env *e);
@@ -39,6 +41,7 @@ void					read_board(t_env *e);
 void					read_piece(t_env *e);
 void					ft_read(t_env *e);
 
-void					first_piece(t_env *e);
+void					use_piece(t_env *e);
+void					check_piece(t_env *e);
 void					freedom(t_env *e);
 #endif /* !FILLER_H */

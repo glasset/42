@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/23 18:20:05 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 19:08:45 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -19,6 +19,7 @@ void			read_board_size(t_env *e)
 	char		**tmp;
 	int			i;
 
+	line = NULL;
 	i = 0;
 	get_next_line(0, &line);
 	tmp = ft_strsplit(line, ' ');
@@ -30,7 +31,9 @@ void			read_board_size(t_env *e)
 		i++;
 	}
 	get_next_line(0, &line);
+	free(line);
 }
+
 
 void			read_board(t_env *e)
 {
@@ -70,25 +73,6 @@ void			read_piece(t_env *e)
 	e->piece[i] = '\0';
 }
 
-void			tt(t_env *e)
-{
-	int			i;
-	i = 0;
-	while (e->board[i])
-	{
-		write(2, &*e->board[i], ft_strlen(e->board[i]));
-		write(2, "\n", 1);
-		i++;
-	}
-	i = 0;
-	while (e->piece[i])
-	{
-		write(2, &*e->piece[i], ft_strlen(e->piece[i]));
-		write(2, "\n", 1);
-		i++;
-	}
-}
-
 void			ft_read(t_env *e)
 {
 	char		*line;
@@ -96,14 +80,17 @@ void			ft_read(t_env *e)
 	get_next_line(0, &line);
 	e->player = P_1;
 	if (line[10] == '2')
+	{
 		e->player = P_2;
+		e->opponent = P_1;
+	}
 	while (420)
 	{
 		read_board_size(e);
 		read_board(e);
 		read_piece(e);
-		first_piece(e);
-		freedom(e);
+		use_piece(e);
+	//	freedom(e);
 	}
 	//free tab
 }
