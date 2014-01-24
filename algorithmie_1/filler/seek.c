@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 21:22:42 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 21:59:01 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -135,6 +135,6 @@ void			use_piece(t_env *e)
 		print(e, save);
 	else
 		exit (0);
-	//free(e->board_pst);
-	//free(e->piece_pst);
+	free(e->board_pst);
+	free(e->piece_pst);
 }
