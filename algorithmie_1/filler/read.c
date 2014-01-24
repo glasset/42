@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 19:08:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 21:19:05 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -49,6 +49,7 @@ void			read_board(t_env *e)
 		e->board[i] = tmp[1];
 		i++;
 	}
+	e->board_size_len = ft_strlen(tmp[1]);
 	e->board[i] = '\0';
 	get_next_line(0, &line);
 	tmp = ft_strsplit(line, ' ');

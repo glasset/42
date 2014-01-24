@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 20:14:07 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/24 21:22:42 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -21,7 +21,8 @@ void			check_piece(t_env *e)
 
 	x = 0;
 	i = 0;
-	e->piece_pst = (t_dot *)malloc(sizeof(t_dot) * (e->piece_size.x * e->piece_size.y));
+	e->piece_pst = (t_dot *)malloc(sizeof(t_dot)
+			* (e->piece_size.x * e->piece_size.y));
 	while (e->piece[x])
 	{
 		y = 0;
@@ -53,12 +54,7 @@ void			check_board(t_env *e)
 		y = 0;
 		while (e->board[x][y])
 		{
-			if (e->board[x][y] == e->player)
-			{
-				e->board_pst[i].x = x;
-				e->board_pst[i++].y = y;
-			}
-			if (e->board[x][y] == e->player + 32)
+			if (e->board[x][y] == e->player || e->board[x][y] == e->player + 32)
 			{
 				e->board_pst[i].x = x;
 				e->board_pst[i++].y = y;
@@ -81,6 +77,7 @@ void			print(t_env *e, int pos)
 	ft_putnbr(e->board_pst[pos].y);
 	write(1, "\n", 1);
 }
+
 void			resize(t_env *e)
 {
 	int			i;
@@ -92,8 +89,6 @@ void			resize(t_env *e)
 		e->piece_pst[i].y = e->piece_pst[i].y - e->piece_pst[0].y;
 		i++;
 	}
-//	e->piece_pst[0].x = 0;
-//	e->piece_pst[0].y = 0;
 }
 
 void			use_piece(t_env *e)
@@ -101,6 +96,7 @@ void			use_piece(t_env *e)
 	int			y;
 	int			x;
 	int			save;
+	static int	i = 0;
 
 	check_piece(e);
 	check_board(e);
@@ -113,12 +109,26 @@ void			use_piece(t_env *e)
 		while (y < e->nbr_piece)
 		{
 			if (e->board[e->board_pst[x].x + e->piece_pst[y].x]
-					[e->board_pst[x].y + e->piece_pst[y].y] != '.')
+					[e->board_pst[x].y + e->piece_pst[y].y] != '.' ||
+					(e->board_pst[x].y + e->piece_size.y) > e->board_size_len ||
+					(e->board_pst[x].x + e->piece_size.x) > e->board_size)
 				break;
 			y++;
 		}
 		if (y == e->nbr_piece)
-			save = x;
+		{
+			if (i > 1)
+			{
+				save = x;
+				i = 0;
+			}
+			else
+			{
+				save = x;
+				i = 2;
+				break;
+			}
+		}
 		x++;
 	}
 	if (save != -1)
