@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 15:05:46 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/25 18:00:09 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/25 18:48:55 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -38,20 +38,26 @@ void			resize(t_env *e)
 	}
 }
 
-void			print(t_env *e, int pos)
+int				print(t_env *e, int pos)
 {
-	if (e->piece_pst[0].x != 0)
-		e->board_pst[pos].x = e->board_pst[pos].x - e->piece_pst[0].x;
-	if (e->piece_pst[0].y != 0)
-		e->board_pst[pos].y = e->board_pst[pos].y - e->piece_pst[0].y;
-	if ((e->board_pst[pos].x + e->piece_size.x) > e->board_size)
-		e->board_pst[pos].x = e->board_pst[pos].x - e->board_size;
-	if ((e->board_pst[pos].y + e->piece_size.y) > e->board_size_len)
-		e->board_pst[pos].y = e->board_pst[pos].y - e->board_size_len;
-	ft_putnbr(e->board_pst[pos].x);
-	write(1, " ", 1);
-	ft_putnbr(e->board_pst[pos].y);
-	write(1, "\n", 1);
+	if (pos != -1)
+	{
+		if (e->piece_pst[0].x != 0)
+			e->board_pst[pos].x = e->board_pst[pos].x - e->piece_pst[0].x;
+		if (e->piece_pst[0].y != 0)
+			e->board_pst[pos].y = e->board_pst[pos].y - e->piece_pst[0].y;
+		if ((e->board_pst[pos].x + e->piece_size.x) > e->board_size)
+			e->board_pst[pos].x = e->board_pst[pos].x - e->board_size;
+		if ((e->board_pst[pos].y + e->piece_size.y) > e->board_size_len)
+			e->board_pst[pos].y = e->board_pst[pos].y - e->board_size_len;
+		ft_putnbr(e->board_pst[pos].x);
+		write(1, " ", 1);
+		ft_putnbr(e->board_pst[pos].y);
+		write(1, "\n", 1);
+		return (0);
+	}
+	write(1, "0 0\n", 4);
+	return (1);
 }
 
 void		freedom(t_env *e)

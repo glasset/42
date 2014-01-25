@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 14:39:01 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/25 17:49:50 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/25 18:48:53 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void					ft_read(t_env *e);
 int						use_piece(t_env *e);
 void					check_piece(t_env *e);
 void					check_board(t_env *e);
-void					print(t_env *e, int pos);
+int						print(t_env *e, int pos);
 void					resize(t_env *e);
 t_dot					ajust(t_env *e, int x, int y);
 int						ft_abs(t_dot p1, t_dot p2, int y1, int y2);

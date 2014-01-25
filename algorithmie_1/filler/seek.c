@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/25 18:00:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/25 18:48:42 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -80,19 +80,23 @@ t_dot			ajust(t_env *e, int x, int y)
 	return (m);
 }
 
+int				better_pos(t_env *e, int x, int save)
+{
+	if (ft_abs(e->board_pst[x], e->board_pst[save],
+				(e->board_size_len / 2), (e->board_size / 2)) != 0)
+		save = x;
+	return (save);
+}
+
 int				use_piece(t_env *e)
 {
 	int			y;
 	int			x;
 	int			save;
-	t_dot		m;
-	t_dot		j;
 	int			tmp;
+	t_dot		m;
 
 	tmp = 0;
-	check_piece(e);
-	check_board(e);
-	resize(e);
 	save = -1;
 	x = 0;
 	while (x < e->nbr_board)
@@ -101,34 +105,19 @@ int				use_piece(t_env *e)
 		while (y < e->nbr_piece)
 		{
 			m = ajust(e, x, y);
-
 			if (e->board[m.x][m.y] != '.')
 				break;
 			y++;
 		}
-		if (y == e->nbr_piece)
-		{
-			if(tmp == 0)
-			{
-				j.x = e->board_pst[x].x;
-				j.y = e->board_pst[x].y;
-				tmp = 1;
-				save = x;
-			}
-			else if (ft_abs(e->board_pst[x], e->board_pst[save],
-						(e->board_size_len / 2), (e->board_size / 2)) != 0)
-				save = x;
-		}
+		if (y == e->nbr_piece && tmp++ < 2)
+			save = x;
+		else if (y == e->nbr_piece)
+			save = better_pos(e, x, save);
 		x++;
 	}
-
-	if (save != -1)
-	{
-		print(e, save);
+	if (print(e, save) == 0)
 		return (0);
-	}
-	write(1, "0 0\n", 4);
 	return (1);
-//	free(e->board_pst);
-//	free(e->piece_pst);
+	//	free(e->board_pst);
+	//	free(e->piece_pst);
 }
