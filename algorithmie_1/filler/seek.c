@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 22:15:34 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/25 13:04:15 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -72,6 +72,10 @@ void			print(t_env *e, int pos)
 		e->board_pst[pos].x = e->board_pst[pos].x - e->piece_pst[0].x;
 	if (e->piece_pst[0].y != 0)
 		e->board_pst[pos].y = e->board_pst[pos].y - e->piece_pst[0].y;
+	if ((e->board_pst[pos].x + e->piece_size.x) > e->board_size)
+		e->board_pst[pos].x = e->board_pst[pos].x - e->board_size;
+	if ((e->board_pst[pos].y + e->piece_size.y) > e->board_size_len)
+		e->board_pst[pos].y = e->board_pst[pos].y - e->board_size_len;
 	ft_putnbr(e->board_pst[pos].x);
 	write(1, " ", 1);
 	ft_putnbr(e->board_pst[pos].y);
@@ -91,13 +95,27 @@ void			resize(t_env *e)
 	}
 }
 
+t_dot			ajust(t_env *e, int x, int y)
+{
+	t_dot		m;
+
+	m.x = e->board_pst[x].x + e->piece_pst[y].x;
+	m.y = e->board_pst[x].y + e->piece_pst[y].y;
+	if (e->board_pst[x].y + e->piece_pst[y].y > e->board_size_len)
+		m.y = m.y - e->board_size_len;
+	if (e->board_pst[x].x + e->piece_pst[y].x > e->board_size)
+		m.x = m.x - e->board_size;
+	return (m);
+}
+
 void			use_piece(t_env *e)
 {
 	int			y;
 	int			x;
 	int			save;
-	static int	i = 0;
+	t_dot		m;
 
+	
 	check_piece(e);
 	check_board(e);
 	resize(e);
@@ -108,33 +126,25 @@ void			use_piece(t_env *e)
 		y = 1;
 		while (y < e->nbr_piece)
 		{
-			if (e->board[e->board_pst[x].x + e->piece_pst[y].x]
-					[e->board_pst[x].y + e->piece_pst[y].y] != '.' ||
-					(e->board_pst[x].y + e->piece_size.y) > e->board_size_len ||
-					(e->board_pst[x].x + e->piece_size.x) > e->board_size)
+			m = ajust(e, x, y);
+			if (e->board[m.x][m.y] != '.')
 				break;
 			y++;
 		}
 		if (y == e->nbr_piece)
 		{
-			if (i > 1)
-			{
-				save = x;
-				i = 0;
-			}
-			else
-			{
-				save = x;
-				i = 2;
-				break;
-			}
+			save = x;
+			break;
 		}
 		x++;
 	}
 	if (save != -1)
 		print(e, save);
 	else
+	{
+		write(1, "0 0\n", 4);
 		exit (0);
+	}
 	free(e->board_pst);
 	free(e->piece_pst);
 }
