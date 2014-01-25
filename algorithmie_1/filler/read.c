@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 22:15:28 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/25 15:36:44 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -31,9 +31,8 @@ void			read_board_size(t_env *e)
 		i++;
 	}
 	get_next_line(0, &line);
-	free(line);
+//	free(line);
 }
-
 
 void			read_board(t_env *e)
 {
@@ -46,11 +45,11 @@ void			read_board(t_env *e)
 	{
 		get_next_line(0, &line);
 		tmp = ft_strsplit(line, ' ');
-		e->board[i] = tmp[1];
+		e->board[i] = ft_strdup(tmp[1]);
 		i++;
 	}
-	e->board_size_len = ft_strlen(tmp[1]);
 	e->board[i] = '\0';
+	e->board_size_len = ft_strlen(tmp[1]);
 	get_next_line(0, &line);
 	tmp = ft_strsplit(line, ' ');
 	e->piece_size.x = ft_atoi(tmp[1]);
@@ -68,7 +67,7 @@ void			read_piece(t_env *e)
 	{
 		get_next_line(0, &line);
 		e->piece[i] = (char *)malloc(sizeof(char) * e->piece_size.y + 1);
-		e->piece[i] = line;
+		e->piece[i] = ft_strdup(line);
 		i++;
 	}
 	e->piece[i] = '\0';
@@ -77,7 +76,9 @@ void			read_piece(t_env *e)
 void			ft_read(t_env *e)
 {
 	char		*line;
+	int			i;
 
+	i = 0;
 	get_next_line(0, &line);
 	e->player = P_1;
 	if (line[10] == '2')
@@ -85,13 +86,13 @@ void			ft_read(t_env *e)
 		e->player = P_2;
 		e->opponent = P_1;
 	}
-	while (420)
+	while (i == 0)
 	{
 		read_board_size(e);
 		read_board(e);
 		read_piece(e);
-		use_piece(e);
-		freedom(e);
+		i = use_piece(e);
+	//	freedom(e);
 	}
 	//free tab
 }
