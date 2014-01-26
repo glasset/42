@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/25 18:48:51 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 22:43:51 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -31,7 +31,6 @@ void			read_board_size(t_env *e)
 		i++;
 	}
 	get_next_line(0, &line);
-//	free(line);
 }
 
 void			read_board(t_env *e)
@@ -47,6 +46,7 @@ void			read_board(t_env *e)
 		tmp = ft_strsplit(line, ' ');
 		e->board[i] = ft_strdup(tmp[1]);
 		i++;
+		free(line);
 	}
 	e->board[i] = '\0';
 	e->board_size_len = ft_strlen(tmp[1]);
@@ -69,6 +69,7 @@ void			read_piece(t_env *e)
 		e->piece[i] = (char *)malloc(sizeof(char) * e->piece_size.y + 1);
 		e->piece[i] = ft_strdup(line);
 		i++;
+		free(line);
 	}
 	e->piece[i] = '\0';
 }
@@ -86,6 +87,7 @@ void			ft_read(t_env *e)
 		e->player = P_2;
 		e->opponent = P_1;
 	}
+	free(line);
 	while (i == 0)
 	{
 		read_board_size(e);
@@ -93,9 +95,10 @@ void			ft_read(t_env *e)
 		read_piece(e);
 		check_piece(e);
 		check_board(e);
-		resize(e);
-		use_piece(e);
-	//	freedom(e);
+		i = use_piece(e);
+		freedom(e->board);
+		freedom(e->piece);
+		free(e->board_pst);
+		free(e->piece_pst);
 	}
-	//free tab
 }

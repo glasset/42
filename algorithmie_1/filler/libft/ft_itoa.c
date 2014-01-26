@@ -6,15 +6,15 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/25 18:45:22 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/28 16:34:16 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 22:18:47 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "libft.h"
 
-static int	ft_lint(int n)
+static int			ft_lint(int n)
 {
-	int		c;
+	int				c;
 	unsigned int	f;
 
 	c = 0;
@@ -35,10 +35,10 @@ static int	ft_lint(int n)
 	return (c);
 }
 
-char	*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	char	*c;
-	int		i;
+	char			*c;
+	int				i;
 	unsigned int	f;
 
 	i = ft_lint(n);

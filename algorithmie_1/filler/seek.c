@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/25 18:48:42 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 22:39:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -67,57 +67,82 @@ void			check_board(t_env *e)
 	e->nbr_board = i;
 }
 
-t_dot			ajust(t_env *e, int x, int y)
+t_dot			ajust(t_env *e, int x, int y, int x2, int y2)
 {
 	t_dot		m;
 
-	m.x = e->board_pst[x].x + e->piece_pst[y].x;
-	m.y = e->board_pst[x].y + e->piece_pst[y].y;
-	if (e->board_pst[x].y + e->piece_pst[y].y > (e->board_size_len - 1))
+	m.x = x + x2;
+	m.y = y + y2;
+	if (y + y2 > (e->board_size_len - 1))
 		m.y = m.y - e->board_size_len;
-	if (e->board_pst[x].x + e->piece_pst[y].x > (e->board_size - 1))
+	if (x + x2 > (e->board_size - 1))
 		m.x = m.x - e->board_size;
 	return (m);
 }
 
-int				better_pos(t_env *e, int x, int save)
+t_dot			better_pos(t_env *e, t_dot save, int x, int y)
 {
-	if (ft_abs(e->board_pst[x], e->board_pst[save],
-				(e->board_size_len / 2), (e->board_size / 2)) != 0)
-		save = x;
+	t_dot		tmp;
+
+	tmp.x = x;
+	tmp.y = y;
+	if (ft_abs(tmp, save, (e->board_size_len / 2), (e->board_size / 2)) != 0)
+	{
+		save.x = x;
+		save.y = y;
+	}
 	return (save);
 }
 
 int				use_piece(t_env *e)
 {
-	int			y;
 	int			x;
-	int			save;
 	int			tmp;
 	t_dot		m;
+	t_dot		p;
+	int			index;
+	int			y2;
+	int			u;
+	t_dot		save;
 
 	tmp = 0;
-	save = -1;
 	x = 0;
-	while (x < e->nbr_board)
+	while (x < e->board_size)
 	{
-		y = 1;
-		while (y < e->nbr_piece)
+		y2 = 0;
+		while(y2 < e->board_size_len)
 		{
-			m = ajust(e, x, y);
-			if (e->board[m.x][m.y] != '.')
-				break;
-			y++;
+			u = 0;
+			m.x = 0;
+			index = 0;
+			while (m.x < e->piece_size.x)
+			{
+				m.y = 0;
+				while (m.y < e->piece_size.y)
+				{
+					p = ajust(e, x, y2, m.x, m.y);
+					if (e->piece[m.x][m.y] == '*')
+					{
+						if (e->board[p.x][p.y] == e->player
+								|| e->board[p.x][p.y] == e->player + 32)
+							index++;
+						else if (e->board[p.x][p.y] != '.')
+							u++;
+					}
+					m.y++;
+				}
+				m.x++;
+			}
+			if (u == 0 && index == 1 && tmp++ < 2)
+			{
+				save.x = x;
+				save.y = y2;
+			}
+			else if (u == 0 && index == 1)
+				save = better_pos(e, save, x, y2);
+			y2++;
 		}
-		if (y == e->nbr_piece && tmp++ < 2)
-			save = x;
-		else if (y == e->nbr_piece)
-			save = better_pos(e, x, save);
 		x++;
 	}
-	if (print(e, save) == 0)
-		return (0);
-	return (1);
-	//	free(e->board_pst);
-	//	free(e->piece_pst);
+	return (print(e,save.x, save.y, tmp));
 }
