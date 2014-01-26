@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 23:06:30 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 23:14:33 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -66,55 +66,59 @@ t_dot			better_pos(t_env *e, t_dot save, int x, int y)
 	}
 	return (save);
 }
-t_dot			check_piece(t_env *e, x, y2, t_dot m);
+
+t_dot			check_piece(t_env *e, int x, int y2, t_dot m)
+{
+	t_dot		p;
+	t_dot		check;
+
+	check.y = 0;
+	check.x = 0;
+	m.x = 0;
+	while (m.x < e->piece_size.x)
+	{
+		m.y = 0;
+		while (m.y < e->piece_size.y)
+		{
+			p = ajust(e, x, y2, m.x, m.y);
+			if (e->piece[m.x][m.y] == '*')
+			{
+				if (e->board[p.x][p.y] == e->player
+						|| e->board[p.x][p.y] == e->player + 32)
+					check.x++;
+				else if (e->board[p.x][p.y] != '.')
+					check.y++;
+			}
+			m.y++;
+		}
+		m.x++;
+	}
+	return (check);
+}
+
 int				use_piece(t_env *e)
 {
 	t_dot		m;
-	t_dot		p;
 	t_dot		check;
 	t_dot		save;
-	int			x;
-	int			y2;
+	t_dot		b;
 	int			tmp;
 
 	tmp = 0;
-	x = 0;
-	while (x < e->board_size)
+	b.x = 0;
+	while (b.x < e->board_size)
 	{
-		y2 = 0;
-		while (y2 < e->board_size_len)
+		b.y = 0;
+		while (b.y < e->board_size_len)
 		{
-			check.y = 0;
-			m.x = 0;
-			check.x = 0;
-			while (m.x < e->piece_size.x)
-			{
-				m.y = 0;
-				while (m.y < e->piece_size.y)
-				{
-					p = ajust(e, x, y2, m.x, m.y);
-					if (e->piece[m.x][m.y] == '*')
-					{
-						if (e->board[p.x][p.y] == e->player
-								|| e->board[p.x][p.y] == e->player + 32)
-							check.x++;
-						else if (e->board[p.x][p.y] != '.')
-							check.y++;
-					}
-					m.y++;
-				}
-				m.x++;
-			}
+			check = check_piece(e, b.x, b.y, m);
 			if (check.y == 0 && check.x == 1 && tmp++ < 2)
-			{
-				save.x = x;
-				save.y = y2;
-			}
+				save = b;
 			else if (check.y == 0 && check.x == 1)
-				save = better_pos(e, save, x, y2);
-			y2++;
+				save = better_pos(e, save, b.x, b.y);
+			b.y++;
 		}
-		x++;
+		b.x++;
 	}
 	return (print(e, save.x, save.y, tmp));
 }
