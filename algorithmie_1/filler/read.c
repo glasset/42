@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 11:35:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:43:51 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 22:48:27 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -93,12 +93,10 @@ void			ft_read(t_env *e)
 		read_board_size(e);
 		read_board(e);
 		read_piece(e);
-		check_piece(e);
 		check_board(e);
 		i = use_piece(e);
 		freedom(e->board);
 		freedom(e->piece);
 		free(e->board_pst);
-		free(e->piece_pst);
 	}
 }

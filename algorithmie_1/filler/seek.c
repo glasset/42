@@ -6,39 +6,12 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/23 13:11:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:39:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/01/26 23:06:30 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
 #include <stdlib.h>
 #include "filler.h"
-
-void			check_piece(t_env *e)
-{
-	int			x;
-	int			y;
-	int			i;
-
-	x = 0;
-	i = 0;
-	e->piece_pst = (t_dot *)malloc(sizeof(t_dot)
-			* (e->piece_size.x * e->piece_size.y));
-	while (e->piece[x])
-	{
-		y = 0;
-		while (e->piece[x][y])
-		{
-			if (e->piece[x][y] == '*')
-			{
-				e->piece_pst[i].x = x;
-				e->piece_pst[i++].y = y;
-			}
-			y++;
-		}
-		x++;
-	}
-	e->nbr_piece = i;
-}
 
 void			check_board(t_env *e)
 {
@@ -93,28 +66,27 @@ t_dot			better_pos(t_env *e, t_dot save, int x, int y)
 	}
 	return (save);
 }
-
+t_dot			check_piece(t_env *e, x, y2, t_dot m);
 int				use_piece(t_env *e)
 {
-	int			x;
-	int			tmp;
 	t_dot		m;
 	t_dot		p;
-	int			index;
-	int			y2;
-	int			u;
+	t_dot		check;
 	t_dot		save;
+	int			x;
+	int			y2;
+	int			tmp;
 
 	tmp = 0;
 	x = 0;
 	while (x < e->board_size)
 	{
 		y2 = 0;
-		while(y2 < e->board_size_len)
+		while (y2 < e->board_size_len)
 		{
-			u = 0;
+			check.y = 0;
 			m.x = 0;
-			index = 0;
+			check.x = 0;
 			while (m.x < e->piece_size.x)
 			{
 				m.y = 0;
@@ -125,24 +97,24 @@ int				use_piece(t_env *e)
 					{
 						if (e->board[p.x][p.y] == e->player
 								|| e->board[p.x][p.y] == e->player + 32)
-							index++;
+							check.x++;
 						else if (e->board[p.x][p.y] != '.')
-							u++;
+							check.y++;
 					}
 					m.y++;
 				}
 				m.x++;
 			}
-			if (u == 0 && index == 1 && tmp++ < 2)
+			if (check.y == 0 && check.x == 1 && tmp++ < 2)
 			{
 				save.x = x;
 				save.y = y2;
 			}
-			else if (u == 0 && index == 1)
+			else if (check.y == 0 && check.x == 1)
 				save = better_pos(e, save, x, y2);
 			y2++;
 		}
 		x++;
 	}
-	return (print(e,save.x, save.y, tmp));
+	return (print(e, save.x, save.y, tmp));
 }
