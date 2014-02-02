@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 11:20:30 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/22 17:52:36 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/02 17:33:26 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -15,9 +15,7 @@
 int				check_space(char *str)
 {
 	int			i;
-	f			*ft;
 
-	ft = ft_function();
 	i = 0;
 	while (str[i] == ' ' || str[i] == '0')
 		i++;

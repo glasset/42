@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 13:48:11 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/22 17:20:35 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/02 17:30:48 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -56,6 +56,7 @@ int					use_Z(va_list arg)
 	char			c;
 
 	c = va_arg(arg, int);
+	c++;
 	write(1, "Z", 1);
 	return (1);
 }

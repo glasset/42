@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 16:15:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 17:24:16 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/02 17:32:11 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "user.h"
@@ -26,7 +26,6 @@ void			send(int a, int pid)
 void			get_bin(int c, int pid)
 {
 	int			a;
-	char		d;
 
 	a = c % 2;
 	c = c / 2;
