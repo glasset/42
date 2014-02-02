@@ -6,33 +6,48 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 16:15:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 17:32:11 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/02 19:48:19 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "user.h"
 #include <unistd.h>
 #include <signal.h>
-#include <stdio.h>
+#include "user.h"
 
-void			send(int a, int pid)
-{
-	usleep(500);
-	if (a == 1)
-		kill(pid, SIGUSR2);
-	if  (a == 0)
-		kill(pid, SIGUSR1);
-}
+int				tab[8];
+static int		oc = 0;
 
-void			get_bin(int c, int pid)
+void			get_bin(int c)
 {
 	int			a;
 
 	a = c % 2;
 	c = c / 2;
 	if (c > 0)
-		get_bin(c, pid);
-	printf("%d", a);
-	send(a, pid);
+		get_bin(c);
+	tab[oc++] = a;
+}
+
+void			send_signal(int pid)
+{
+	int			t;
+
+	t = 0;
+	while (t < (8 - oc))
+	{
+		kill(pid, SIGUSR1);
+		usleep(100);
+		t++;
+	}
+	t = 0;
+	while (t < oc)
+	{
+		if (tab[t++] == 1)
+			kill(pid, SIGUSR2);
+		else 
+			kill(pid, SIGUSR1);
+		usleep(100);
+	}
+	oc = 0;
 }
 
 void			data(int pid, char *msg)
@@ -41,7 +56,8 @@ void			data(int pid, char *msg)
 
 	i = 0;
 	while(msg[i])
-		get_bin((int)msg[i++], pid);
+	{
+		get_bin((int)msg[i++]);
+		send_signal(pid);
+	}
 }
-
-

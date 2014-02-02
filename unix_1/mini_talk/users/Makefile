@@ -6,14 +6,15 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/02/02 17:34:24 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/02 19:55:10 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ../client
 
 SRC = ./user_data.c \
-	  ./user_m.c
+	  ./user_m.c \
+	  ./ft_atoi.c
 
 OBJ = $(SRC:.c=.o)
 
