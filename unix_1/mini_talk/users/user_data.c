@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 16:15:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 19:48:19 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/02 20:19:02 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -60,4 +60,7 @@ void			data(int pid, char *msg)
 		get_bin((int)msg[i++]);
 		send_signal(pid);
 	}
+	get_bin((int)'\n');
+	send_signal(pid);
+
 }
