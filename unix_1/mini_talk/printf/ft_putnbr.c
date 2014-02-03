@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:58:04 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/03 13:34:22 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:37:57 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -91,11 +91,11 @@ int							ft_hexa(unsigned int n)
 	return (u);
 }
 
-int						ft_hexax(unsigned long n)
+int							ft_hexax(unsigned long n)
 {
-	unsigned long		a;
-	int					u;
-	char				*str;
+	unsigned long			a;
+	int						u;
+	char					*str;
 
 	str = "0123456789abcdef";
 	u = 0;

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 12:59:27 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/22 18:11:17 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:37:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -43,7 +43,7 @@ int				wspace(char *tmp, int *i, char *format, va_list arg)
 	u = 0;
 	write(1, " ", 1);
 	(*i) = (*i) + (check_space(tmp)) + 1;
-	u =  (ft[check_flag(format[(*i)])](arg)) + 1;
+	u = (ft[check_flag(format[(*i)])](arg)) + 1;
 	return (u);
 }
 
