@@ -6,16 +6,16 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/02/02 20:07:07 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/03 13:39:26 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Mini_talk
 
 .PHONY: all
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) :
+$(NAME):
 	@make -C printf/
 	@make -C servers/
 	@make -C users/
