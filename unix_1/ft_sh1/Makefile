@@ -6,11 +6,11 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/01/17 14:54:43 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/03 14:32:29 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_minishell2
+NAME = ft_minishell1
 
 SRC = ./main.c ./gl_sh.c ./error.c builtins.c ./use_b.c ./cd.c\
 
