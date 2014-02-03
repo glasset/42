@@ -6,7 +6,7 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/02/01 15:31:35 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/03 13:40:13 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ OBJ = $(SRC:.c=.o)
 all:$(NAME)
 
 $(NAME):$(SRC)
-	gcc -Wall -Wextra -Werror -c $? -I ./
-	ar rc $(NAME) $(OBJ)
+	@gcc -Wall -Wextra -Werror -c $? -I ./
+	@ar rc $(NAME) $(OBJ)
 
 .PHONY: clean
 clean:

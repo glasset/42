@@ -6,7 +6,7 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/02/03 13:39:26 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/03 13:42:36 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,12 @@ clean:
 	@make -C printf/ clean
 	@make -C servers/ clean
 	@make -C users/ clean
-	@echo "file .o clean"
 
 .PHONY: fclean
 fclean: clean
 	@make -C printf/ fclean
 	@make -C servers/ fclean
 	@make -C users/ fclean
-	@echo "file $(NAME) clean"
 
 .PHONY: re
 re: fclean all
