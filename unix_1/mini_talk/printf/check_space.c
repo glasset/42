@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/21 11:20:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 17:33:26 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:33:13 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -37,7 +37,7 @@ int				intlen(int c)
 	return (len);
 }
 
-int			wzero(char *str, int cou, int *u)
+int				wzero(char *str, int cou, int *u)
 {
 	if (str[0] == '0')
 		write(1, "0", 1);

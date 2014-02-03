@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/02 17:51:10 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 20:19:22 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:35:50 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -20,7 +20,7 @@ void			convert(void)
 
 	puiss = 1;
 	c = 0;
-	while((env->oct) > 0)
+	while ((env->oct) > 0)
 	{
 		c = (env->onechar[env->oct - 1] * puiss) + c;
 		puiss = puiss * 2;

@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/25 18:38:00 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/27 18:11:31 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:34:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -18,7 +18,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	int		i;
 
 	i = 0;
-	tmp = (char*)malloc(sizeof(s) * len);
+	tmp = (char *)malloc(sizeof(s) * len);
 	if (tmp)
 	{
 		while (len--)

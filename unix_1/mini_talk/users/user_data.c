@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 16:15:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 21:23:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/03 13:36:14 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -45,7 +45,7 @@ void			send_signal(int pid, int oc)
 	{
 		if (tab[t++] == 1)
 			kill(pid, SIGUSR2);
-		else 
+		else
 			kill(pid, SIGUSR1);
 		usleep(100);
 	}
@@ -56,7 +56,7 @@ void			data(int pid, char *msg)
 	int			i;
 
 	i = 0;
-	while(msg[i])
+	while (msg[i])
 		send_signal(pid, get_bin((int)msg[i++]));
 	send_signal(pid, get_bin((int)'\n'));
 }
