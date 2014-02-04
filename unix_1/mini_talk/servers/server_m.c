@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 15:22:36 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/02 21:17:49 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/04 10:53:14 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -38,7 +38,7 @@ int			main(void)
 	env = malloc(sizeof(t_data));
 	env->oct = 0;
 	pid = getpid();
-	ft_printf("Pid server: %d.\n", pid);
+	ft_printf("Server [on]\nPid server: %d.\n", pid);
 	signal(SIGUSR2, &one);
 	signal(SIGUSR1, &zero);
 	while (42)
