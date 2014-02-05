@@ -6,13 +6,13 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 12:25:54 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/04 16:39:03 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/05 18:05:30 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <mlx.h>
 #include "rtv.h"
 
-int				put_px_to_img(void *img, int x, int y)
+int				put_px_to_img(void *img, int x, int y, int r, int g, int b)
 {
 	char		*data;
 	int			bpp;
@@ -22,8 +22,8 @@ int				put_px_to_img(void *img, int x, int y)
 
 	data = mlx_get_data_addr(img, &bpp, &size, &endian);
 	pos = y * size + x * bpp / 8;
-	data[pos] = 200;
-	data[pos + 1] = 200;
-	data[pos + 2] = 200;
+	data[pos] = r;
+	data[pos + 1] = g;
+	data[pos + 2] = b;
 	return (0);
 }
