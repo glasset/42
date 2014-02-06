@@ -6,30 +6,38 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 11:59:37 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/05 18:05:24 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/06 18:20:25 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV_H
 # define RTV_H
-# define VALUE 200.0
-# define WIN_X 4.0 * VALUE
-# define WIN_Y 3.0 * VALUE
+# include "libft.h"
+# include <unistd.h>
+
+# define WIN_X 640.0
+# define WIN_Y 480.0
 
 
-# define XLEFT -12.0
-# define XRIGHT 12.0
-# define YTOP 9.0
-# define YBOT -9.0
+# define VPD 1.0
+# define VPH 0.35
+# define VPW 0.5
 
 # define POV_X 0.0
 # define POV_Y 0.0
-# define POV_Z -10.0
+# define POV_Z -50.0
 
-# define START_X 0.0;
-# define START_Y 0.0;
-# define START_Z 10.0;
-# define RAY_S   5.0;
+/*
+**	Object
+*/
+typedef struct			s_obj
+{
+	double				o_x;
+	double				o_y;
+	double				o_z;
+	double				o_r;
+}						t_obj;
+
 
 /*
 **	Mlx
@@ -51,7 +59,6 @@ typedef struct			s_vec
 	double				x;
 	double				y;
 	double				z;
-	double				d;
 }						t_vec;
 
 /*
@@ -62,7 +69,8 @@ typedef struct			s_ray
 	t_vec				ori;
 	t_vec				dir;
 	t_vec				vec;
-	double				len;
+	t_obj				*obj;
+	int					size_obj;
 }						t_ray;
 
 /*
@@ -70,12 +78,16 @@ typedef struct			s_ray
 */
 typedef struct			s_cam
 {
-	double				campos;
-	double				camdir;
-	double				camright;
-	double				camdown;
+	double				width;
+	double				height;
+	double				dist;
+	t_vec				campos;
+	t_vec				up;
+	t_vec				right;
+	t_vec				view;
 }						t_cam;
 
-int						trace(void *img, double p_x, double p_y);
-
+int						trace(void *img, char *str);
+void					init_ori_obj(t_vec *c, t_ray *l, t_obj *obj);
+void					init_obj(t_ray *ray, char *str);
 #endif /* !RTV_H */
