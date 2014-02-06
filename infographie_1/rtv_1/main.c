@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 12:00:56 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/06 18:07:16 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/06 23:28:35 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <mlx.h>
@@ -14,18 +14,27 @@
 #include <unistd.h>
 #include "rtv.h"
 
+void			error(char *str)
+{
+	ft_putstr_fd("usage: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(" obj.rtv\n", 2);
+	exit(0);
+}
+
 int				key_hook(int keycode)
 {
 	if (keycode == 65307)
 		exit (0);
 	return (0);
 }
-#include <stdio.h>
+
 int				main(int argc, char **argv)
 {
 	t_mlx		*t;
 
-	argc=argc;
+	if (argc == 1)
+		error(argv[0]);
 	t = malloc(sizeof(t_mlx));
 	t->mlx = mlx_init();
 	t->win = mlx_new_window(t->mlx, WIN_X, WIN_Y, "RTV_1");
