@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:48:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 11:26:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/07 18:22:54 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -18,5 +18,5 @@ void		ft_putstr(char const *s)
 	i = 0;
 	while (s[i] != '\0')
 		i++;
-	write(1, &s, i);
+	write(1, s, i);
 }
