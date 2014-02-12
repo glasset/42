@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 11:59:37 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/11 16:59:53 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/12 11:38:29 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef RTV_H
@@ -101,14 +101,14 @@ void					init_plans(t_ray *ray, int fd);
 /*
 **	obj.c
 */
-t_vec					sphere(t_ray *l); // +25lignes
+t_vec					sphere(t_ray *l); // +25lignes !!!
 t_vec					plan(t_ray *l);
 
 /*
 **	tool.c
 */
 void					shor_plans(t_vec *shor, double a, double i);
-void					shor_dist(double a, double b, t_vec *shor, double i); //+25 ligne
+void					shor_dist(double a, double b, t_vec *shor, double i);
 void					norme(t_vec *l);
 void					init_ori_obj(t_vec *c, t_ray *l, t_obj *obj);
 

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:01:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/11 15:48:08 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/12 11:38:33 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -47,6 +47,11 @@ void		shor_plans(t_vec *shor, double a, double i)
 
 void		shor_dist(double a, double b, t_vec  *shor, double i)
 {
+	if (i == 0.0)
+	{
+		shor->x = 0.0;
+		return ;
+	}
 	if (a >= 0 && b >= 0)
 	{
 		if (a > b)
@@ -57,13 +62,7 @@ void		shor_dist(double a, double b, t_vec  *shor, double i)
 	else if (a < 0)
 		a = b;
 	if (shor->x == -1.0)
-	{
 		shor->x = a;
-		shor->y = i;
-	}
 	else if (a < shor->x)
-	{
-			shor->y = i;
-			shor->x = a;
-	}
+		shor->x = a;
 }

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:38:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/11 17:38:41 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/12 18:20:40 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -31,9 +31,13 @@ void		print_px(t_ray *ray, void *img, t_vec *index)
 	if (spheres.z == -1.0 && plans.x == -1.0)
 		put_px_to_img(img, index->x, index->y, 200, 0, 0);
 	else if (spheres.x <= a && spheres.z != -1.0 )
-		put_px_to_img(img, index->x, index->y, spheres.y * 5, spheres.y * 5, spheres.y * 200);
+	{
+		if (spheres.y > 255)
+			spheres.y = 255;
+		put_px_to_img(img, index->x, index->y, 0, 0,  spheres.y);
+	}
 	else
-		put_px_to_img(img, index->x, index->y, 50, plans.y * 100, 0);
+		put_px_to_img(img, index->x, index->y, 220 * plans.y, 0, plans.y * 100);
 }
 
 void		init_obj(t_ray *ray, char *str)
