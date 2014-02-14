@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 11:59:37 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/12 11:38:29 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/14 19:11:16 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef RTV_H
@@ -23,7 +23,7 @@
 # define VPW 0.5
 
 # define POV_X 0.0
-# define POV_Y 0.0
+# define POV_Y 5.0
 # define POV_Z -10.0
 
 /*
@@ -56,6 +56,7 @@ typedef struct			s_obj
 	t_vec				point;
 	t_vec				norme;
 	double				o_r;
+	t_vec				color;
 }						t_obj;
 
 /*
@@ -94,26 +95,28 @@ int						trace(void *img, char *str);
 **	init(2).c
 */
 void					print_px(t_ray *ray, void *img, t_vec *index);
-void					init_ori_obj(t_vec *c, t_ray *l, t_obj *obj);
 void					init_obj(t_ray *ray, char *str);
 void					init_plans(t_ray *ray, int fd);
-
+void					color(char *str, t_vec *color);
 /*
 **	obj.c
 */
-t_vec					sphere(t_ray *l); // +25lignes !!!
-t_vec					plan(t_ray *l);
+t_vec					sphere(t_ray *l, t_vec *dir, t_vec *ori); // +25lignes !!!
+t_vec					plan(t_ray *l, t_vec *dir, t_vec *ori);
 
 /*
 **	tool.c
 */
 void					shor_plans(t_vec *shor, double a, double i);
-void					shor_dist(double a, double b, t_vec *shor, double i);
+int						shor_dist(double a, double b, t_vec *shor, double i);
 void					norme(t_vec *l);
-void					init_ori_obj(t_vec *c, t_ray *l, t_obj *obj);
+void					init_ori_obj(t_vec *c, t_vec *ori, t_obj *obj);
+void					find_dot(t_vec *c, double dist, t_vec *ori, t_vec *dir);
 
 /*
-**	tool.c
+**	light.c
 */
-void				light(t_vec *c, t_vec *shor);
+double				ft_light(t_vec *c, t_vec *light);
+t_vec				shadow(t_ray *ray, t_vec *point, int bol, t_vec *light);
+double				find_light(t_ray *ray, double dist, double index, int bol);
 #endif /* !RTV_H */

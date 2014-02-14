@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:01:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/12 11:38:33 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/14 15:52:46 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -22,11 +22,18 @@ void		norme(t_vec *l)
 	l->z = l->z / len;
 }
 
-void		init_ori_obj(t_vec *c, t_ray *l, t_obj *obj)
+void		init_ori_obj(t_vec *c, t_vec *ori, t_obj *obj)
 {
-	c->x = l->ori.x - obj->point.x;
-	c->y = l->ori.y - obj->point.y;
-	c->z = l->ori.z - obj->point.z;
+	c->x = ori->x - obj->point.x;
+	c->y = ori->y - obj->point.y;
+	c->z = ori->z - obj->point.z;
+}
+
+void		find_dot(t_vec *c, double dist, t_vec *ori, t_vec *dir)
+{
+	c->x = ori->x + dir->x * dist;
+	c->y = ori->y + dir->y * dist;
+	c->z = ori->z + dir->z * dist;
 }
 
 void		shor_plans(t_vec *shor, double a, double i)
@@ -45,12 +52,12 @@ void		shor_plans(t_vec *shor, double a, double i)
 	}
 }
 
-void		shor_dist(double a, double b, t_vec  *shor, double i)
+int			shor_dist(double a, double b, t_vec  *shor, double i)
 {
 	if (i == 0.0)
 	{
 		shor->x = 0.0;
-		return ;
+		return (1);
 	}
 	if (a >= 0 && b >= 0)
 	{
@@ -58,11 +65,12 @@ void		shor_dist(double a, double b, t_vec  *shor, double i)
 			a = b;
 	}
 	else if (a < 0 && b < 0)
-		return ;
+		return (0);
 	else if (a < 0)
 		a = b;
 	if (shor->x == -1.0)
 		shor->x = a;
 	else if (a < shor->x)
 		shor->x = a;
+	return (1);
 }

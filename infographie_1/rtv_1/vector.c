@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 14:56:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/12 18:20:39 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/14 19:11:17 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -18,7 +18,7 @@ static void			view(t_ray *l, t_cam *c)
 	l->dir.y = 0.0 - l->ori.y;
 	l->dir.z = 1.0 - l->ori.z;
 	c->up.x = 0.0;
-	c->up.y = -1.0;
+	c->up.y = 1.0;
 	c->up.z = 0.0;
 	c->right.x = (c->up.y * l->dir.z - c->up.z * l->dir.y);
 	c->right.y = (c->up.z * l->dir.x - c->up.x * l->dir.z);

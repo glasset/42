@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 12:16:39 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/11 14:06:11 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/14 12:42:59 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -34,7 +34,8 @@ void			init_plans(t_ray *ray, int fd)
 			ray->obj[i].point.z = ft_atoi(tmp[2]) + 0.0;
 			ray->obj[i].norme.x = ft_atoi(tmp[3]) + 0.0;
 			ray->obj[i].norme.y = ft_atoi(tmp[4]) + 0.0;
-			ray->obj[i++].norme.z = ft_atoi(tmp[5]) + 0.0;
+			ray->obj[i].norme.z = ft_atoi(tmp[5]) + 0.0;
+			color(tmp[6], &ray->obj[i++].color);
 			free(line);
 		}
 	}
