@@ -6,7 +6,7 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/02/14 11:51:00 by glasset          ###   ########.fr        #
+#    Updated: 2014/02/15 15:08:40 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ all : $(NAME)
 
 $(NAME) : $(SRC)
 	@make -C libft/
-	@gcc -g -Wall -Wextra -Werror -c $? -I libft/includes -I /usr/X11/include/
-	@gcc -o $(NAME) $(OBJ) -L libft -lft -L/usr/X11/lib -lmlx -lXext -lX11 -lm
+	@gcc -g -Wall -Wextra -Werror -c $? -I libft/includes 
+	@gcc -o $(NAME) $(OBJ) -L libft -lft -L/usr/X11/lib -lmlx -lXext -lX11
 	@echo "$(NAME) compil down."
 
 .PHONY: clean

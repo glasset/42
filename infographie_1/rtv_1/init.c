@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:38:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/14 19:11:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 17:01:05 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -16,36 +16,51 @@
 #include "rtv.h"
 #include <stdio.h>
 
-void		print_px(t_ray *ray, void *img, t_vec *index)
+t_vec		check_color(t_vec *color, double intensity)
+{
+	t_vec	final;
+
+	final.x= color->x * intensity;
+	final.y = color->y * intensity;
+	final.z = color->z * intensity;
+	if (final.x > 255)
+		final.x = 255;
+	if (final.y > 255)
+		final.y = 255;
+	if (final.z > 255)
+		final.z = 255;
+	return (final);
+}
+
+void		print_px(t_ray *ray, t_mlx *t, t_vec *index)
 {
 	t_vec	spheres;
 	t_vec	plans;
+	t_vec	f_col;
 	double	a;
-	double	intensity;
 
-	spheres = sphere(ray, &ray->dir, &ray->ori);
-	plans = plan(ray, &ray->dir, &ray->ori);
-	if (plans.x > -1.0  && spheres.z != -1.0 && plans.x < spheres.x)
-		a = plans.x;
-	else
-		a = spheres.x + 1.0;
-	if (spheres.z == -1.0 && plans.x == -1.0)
-		put_px_to_img(img, index->x, index->y, 200, 0, 0);
-	else if (spheres.x <= a && spheres.z != -1.0 )
+	spheres = sphere(ray, &ray->dir, &ray->ori, -2);
+	plans = plan(ray, &ray->dir, &ray->ori, -2);
+	if (plans.x != -1.0  && spheres.x != -1.0)
 	{
-		intensity = find_light(ray, spheres.x, spheres.z, 1);
-		put_px_to_img(img, index->x, index->y,
-				(int)ray->obj[(int)spheres.z].color.x * intensity,
-				(int)ray->obj[(int)spheres.z].color.y * intensity,
-				(int)ray->obj[(int)spheres.z].color.z * intensity);
+		if (plans.x < spheres.x)
+			a = plans.x;
+		else
+			a = spheres.x + 1.0;
+	}
+	if (spheres.z == -1.0 && plans.x == -1.0)
+		put_px_to_img(t->img, index->x, index->y, 0, 0, 0);
+	else if (spheres.x < a && spheres.x != -1.0 )
+	{
+		f_col = check_color(&ray->obj[(int)spheres.z].color,
+				find_light(ray, spheres.x, spheres.z, 1));
+		put_px_to_img(t->img, index->x, index->y, f_col.x, f_col.y, f_col.z);
 	}
 	else
 	{
-		intensity = find_light(ray, plans.x, plans.y, 0);
-		put_px_to_img(img, index->x, index->y,
-				(int)ray->obj[(int)plans.y].color.x * intensity,
-				(int)ray->obj[(int)plans.y].color.y * intensity,
-				(int)ray->obj[(int)plans.y].color.z * intensity);
+		f_col = check_color(&ray->obj[(int)plans.y].color,
+				find_light(ray, plans.x, plans.y, 0));
+		put_px_to_img(t->img, index->x, index->y, f_col.x, f_col.y, f_col.z);
 	}
 
 }

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 14:56:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/14 19:11:17 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 16:19:45 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -44,7 +44,7 @@ static void			indent(t_ray *l, t_cam *c, double x, double y)
 	l->dir.z = c->view.z + c->right.z * x_i * x - c->up.z * y_i * y;
 }
 
-int					trace(void *img, char *str)
+int					trace(t_mlx *t, char *str)
 {
 	t_ray			ray;
 	t_cam			cam;
@@ -63,7 +63,7 @@ int					trace(void *img, char *str)
 		{
 			indent(&ray, &cam, index.x, index.y);
 			norme(&ray.dir);
-			print_px(&ray, img, &index);
+			print_px(&ray, t, &index);
 			index.x++;
 		}
 		index.y++;
