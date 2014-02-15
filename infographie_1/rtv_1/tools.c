@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:01:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 16:34:01 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 18:14:07 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -22,11 +22,11 @@ void		norme(t_vec *l)
 	l->z = l->z / len;
 }
 
-void		init_ori_obj(t_vec *c, t_vec *ori, t_obj *obj)
+void		init_ori_obj(t_vec *c, t_vec *ori, t_vec *point)
 {
-	c->x = ori->x - obj->point.x;
-	c->y = ori->y - obj->point.y;
-	c->z = ori->z - obj->point.z;
+	c->x = ori->x - point->x;
+	c->y = ori->y - point->y;
+	c->z = ori->z - point->z;
 }
 
 void		find_dot(t_vec *c, double dist, t_vec *ori, t_vec *dir)

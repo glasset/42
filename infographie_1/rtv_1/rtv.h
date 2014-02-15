@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 11:59:37 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 17:05:03 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 18:16:02 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef RTV_H
@@ -103,6 +103,7 @@ void					color(char *str, t_vec *color);
 */
 t_vec					sphere(t_ray *l, t_vec *dir, t_vec *ori, int index); // +25lignes !!!
 t_vec					plan(t_ray *l, t_vec *dir, t_vec *ori, int index);
+t_vec					cylindre(t_ray *l, t_vec *dir, t_vec *ori, int index);
 
 /*
 **	tool.c
@@ -110,7 +111,7 @@ t_vec					plan(t_ray *l, t_vec *dir, t_vec *ori, int index);
 void					shor_plans(t_vec *shor, double a, double i);
 int						shor_dist(double a, double b, t_vec *shor, double i);
 void					norme(t_vec *l);
-void					init_ori_obj(t_vec *c, t_vec *ori, t_obj *obj);
+void					init_ori_obj(t_vec *c, t_vec *ori, t_vec *point);
 void					find_dot(t_vec *c, double dist, t_vec *ori, t_vec *dir);
 
 /*

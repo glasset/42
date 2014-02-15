@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:38:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 17:01:05 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 18:24:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -36,9 +36,11 @@ void		print_px(t_ray *ray, t_mlx *t, t_vec *index)
 {
 	t_vec	spheres;
 	t_vec	plans;
+//	t_vec	cylindres;
 	t_vec	f_col;
 	double	a;
 
+//	cylindres = cylindre(ray, &ray->dir, &ray->ori, -2);
 	spheres = sphere(ray, &ray->dir, &ray->ori, -2);
 	plans = plan(ray, &ray->dir, &ray->ori, -2);
 	if (plans.x != -1.0  && spheres.x != -1.0)
@@ -62,7 +64,6 @@ void		print_px(t_ray *ray, t_mlx *t, t_vec *index)
 				find_light(ray, plans.x, plans.y, 0));
 		put_px_to_img(t->img, index->x, index->y, f_col.x, f_col.y, f_col.z);
 	}
-
 }
 
 void		color(char *str, t_vec *color)

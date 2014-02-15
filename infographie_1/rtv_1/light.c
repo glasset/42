@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 15:48:11 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 17:02:21 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 17:52:05 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -31,7 +31,7 @@ double			ft_light(t_vec *c, t_vec *light)
 		intensity = 1.0;
 	else
 	{
-		intensity = 1 / (0.9 + angle * dist + pow(angle, 2.0) * pow(dist, 2.0));
+		intensity = 1 / (0.5 + angle * dist + pow(angle, 2.0) * pow(dist, 2.0));
 	}
 	return (intensity);
 }

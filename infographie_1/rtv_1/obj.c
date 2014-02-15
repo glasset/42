@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 12:56:11 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 16:33:56 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/15 18:19:44 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -26,7 +26,7 @@ t_vec			sphere(t_ray *l, t_vec *dir, t_vec *ori, int index)
 			i++;
 	while (i < l->size_obj_s)
 	{
-		init_ori_obj(&c, ori, &l->obj[i]);
+		init_ori_obj(&c, ori, &l->obj[i].point);
 		s = l->obj[i].o_r;
 		res.x = pow(dir->x, 2.0) + pow(dir->y, 2.0) + pow(dir->z, 2.0);
 		res.y = 2.0 * (dir->x * c.x + dir->y * c.y + dir->z * c.z);
@@ -47,6 +47,34 @@ t_vec			sphere(t_ray *l, t_vec *dir, t_vec *ori, int index)
 	return (shor);
 }
 
+t_vec			cylindre(t_ray *l, t_vec *dir, t_vec *ori, int index)
+{
+	t_vec		res;
+	t_vec		shor;
+	t_vec		c;
+	t_vec		obj;
+	double		s;
+
+	l = l;
+	index =index;
+	obj.x = 0.0;
+	obj.y = 0.0;
+	obj.z = 0.0;
+	init_ori_obj(&c, ori, &obj);
+	s = 2;
+	res.x = pow(dir->x, 2.0) + pow(dir->y, 2.0);
+	res.y = 2.0 * (dir->x * c.x) + 2.0 * (dir->y * c.y);
+	res.z = pow(c.x, 2.0) + pow(c.y, 2.0) - pow(s, 2.0);
+	c.x = pow(res.y, 2.0) - 4.0 * res.x * res.z;
+	if (c.x < 0.0)
+		shor.z = -1.0;
+	else if (c.x >= 0.0)
+	{
+		shor_dist(((-res.y + sqrt(c.x)) / 2 * res.x), ((-res.y - sqrt(c.x)) / 2 * res.x), &shor, c.x);
+	}
+	return (shor);
+}
+
 t_vec			plan(t_ray *l, t_vec *dir, t_vec *ori, int index)
 {
 	t_vec		shor;
@@ -61,7 +89,7 @@ t_vec			plan(t_ray *l, t_vec *dir, t_vec *ori, int index)
 		i++;
 	while (i < (l->size_obj_p + l->size_obj_s))
 	{
-		init_ori_obj(&c, ori, &l->obj[i]);
+		init_ori_obj(&c, ori, &l->obj[i].point);
 		norme(&l->obj[i].norme);
 		res = -((l->obj[i].norme.x * c.x + l->obj[i].norme.y * c.y +
 					l->obj[i].norme.z * c.z) /
