@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 14:56:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 16:19:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/16 14:54:28 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -17,13 +17,14 @@ static void			view(t_ray *l, t_cam *c)
 	l->dir.x = 0.0 - l->ori.x;
 	l->dir.y = 0.0 - l->ori.y;
 	l->dir.z = 1.0 - l->ori.z;
-	c->up.x = 0.0;
-	c->up.y = 1.0;
-	c->up.z = 0.0;
-	c->right.x = (c->up.y * l->dir.z - c->up.z * l->dir.y);
-	c->right.y = (c->up.z * l->dir.x - c->up.x * l->dir.z);
-	c->right.z = (c->up.x * l->dir.y - c->up.y * l->dir.x);
+	c->right.x = (1.0 * l->dir.z - 0.0 * l->dir.y);
+	c->right.y = (0.0 * l->dir.x - 0.0 * l->dir.z);
+	c->right.z = (0.0 * l->dir.y - 1.0 * l->dir.x);
 	norme(&c->right);
+	c->up.x = (l->dir.y * c->right.z - l->dir.z * c->right.y);
+	c->up.y = (l->dir.z * c->right.x - l->dir.x * c->right.z);
+	c->up.z = (l->dir.x * c->right.y - l->dir.y * c->right.x);
+	norme(&c->up);
 	c->view.x = POV_X + ((l->dir.x * VPD) + (c->up.x * (VPH / 2.0))) -
 		(c->right.x * (VPW / 2.0));
 	c->view.y = POV_Y + ((l->dir.y * VPD) + (c->up.y * (VPH / 2.0))) -

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/04 11:59:37 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 18:16:02 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/16 15:04:13 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef RTV_H
@@ -36,7 +36,8 @@ typedef struct			s_mlx
 	void				*img;
 }						t_mlx;
 
-int						put_px_to_img(void *img, int x, int y, int r, int g, int b);
+int						put_px_to_img(void *img, int x, int y, int r, int g,
+		int b);
 
 /*
 **	Vector
@@ -98,12 +99,12 @@ void					print_px(t_ray *ray, t_mlx *t, t_vec *index);
 void					init_obj(t_ray *ray, char *str);
 void					init_plans(t_ray *ray, int fd);
 void					color(char *str, t_vec *color);
+
 /*
 **	obj.c
 */
-t_vec					sphere(t_ray *l, t_vec *dir, t_vec *ori, int index); // +25lignes !!!
+t_vec					sphere(t_ray *l, t_vec *dir, t_vec *ori, int index);
 t_vec					plan(t_ray *l, t_vec *dir, t_vec *ori, int index);
-t_vec					cylindre(t_ray *l, t_vec *dir, t_vec *ori, int index);
 
 /*
 **	tool.c
@@ -118,6 +119,7 @@ void					find_dot(t_vec *c, double dist, t_vec *ori, t_vec *dir);
 **	light.c
 */
 double				ft_light(t_vec *c, t_vec *light);
-t_vec				shadow(t_ray *ray, t_vec *points, t_vec *light, double index, int bol);
+t_vec				shadow(t_ray *ray, t_vec *points, t_vec *light,
+		double index, int bol);
 double				find_light(t_ray *ray, double dist, double index, int bol);
 #endif /* !RTV_H */

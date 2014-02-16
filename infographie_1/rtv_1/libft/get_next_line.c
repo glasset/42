@@ -6,14 +6,14 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 13:42:45 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/06 11:44:23 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/16 15:05:59 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
 
-static	t_read		*ft_freeread(t_read *red, t_read *prev, t_read **start)
+static t_read		*ft_freeread(t_read *red, t_read *prev, t_read **start)
 {
 	if (!prev)
 		*start = red->next;
@@ -27,7 +27,7 @@ static	t_read		*ft_freeread(t_read *red, t_read *prev, t_read **start)
 		return (prev->next);
 }
 
-static	t_read		*ft_newread(int fd)
+static t_read		*ft_newread(int fd)
 {
 	t_read			*red;
 	void			*tmp;
@@ -54,7 +54,7 @@ static	t_read		*ft_newread(int fd)
 	return (red);
 }
 
-static	int			ft_print(int n, t_read **tab, t_read **s, char** l)
+static int			ft_print(int n, t_read **tab, t_read **s, char** l)
 {
 	char			*tmpstr;
 	int				index;
@@ -62,7 +62,7 @@ static	int			ft_print(int n, t_read **tab, t_read **s, char** l)
 	if (!tab[0])
 		return (-1);
 	index = (tab[0])->index;
-	if (n == -1 || !(tmpstr = (char *)malloc(sizeof (char) * (n + 1))))
+	if (n == -1 || !(tmpstr = (char *)malloc(sizeof(char) * (n + 1))))
 		return (-1);
 	*l = tmpstr;
 	while (n--)
@@ -83,7 +83,7 @@ static	int			ft_print(int n, t_read **tab, t_read **s, char** l)
 	return (1);
 }
 
-static	int			ft_findendl(int fd, t_read *red)
+static int			ft_findendl(int fd, t_read *red)
 {
 	int				index;
 	int				size;

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 10:38:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 18:24:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/16 15:07:10 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <math.h>
 #include "rtv.h"
-#include <stdio.h>
 
 t_vec		check_color(t_vec *color, double intensity)
 {
@@ -32,36 +31,38 @@ t_vec		check_color(t_vec *color, double intensity)
 	return (final);
 }
 
+t_vec		who_print(t_vec sph, t_vec plans)
+{
+	t_vec	res;
+
+	res.x = -1.0;
+	if (sph.z != -1.0)
+	{
+		res = sph;
+		res.y = 1;
+	}
+	if (plans.x != -1.0 && (plans.x < res.x || res.x == -1.0))
+	{
+		res = plans;
+		res.y = 0;
+		res.z = plans.y;
+	}
+	return (res);
+}
+
 void		print_px(t_ray *ray, t_mlx *t, t_vec *index)
 {
-	t_vec	spheres;
-	t_vec	plans;
-//	t_vec	cylindres;
+	t_vec	res;
 	t_vec	f_col;
-	double	a;
 
-//	cylindres = cylindre(ray, &ray->dir, &ray->ori, -2);
-	spheres = sphere(ray, &ray->dir, &ray->ori, -2);
-	plans = plan(ray, &ray->dir, &ray->ori, -2);
-	if (plans.x != -1.0  && spheres.x != -1.0)
-	{
-		if (plans.x < spheres.x)
-			a = plans.x;
-		else
-			a = spheres.x + 1.0;
-	}
-	if (spheres.z == -1.0 && plans.x == -1.0)
+	res = who_print(sphere(ray, &ray->dir, &ray->ori, -2),
+				plan(ray, &ray->dir, &ray->ori, -2));
+	if (res.x == -1.0)
 		put_px_to_img(t->img, index->x, index->y, 0, 0, 0);
-	else if (spheres.x < a && spheres.x != -1.0 )
+	else if (res.y == 1 || res.y == 0)
 	{
-		f_col = check_color(&ray->obj[(int)spheres.z].color,
-				find_light(ray, spheres.x, spheres.z, 1));
-		put_px_to_img(t->img, index->x, index->y, f_col.x, f_col.y, f_col.z);
-	}
-	else
-	{
-		f_col = check_color(&ray->obj[(int)plans.y].color,
-				find_light(ray, plans.x, plans.y, 0));
+		f_col = check_color(&ray->obj[(int)res.z].color,
+				find_light(ray, res.x, res.z, res.y));
 		put_px_to_img(t->img, index->x, index->y, f_col.x, f_col.y, f_col.z);
 	}
 }
@@ -100,7 +101,6 @@ void		init_obj(t_ray *ray, char *str)
 		exit(0);
 	get_next_line(fd, &line);
 	ray->size_obj_s = ft_atoi(line);
-	free(line);
 	while (i < ray->size_obj_s)
 	{
 		get_next_line(fd, &line);

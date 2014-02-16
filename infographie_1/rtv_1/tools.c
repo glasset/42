@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/11 13:01:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/15 18:14:07 by glasset          ###   ########.fr       */
+/*   Updated: 2014/02/16 14:57:57 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <math.h>
@@ -52,7 +52,7 @@ void		shor_plans(t_vec *shor, double a, double i)
 	}
 }
 
-int			shor_dist(double a, double b, t_vec  *shor, double i)
+int			shor_dist(double a, double b, t_vec *shor, double i)
 {
 	if (i == 0.0)
 	{
