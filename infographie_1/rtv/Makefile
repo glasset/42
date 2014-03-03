@@ -6,7 +6,7 @@
 #    By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/22 15:58:47 by jbalestr          #+#    #+#              #
-#    Updated: 2014/02/27 18:26:13 by jbalestr         ###   ########.fr        #
+#    Updated: 2014/03/03 13:02:09 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ ODIR =	objects/
 IDIR =	-I includes/ -I /usr/X11/include/ -I gnl/includes
 SRC =	main.c init.c events.c key_events.c helpers.c init_keys.c init_image.c \
 		vector_op.c vector_fun.c draw.c init_tab.c intersect.c inter_mesh.c \
-		init_scene.c diffuse.c normal.c
+		diffuse.c normal.c rename.c parser.c init_scene.c ft_strsub.c \
+		ft_atoi.c ft_strsplit.c
 OBJ =	$(SRC:.c=.o)
 EXT =	includes/ray_tracer.h includes/objects.h
 S =		$(addprefix $(SDIR), $(SRC))
