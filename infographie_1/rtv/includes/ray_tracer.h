@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 16:23:00 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/02/27 18:26:06 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/04 10:42:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,5 @@ t_vector	sub(t_vector u, t_vector v);
 t_vector	prod(t_vector u, t_vector v);
 t_vector	cross(t_vector u, t_vector v);
 t_vector	prod_val(t_vector u, double val);
-
+double		ft_atod(char *str);
 #endif /* !RAY_TRACER_H */

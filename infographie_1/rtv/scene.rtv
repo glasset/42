@@ -10,11 +10,25 @@
 #                                                                              #
 # **************************************************************************** #
 
-|[1]light
-|[1]object
-|Point of view: 0 0 10
+#[number light]light
+|[2]light
+#[number object]object
+|[3]object
+#pov: [x][y][z]
+|Point of view: 0 0 40
+#look at: [x][y][z]
 |Look at: 0 0 0
+#ambient between 0 & 1
+|Color ambient: 0.1
 
-L [10][10][10][0x000000][0.0]
-S [0][0][0][1][0xffffff][0.5]
-S [5][5][5][1][0xffffff][0.5]
+
+L [10][10][10][0xffffff]
+
+S [0][2][0][1][0xff1111][0.5]
+
+S [0][0][0][1][0x11ff11][0.5]
+
+S [0][-2][0][1][0x1111ff][0.5]
+
+L [-10][-10][-10][0xffffff]
+
