@@ -6,31 +6,36 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 17:56:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 14:54:30 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:52:28 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my.h"
 #include <stdlib.h>
 
+/*
+**	add pointer sur fonction pour init_mesh
+*/
 int				init_mesh(t_env *e, char *str)
 {
 	static int	c = 0;
+	int			tmp;
 
 	if (e->nb_mesh == c)
 		return (-1);
 	if (e->nb_mesh == -1)
 		return (-3);
 	if (str[0] == 'S')
-		init_s(e, str, c);
+		tmp = init_s(e, str, c);
 	if (str[0] == 'c')
-		init_cyl(e, str, c);
+		tmp =  init_cyl(e, str, c);
 	if (str[0] == 'C')
-		init_cone(e, str, c);
+		tmp  = init_cone(e, str, c);
 	if (str[0] == 'P')
-		init_p(e, str, c);
-	c++;
-	return (0);
+		tmp = init_p(e, str, c);
+	if (tmp == 0)
+		c++;
+	return (tmp);
 }
 
 int				init_l(t_env *e, char *str)

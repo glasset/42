@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 12:21:34 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 14:54:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:37:02 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char		**ft_strsplit(char const *s, char c);
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 
 t_color		get_color(char *str);
+int			no_name(char **tmp);
 void		error_p(int error, int line, char *str);
 
 void		parse(t_env *e, char *path);

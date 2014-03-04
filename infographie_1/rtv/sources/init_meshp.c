@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 14:50:21 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 15:15:38 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:52:27 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -16,6 +16,8 @@ int				init_p(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
+	if (no_name(tmp) == -4)
+		return (-4);
 	e->meshes[c].type = T_PLAN;
 	e->meshes[c].prim.plan.pos = init_vec(ft_atoi(tmp[1]),
 	ft_atoi(tmp[2]), ft_atoi(tmp[3]));
@@ -31,6 +33,8 @@ int				init_cyl(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
+	if (no_name(tmp) == -4)
+		return (-4);
 	e->meshes[c].type = T_CYLINDER;
 	e->meshes[c].prim.cylinder.radius = ft_atoi(tmp[4]);
 	e->meshes[c].prim.cylinder.pos = init_vec(ft_atoi(tmp[1]),
@@ -47,6 +51,8 @@ int				init_cone(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
+	if (no_name(tmp) == -4)
+		return (-4);
 	e->meshes[c].type = T_CONE;
 	e->meshes[c].prim.cone.coeff = ft_atoi(tmp[7]);
 	e->meshes[c].prim.cone.pos = init_vec(ft_atoi(tmp[1]),
@@ -63,6 +69,8 @@ int				init_s(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
+	if (no_name(tmp) == -4)
+		return (-4);
 	e->meshes[c].type = T_SPHERE;
 	e->meshes[c].prim.sphere.radius = ft_atoi(tmp[4]);
 	e->meshes[c].prim.sphere.pos = init_vec(ft_atoi(tmp[1]),

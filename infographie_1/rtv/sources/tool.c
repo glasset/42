@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 14:11:07 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:52:26 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -47,6 +47,36 @@ void			ft_write(int line, char *str, char *msg)
 	msg  = str;
 }
 
+int				no_name(char **tmp)
+{
+	int			i;
+	int			j;
+	int			x;
+
+	i = 1;
+	while (tmp[i])
+	{
+		j = 0;
+		while (tmp[i][j])
+		{
+			x = 0;
+			if (tmp[i][j] == '.' || tmp[i][j] == '-' || tmp[i][j] == '\r')
+				x++;
+			if (tmp[i][j] >= '0' && tmp[i][j] <= '9')
+				x++;
+			if (tmp[i][j] == ']' || tmp[i][j] == 'x')
+				x++;
+			if (tmp[i][j] >= 'a' && tmp[i][j] <= 'f')
+				x++;
+			if (x == 0)
+				return (-4);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 void			error_p(int error, int line, char *str)
 {
 	if (error == -1)
@@ -58,6 +88,8 @@ void			error_p(int error, int line, char *str)
 		write(1, "[\033[31mFAIL\033[00m]need |[nb]light && |[nb]object.\n", 49);
 		exit(0);
 	}
+	if (error == -4)
+		ft_write(line, str, "[\033[31mFAIL\033[00m] (bad syntax)");
 	if (error == 0)
 		ft_write(line, str, "[\033[32mOK\033[00m]");
 }
