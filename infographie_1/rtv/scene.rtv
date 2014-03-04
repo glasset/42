@@ -32,3 +32,6 @@ S [0][-2][0][1][0x1111ff][0.5]
 
 L [-10][-10][-10][0xffffff]
 
+
+#gere le cas ou le nombre de light et obj sont marquer apres les obj (il quit)
+#gere si il y'a plus d'obj que le nombre(juste warning)
