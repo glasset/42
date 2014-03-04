@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 15:52:26 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 19:59:01 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -43,8 +43,6 @@ void			ft_write(int line, char *str, char *msg)
 	write(1, ": ", 2);
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
-	str = msg;
-	msg  = str;
 }
 
 int				no_name(char **tmp)
@@ -64,9 +62,9 @@ int				no_name(char **tmp)
 				x++;
 			if (tmp[i][j] >= '0' && tmp[i][j] <= '9')
 				x++;
-			if (tmp[i][j] == ']' || tmp[i][j] == 'x')
+			if (tmp[i][j] == ']' || tmp[i][1] == 'x')
 				x++;
-			if (tmp[i][j] >= 'a' && tmp[i][j] <= 'f')
+			if (tmp[i][1] == 'x' && (tmp[i][j] >= 'a' && tmp[i][j] <= 'f'))
 				x++;
 			if (x == 0)
 				return (-4);
