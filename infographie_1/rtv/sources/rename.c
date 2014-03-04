@@ -6,22 +6,21 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 19:38:49 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 12:20:50 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 15:15:42 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray_tracer.h"
-#include <stdlib.h>
 #include "my.h"
+#include <stdlib.h>
 
-int			comment(t_env *e, char *str, int m)
+int			comment(t_env *e, char *str)
 {
-	str =str;
-	e =e;
-	return (m);
+	str = str;
+	e = e;
+	return (-5);
 }
 
-int			nbmesch(t_env *e, char *str, int m)
+int			nbmesh(t_env *e, char *str)
 {
 	int		i;
 	char	*nb;
@@ -32,10 +31,10 @@ int			nbmesch(t_env *e, char *str, int m)
 	nb = ft_strsub(str, 2, (i - 2));
 	e->nb_mesh = ft_atoi(nb);
 	e->meshes = (t_mesh *)malloc(sizeof(t_mesh) * e->nb_mesh);
-	return (m);
+	return (0);
 }
 
-int			nblight(t_env *e, char *str, int m)
+int			nblight(t_env *e, char *str)
 {
 	int		i;
 	char	*nb;
@@ -46,10 +45,10 @@ int			nblight(t_env *e, char *str, int m)
 	nb = ft_strsub(str, 2, (i - 2));
 	e->nb_light = ft_atoi(nb);
 	e->lights = (t_light *)malloc(sizeof(t_light) * e->nb_light);
-	return (m);
+	return (0);
 }
 
-int			lookat(t_env *e, char *str, int m)
+int			lookat(t_env *e, char *str)
 {
 	int		i;
 	char	*nb;
@@ -62,10 +61,10 @@ int			lookat(t_env *e, char *str, int m)
 	tmp = ft_strsplit(nb, ' ');
 	e->look_at_point = init_vec(ft_atoi(tmp[0]), ft_atoi(tmp[1]),
 	ft_atoi(tmp[2]));
-	return (m);
+	return (0);
 }
 
-int			pov(t_env *e, char *str, int m)
+int			pov(t_env *e, char *str)
 {
 	int		i;
 	char	*nb;
@@ -77,5 +76,5 @@ int			pov(t_env *e, char *str, int m)
 	nb = ft_strsub(str, i, (ft_strlen(str) - i));
 	tmp = ft_strsplit(nb, ' ');
 	e->cam.pos = init_vec(ft_atoi(tmp[0]), ft_atoi(tmp[1]), ft_atoi(tmp[2]));
-	return (m);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 12:11:56 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/04 14:11:07 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -34,25 +34,32 @@ void	ft_putnbr(int n)
 	}
 }
 
-void			error_p(int error, int line)
+void			ft_write(int line, char *str, char *msg)
+{
+	write(1, "l", 1);
+	ft_putnbr(line);
+	write(1, ": ", 2);
+	write(1, msg, ft_strlen(msg));
+	write(1, ": ", 2);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+	str = msg;
+	msg  = str;
+}
+
+void			error_p(int error, int line, char *str)
 {
 	if (error == -1)
-	{
-		write(1, "l", 1);
-		ft_putnbr(line);
-		write(1, ": ignored check number of object.\n", 34);
-	}
+		ft_write(line, str, "[\033[31mFAIL\033[00m] (too many meshes)");
 	if (error == -2)
-	{
-		write(1, "l", 1);
-		ft_putnbr(line);
-		write(1, ": ignored check number of light.\n", 33);
-	}
+		ft_write(line, str, "[\033[31mFAIL\033[00m] (too many lights)");
 	if (error == -3)
 	{
-		write(1, "init number of light and object first.\n", 40);
+		write(1, "[\033[31mFAIL\033[00m]need |[nb]light && |[nb]object.\n", 49);
 		exit(0);
 	}
+	if (error == 0)
+		ft_write(line, str, "[\033[32mOK\033[00m]");
 }
 
 t_color			get_color(char *str)
