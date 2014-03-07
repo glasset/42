@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 13:05:25 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:41:02 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -75,6 +75,8 @@ int				no_name(char **tmp, int true_size)
 		}
 		i++;
 	}
+	if (j != 10)
+		return (-4);
 	if (i != true_size)
 		return (-4);
 	return (0);

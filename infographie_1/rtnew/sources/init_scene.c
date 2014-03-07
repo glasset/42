@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 17:56:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 13:05:29 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:41:04 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int				init_l(t_env *e, char *str)
 	if (e->nb_light == -1)
 		return (-3);
 	tmp = ft_strsplit(str, '[');
+	if (no_name(tmp, 5) == -4)
+		return (-4);
 	e->lights[c].color = get_color(tmp[4]);
 	e->lights[c++].pos = init_vec(ft_atoi(tmp[1]),
 	ft_atoi(tmp[2]), ft_atoi(tmp[3]));
