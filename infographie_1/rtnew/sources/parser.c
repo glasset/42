@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 17:47:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 13:57:12 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 16:14:21 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void			parse(t_env *e, char *path)
 	ft = funct();
 	current_m = 1;
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		write(1, "[\033[31mERROR\033[00m]Wrong file\n", 28);
+		exit (0);
+	}
 	while (get_next_line(fd, &line))
 	{
 		error_p(ft[i = check_line(line)](e, line), current_m, line);
@@ -94,4 +99,6 @@ void			parse(t_env *e, char *path)
 	}
 	if (x != 3)
 		write(1, "[\033[31mWARNING\033[00m]some variable uninitialized (check Pov, Look at, Color ambient)\n", 88);
+	if (e->nb_mesh == -1 || e->nb_light == -1)
+		exit (0);
 }
