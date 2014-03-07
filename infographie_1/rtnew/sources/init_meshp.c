@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 14:50:21 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 12:17:39 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:05:26 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -16,7 +16,7 @@ int				init_p(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
-	if (no_name(tmp) == -4)
+	if (no_name(tmp, 12) == -4)
 		return (-4);
 	if (badcoeff(tmp, 7) == 0)
 		return (-6);
@@ -38,7 +38,7 @@ int				init_cyl(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
-	if (no_name(tmp) == -4)
+	if (no_name(tmp, 13) == -4)
 		return (-4);
 	if (badcoeff(tmp, 8) == 0)
 		return (-6);
@@ -61,7 +61,7 @@ int				init_cone(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
-	if (no_name(tmp) == -4)
+	if (no_name(tmp, 13) == -4)
 		return (-4);
 	if (badcoeff(tmp, 8) == 0)
 		return (-6);
@@ -84,7 +84,7 @@ int				init_s(t_env *e, char *str, int c)
 	char		**tmp;
 
 	tmp = ft_strsplit(str, '[');
-	if (no_name(tmp) == -4)
+	if (no_name(tmp, 10) == -4)
 		return (-4);
 	if (badcoeff(tmp, 5) == 0)
 		return (-6);

@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 12:17:40 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:05:25 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -46,7 +46,7 @@ void			ft_write(int line, char *str, char *msg)
 	write(1, "\n", 1);
 }
 
-int				no_name(char **tmp)
+int				no_name(char **tmp, int true_size)
 {
 	int			i;
 	int			j;
@@ -75,6 +75,8 @@ int				no_name(char **tmp)
 		}
 		i++;
 	}
+	if (i != true_size)
+		return (-4);
 	return (0);
 }
 
