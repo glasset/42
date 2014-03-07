@@ -6,13 +6,14 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/05 14:40:22 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 12:17:40 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
 #include "ray_tracer.h"
 #include <unistd.h>
 #include <stdlib.h>
+
 void	ft_putnbr(int n)
 {
 	char	c;
@@ -58,14 +59,16 @@ int				no_name(char **tmp)
 		while (tmp[i][j])
 		{
 			x = 0;
-			if (tmp[i][j] == '.' || tmp[i][j] == '-' || tmp[i][j] == '\r')
+			if (tmp[i][j] == '.' || tmp[i][j] == '-' || tmp[i][j] == '\r'
+				|| tmp[i][j] == ']')
 				x++;
 			if (tmp[i][j] >= '0' && tmp[i][j] <= '9')
 				x++;
-			if (tmp[i][j] == ']' || tmp[i][1] == 'x')
-				x++;
-			if (tmp[i][1] == 'x' && (tmp[i][j] >= 'a' && tmp[i][j] <= 'f'))
-				x++;
+			if (tmp[i + 1] == NULL)
+			{
+				if (tmp[i][j] == 'x' ||  (tmp[i][j] >= 'a' && tmp[i][j] <= 'f'))
+					x++;
+			}
 			if (x == 0)
 				return (-4);
 			j++;
@@ -90,6 +93,9 @@ void			error_p(int error, int line, char *str)
 		ft_write(line, str, "[\033[31mFAIL\033[00m] (bad syntax)");
 	if (error == 0)
 		ft_write(line, str, "[\033[32mOK\033[00m]");
+	if (error == -6)
+		ft_write(line, str, "[\033[31mFAIL\033[00m] (Coeff between 0 and 1)");
+		
 }
 
 t_color			get_color(char *str)

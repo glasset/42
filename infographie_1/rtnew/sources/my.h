@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/03 12:21:34 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/05 15:10:00 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 11:47:24 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int			init_p(t_env *e, char *str, int c);
 int			init_cyl(t_env *e, char *str, int c);
 int			init_cone(t_env *e, char *str, int c);
 
+int			badcoeff(char **tmp, int start);
 double		ft_atod(char *str);
 int			ft_atoi(const char *str);
 char		**ft_strsplit(char const *s, char c);

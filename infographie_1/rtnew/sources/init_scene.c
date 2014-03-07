@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 17:56:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 19:58:56 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 12:17:44 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,22 @@ int				init_l(t_env *e, char *str)
 	return (0);
 }
 
+int				badcoeff(char **tmp, int start)
+{
+	int			j;
+
+	while (tmp[start + 1] != NULL)
+	{
+		j = 0;
+		if (ft_atod(tmp[start]) >= 0.0 && ft_atod(tmp[start]) <= 1.0)
+			j++;
+		if (j == 0)
+			return (0);
+		start++;
+	}
+	return (1);
+}
+
 int				ambient(t_env *e, char *str)
 {
 	int		i;
@@ -63,7 +79,10 @@ int				ambient(t_env *e, char *str)
 	while (str[i] != ':')
 		i++;
 	nb = ft_strsub(str, (i + 1), ft_strlen(str));
-	e->ambient = ft_atod(nb);
+	if (ft_atod(nb) >= 0.0 && ft_atod(nb) <= 1.0)
+		e->ambient = ft_atod(nb);
+	else
+		return (-6);
 	return (0);
 }
 
@@ -71,5 +90,8 @@ void			init_scene(t_env *e, char *path)
 {
 	e->nb_mesh = -1;
 	e->nb_light = -1;
+	e->ambient = 0.1;
+	e->look_at_point = init_vec(0, 0, 0);
+	e->cam.pos = init_vec(0, 0, 0);
 	parse(e, path);
 }
