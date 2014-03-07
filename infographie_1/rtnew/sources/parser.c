@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/01 17:47:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/04 15:30:11 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:57:12 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "gnl.h"
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 f				*funct(void)
 {
@@ -76,14 +77,21 @@ void			parse(t_env *e, char *path)
 	int			fd;
 	int			current_m;
 	f			*ft;
+	int			i;
+	int			x;
 
+	x = 0;
 	ft = funct();
 	current_m = 1;
 	fd = open(path, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-		error_p(ft[check_line(line)](e, line), current_m, line);
+		error_p(ft[i = check_line(line)](e, line), current_m, line);
 		free(line);
+		if (i == 4 || i == 5 || i == 6)
+			x++;
 		current_m++;
 	}
+	if (x != 3)
+		write(1, "[\033[31mWARNING\033[00m]some variable uninitialized (check Pov, Look at, Color ambient)\n", 88);
 }

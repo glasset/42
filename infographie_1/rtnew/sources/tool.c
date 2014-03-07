@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 10:43:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 13:41:02 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/07 13:57:17 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "my.h"
@@ -90,7 +90,7 @@ void			error_p(int error, int line, char *str)
 		ft_write(line, str, "[\033[31mFAIL\033[00m] (too many lights)");
 	if (error == -3)
 	{
-		write(1, "[\033[31mFAIL\033[00m]need |[nb]light && |[nb]object.\n", 49);
+		write(1, "[\033[31mERROR\033[00m]need |[nb]light && |[nb]object.\n", 49);
 		exit(0);
 	}
 	if (error == -4)
