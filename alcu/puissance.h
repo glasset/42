@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:17:22 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 18:56:59 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:49:36 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int				check_victory(char p, t_env *e, int	curr_col);
 void			print_board(t_env *e);
 int				init_env(t_env *e, char **av, char **env);
 int				play_round(t_env *e, int	player);
+int				check_value(t_env *e, int choice);
 
 #endif /* !PUISSANCE_H */

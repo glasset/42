@@ -6,13 +6,13 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 17:09:59 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 21:18:20 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/08 22:13:02 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-int			check_value(t_env *e, int choice)
+int				check_value(t_env *e, int choice)
 {
 	int		i;
 
@@ -29,7 +29,7 @@ int			check_value(t_env *e, int choice)
 	return (-1);
 }
 
-static int	human(t_env *e)
+static int		human(t_env *e)
 {
 	char	*line;
 	int		choice;
@@ -48,7 +48,7 @@ static int	human(t_env *e)
 	return (choice);
 }
 
-int			play_round(t_env *e, int player)
+int				play_round(t_env *e, int player)
 {
 	int		i;
 

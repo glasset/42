@@ -6,7 +6,7 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/03/08 21:05:04 by gmarais          ###   ########.fr        #
+#    Updated: 2014/03/08 22:13:22 by gmarais          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC = main.c		\
 	init_env.c		\
 	print_board.c	\
 	play.c			\
-	victory.c
+	victory.c		\
+#	easy_ia.c
 
 OBJ = $(SRC:.c=.o)
 
