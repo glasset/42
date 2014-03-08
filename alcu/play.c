@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 17:09:59 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 20:44:35 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:18:20 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static int	human(t_env *e)
 	return (choice);
 }
 
-int			play_round(t_env *e, int	player)
+int			play_round(t_env *e, int player)
 {
+	int		i;
+
 	if (player)
 	{
 		if (check_victory('O', e, human(e)))
@@ -57,5 +59,11 @@ int			play_round(t_env *e, int	player)
 	}
 	else if (check_victory('X', e, human(e)))
 			return (2);
-	return (0);
+	i = 0;
+	while (i++ <= e->col)
+	{
+		if (check_value(e, i) != -1)
+			return (0);
+	}
+	return (3);
 }
