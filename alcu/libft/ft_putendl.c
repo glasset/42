@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:54:18 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/06 11:27:36 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/25 17:49:04 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/25 17:53:51 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "libft.h"
 
-void		ft_putendl(char const *s)
+void	ft_putendl(char const *s)
 {
-	int		i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	write(1, &s, i);
-	write(1, "\n", 1);
+	ft_putstr(s);
+	ft_putchar('\n');
 }

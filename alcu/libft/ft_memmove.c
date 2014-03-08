@@ -3,31 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:17:33 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/28 16:25:55 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 13:27:47 by gmarais           #+#    #+#             */
+/*   Updated: 2013/12/01 14:19:54 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 void	*ft_memmove(void *s1, const void *s2, size_t n)
 {
-	char	*tmp2;
-	char	*tmp;
-	size_t	i;
+	unsigned char	*c;
+	int				overlap;
 
-	tmp = s1;
-	tmp2 = (char*)malloc(ft_strlen((char*)s2));
-	ft_strcpy(tmp2, (const char*)s2);
-	i = 0;
-	while (i < n)
+	overlap = 0;
+	c = (unsigned char *)s2;
+	while (c < (unsigned char *)s2 + n)
 	{
-		*tmp++ = *tmp2++;
-		i++;
+		if (c == (unsigned char*)s1)
+			overlap = 1;
+		c++;
 	}
-	return (s1);
+	if (overlap)
+	{
+		c = (unsigned char *)s2 + n - 1;
+		while (c >= (unsigned char *)s2)
+		{
+			*(c + (s1 - s2)) = *c;
+			c--;
+		}
+		return (s1);
+	}
+	return (ft_memcpy(s1, s2, n));
 }
-

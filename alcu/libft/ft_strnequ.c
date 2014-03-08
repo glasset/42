@@ -3,22 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 18:34:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:19:39 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/24 15:01:18 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/29 17:32:00 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
+#include "libft.h"
 
 int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	while (n-- != 0 && (*s1 || *s2))
-	{
-		if (*s1 != *s2)
-			return (0);
-		s1++;
-		s2++;
-	}
-	return (1);
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
 }

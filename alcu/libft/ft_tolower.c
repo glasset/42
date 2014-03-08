@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 16:21:01 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/22 16:22:52 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 15:57:51 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/20 16:01:48 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c = c + 32;
-	return (c);
+	if (c < 65 || c > 90)
+		return (c);
+	return (c + 32);
 }

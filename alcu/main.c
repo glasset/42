@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:09:40 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 16:58:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:51:37 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,30 @@ int				main(int ac, char **av, char **env)
 {
 	t_env		e;
 	int			player;
+	int			winner;
 
 	if (ac != 3)
-		return (put_error("need: nb_l, nb_col", -1));
+		return (put_error("Usage: puissance4 [num_line] [num_column]\n", -1));
 	if (init_env(&e, av, env))
 		return (-1);
 	player = ft_rand();
 	if (init_board(&e) == -1)
 		return (-1);
 	print_board(&e);
-	while (42)
+	while (!(winner = play_round(&e, player)))
 	{
-		if (player == 1)
-		{
-			if (init_value(&e) == 0)
-			{
-//				resolve(&e, player);
-				player = 0;
-				print_board(&e);
-			}
-		}
-		else
-		{
-//			resolve(&e, player);
-			player = 1;
-			print_board(&e);
-		}
+		print_board(&e);
+		player = (player) ? 0 : 1;
 	}
+	print_board(&e);
+	if (winner == 1)
+	{
+		ft_putstr(e.name);
+		ft_putendl(": wins.");
+	}
+	else if (winner == 2)
+		ft_putendl("IA: wins.\nYou failed noob!");
+	else
+		ft_putendl("(>X_X)> Draw! <(X_X<)\n");
 	return (0);
 }

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_exp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 15:31:34 by gmarais           #+#    #+#             */
-/*   Updated: 2013/11/20 16:02:04 by gmarais          ###   ########.fr       */
+/*   Created: 2013/12/17 16:56:38 by gmarais           #+#    #+#             */
+/*   Updated: 2014/01/18 18:55:01 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_toupper(int c)
+double		ft_exp(int a, int ex)
 {
-	if (c < 97 || c > 122)
-		return (c);
-	return (c - 32);
+	double	ret;
+
+	if (ex == 0)
+		return (1);
+	if (ex > 0)
+	{
+		ret = (double)a;
+		while (--ex)
+			ret *= (double)a;
+	}
+	else
+	{
+		ret = 1.0;
+		while (ex++)
+			ret /= (double)a;
+	}
+	return (ret);
 }

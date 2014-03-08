@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/28 12:56:29 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/28 13:05:35 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/26 16:39:56 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/28 18:41:43 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int			ft_swap(int *a, int *b)
+void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	int		c;
+	t_list	*tmp;
 
-	c = *a;
-	*a = *b;
-	*b = c;
-	return (0);
+	tmp = *alst;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new;
 }

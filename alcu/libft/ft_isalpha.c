@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/21 15:17:27 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/25 17:31:50 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 12:28:53 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/20 15:26:40 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	if ((c < 65 || c > 90) && (c < 97 || c > 122))
+	{
+		return (0);
+	}
+	return (1);
 }

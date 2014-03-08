@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:17:18 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/26 10:53:45 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 13:08:26 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/22 16:04:13 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memccpy(void *s1, const void *s2, int c, size_t n)
 {
-	const char	*tmp2;
-	char		*tmp;
+	size_t	i;
 
-	tmp = (char *)s1;
-	tmp2 = (const char *)s2;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		*tmp = *tmp2;
-		tmp++;
-		if (*tmp2 == (unsigned char) c)
-			return ((void*)tmp);
-		tmp2++;
+		*(unsigned char *)s1 = *(unsigned char *)s2;
+		if (*(unsigned char *)s2 == (unsigned char)c)
+			return ((void *)((unsigned char *)s1 + 1));
+		s1 = (unsigned char *)s1 + 1;
+		s2 = (unsigned char *)s2 + 1;
+		i++;
 	}
 	return (NULL);
 }
-

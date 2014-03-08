@@ -3,25 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 16:48:50 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/04 11:45:36 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 17:11:12 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/24 20:01:22 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <string.h>
 #include "libft.h"
 
 char	*ft_strnew(size_t size)
 {
-	char	*tmp;
-
-	tmp = (char *)malloc(sizeof(char) * (size + 1));
-	if (tmp)
-	{
-		ft_bzero(tmp, (size + 1));
-		return (tmp);
-	}
-	return (NULL);
+	return ((char *)ft_memalloc(size + 1));
 }

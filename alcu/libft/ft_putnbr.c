@@ -3,31 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:58:04 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/24 12:20:06 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/25 17:52:19 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/25 17:57:15 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_putnbr(int n)
 {
-	char	c;
+	char	*str;
 
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = -n;
-	}
-	if (n < 10)
-	{
-		c = n + '0';
-		write(1, &c, 1);
-	}
-	else
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
+	str = ft_itoa(n);
+	ft_putstr(str);
+	free(str);
 }

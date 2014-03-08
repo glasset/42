@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 16:53:54 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/27 18:07:19 by glasset          ###   ########.fr       */
+/*   Created: 2013/12/02 19:45:47 by gmarais           #+#    #+#             */
+/*   Updated: 2013/12/02 19:45:50 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 void	ft_strdel(char **as)
 {
-	free(*as);
-	*as = NULL;
+	ft_memdel((void **)as);
 }

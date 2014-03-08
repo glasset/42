@@ -6,13 +6,17 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/03/08 12:08:42 by glasset          ###   ########.fr        #
+#    Updated: 2014/03/08 21:05:04 by gmarais          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Puissance4
+NAME = puissance4
 
-SRC = ./main.c ./init_env.c print_board.c\
+SRC = main.c		\
+	init_env.c		\
+	print_board.c	\
+	play.c			\
+	victory.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -21,21 +25,21 @@ all : $(NAME)
 
 $(NAME) : $(SRC)
 	@make -C libft/
-	@gcc -g -Wall -Wextra -Werror -c $? -I libft/includes 
+	@gcc -g -Wall -Wextra -Werror -c $? -I libft/includes
 	@gcc -o $(NAME) $(OBJ) -L libft -lft
-	@echo "$(NAME) compil down."
+	@echo "file $(NAME) created."
 
 .PHONY: clean
 clean:
 	@rm -f $(OBJ)
 	@make -C libft/ clean
-	@echo "file .o clean"
+	@echo "Objects removed."
 
 .PHONY: fclean
 fclean: clean
 	@rm -f $(NAME)
 	@make -C libft/ fclean
-	@echo "file $(NAME) clean"
+	@echo "file $(NAME) removed."
 
 .PHONY: re
 re: fclean all

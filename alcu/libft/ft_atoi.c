@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:29:27 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/28 16:44:06 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 12:24:28 by gmarais           #+#    #+#             */
+/*   Updated: 2014/01/18 18:52:52 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_atoi(const char *str)
 {
-	int	res;
-	int	i;
+	int		res;
+	int		sign;
+	int		i;
 
-	i = 1;
 	res = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == 32))
-		str++;
-	if (*str == 43)
-		str++;
-	else if (*str == '-')
+	i = 0;
+	sign = 1;
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	while (str[i] && (str[i] == '-' || str[i] == '+' || str[i] == '0'))
 	{
-		i = i * (-1);
-		str++;
+		sign = (str[i] == '-') ? -sign : sign;
+		i++;
 	}
-	while ((*str >= '0' && *str <= '9') && *str)
+	while (str[i] != '\0' && ft_isdigit (str[i]) != 0)
 	{
-		res = res * 10;
-		res = res + *str - '0';
-		str++;
+		res = res * 10 + str[i] - '0';
+		i++;
 	}
-	return (res * i);
+	return (sign * res);
 }

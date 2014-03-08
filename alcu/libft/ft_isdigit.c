@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 15:21:06 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/22 15:58:47 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 14:07:05 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/20 14:11:58 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	if (c < 48 || c > 57)
+		return (0);
+	return (1);
 }

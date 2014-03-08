@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:23:56 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 17:05:04 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/08 18:56:35 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ int					init_board(t_env *e)
 	return (0);
 }
 
-int					init_value(t_env *e)
-{
-	char			*line;
-
-	write(1, "put pos:", 8);
-	get_next_line(0, &line);
-	if (line && only_nb(line, 0) == 0 && ft_atoi(line) <= e->col)
-	{
-		e->value = ft_atoi(line);
-		free(line);
-		return (0);
-	}
-	free(line);
-	return (put_error("bad col\n", -1));
-}
-
 static char			*get_user(char **env)
 {
 	int		i;
@@ -77,6 +61,5 @@ int					init_env(t_env *e, char **av, char **env)
 	if (e->line < MIN_L || e->col < MIN_C)
 		return (put_error("ERROR : invalid parameters.\n", -1));
 	e->name = get_user(env);
-	e->value = -1;
 	return (0);
 }

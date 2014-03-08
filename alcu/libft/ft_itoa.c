@@ -3,63 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 18:45:22 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:18:47 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/25 13:58:14 by gmarais           #+#    #+#             */
+/*   Updated: 2014/02/16 18:24:52 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+
 #include "libft.h"
 
-static int			ft_lint(int n)
+static int	ft_ctdigit(int n)
 {
-	int				c;
-	unsigned int	f;
+	int		i;
 
-	c = 0;
-	if (n == 0)
-		c++;
-	if (n < 0)
+	i = 0;
+	while (n != 0)
 	{
-		f = n * (-1);
-		c++;
+		n /= 10;
+		i++;
 	}
-	else
-		f = n;
-	while (f > 0)
-	{
-		f = f / 10;
-		c++;
-	}
-	return (c);
+	return (i);
 }
 
-char				*ft_itoa(int n)
+static int	ft_tenpower(int j)
 {
-	char			*c;
-	int				i;
-	unsigned int	f;
+	int		ret;
 
-	i = ft_lint(n);
-	c = (char*)malloc(sizeof(char) * (i + 1));
-	c[i] = '\0';
-	if (n != 0)
+	ret = 1;
+	while (j--)
 	{
-		if (n < 0)
-		{
-			c[0] = '-';
-			f = n * (-1);
-		}
-		else
-			f = n;
-		while (f > 0)
-		{
-			c[--i] = (f % 10) + '0';
-			f = f / 10;
-		}
+		ret *= 10;
+	}
+	return (ret);
+}
+
+char		*ft_itoa(int n)
+{
+	char	*p;
+	int		i;
+	int		j;
+
+	j = (n == 0) ? 1 : ft_ctdigit(n);
+	p = (char *)malloc(j + 1);
+	i = 0;
+	if (n >= 0)
+	{
+		while (j != 0)
+			p[i++] = '0' + ((n / ft_tenpower(--j)) % 10);
+		p[i] = '\0';
+		return (p);
 	}
 	else
-		c[0] = '0';
-	return (c);
+	{
+		i++;
+		while (j != 0)
+			p[i++] = '0' - ((n / ft_tenpower(--j)) % 10);
+		p[0] = '-';
+		p[i] = '\0';
+	}
+	return (p);
 }

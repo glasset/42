@@ -3,56 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 18:44:40 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/11 22:35:23 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/24 18:50:10 by gmarais           #+#    #+#             */
+/*   Updated: 2013/12/29 18:46:08 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 #include "libft.h"
 
-static int		ft_count(char const *s, char c)
+static char	*ft_subfunction(size_t i, size_t count, char const *s)
 {
-	int		q;
-	int		f;
+	char	*str;
 
-	q = 0;
-	f = 0;
-	while (s[q])
-	{
-		if ((s[q] == c && (s[q + 1] != c && s[q + 1] != '\0')) || (s[0] != c))
-			f++;
-		q++;
-	}
-	return (f);
+	str = (char *)malloc(count + 1);
+	str = ft_strncpy(str, (char *)&s[i - count], (size_t)(count));
+	str[count] = '\0';
+	return (str);
 }
 
-char			**ft_strsplit(char const *s, char c)
+static char	**ft_alloc(size_t len, size_t *lct)
 {
-	char	**tmp;
-	int		j;
-	int		q;
-	int		t[2];
+	char	**ret;
 
-	t[0] = 0;
-	q = ft_count(s, c);
-	tmp = (char **)malloc(sizeof(char *) * (q + 1));
-	while (*s && q > t[0])
+	if (len != 0)
+		return ((char **)malloc(len * sizeof(char *)));
+	ret = (char **)malloc(sizeof(char *));
+	ret[0] = NULL;
+	*lct = *lct + 1;
+	return (ret);
+}
+
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**tab;
+	size_t	i;
+	size_t	count;
+	size_t	lct;
+
+	i = 0;
+	lct = 0;
+	count = 0;
+	tab = ft_alloc(ft_strlen(s), &lct);
+	while (s[i] != '\0')
 	{
-		t[1] = 0;
-		j = 0;
-		while (*s == c)
-			s++;
-		while (s[t[1]] != c && s[t[1]])
-			t[1]++;
-		tmp[t[0]] = (char *)malloc(sizeof(char) * (t[1] + 1));
-		if (tmp[t[0]] == 0 && tmp == 0)
-			return (NULL);
-		while (t[1] > j && (*s != c || *s != '\0'))
-			tmp[t[0]][j++] = *s++;
-		tmp[t[0]++][t[1]] = 0;
+		if (s[i] != c && s[i] != '\0')
+			count++;
+		else if (count > 0)
+		{
+			tab[lct++] = ft_subfunction(i, count, s);
+			count = 0;
+		}
+		i++;
 	}
-	tmp[t[0]] = NULL;
-	return (tmp);
+	if (count > 0)
+		tab[lct++] = ft_subfunction(i, count, s);
+	tab[lct] = NULL;
+	return (tab);
 }

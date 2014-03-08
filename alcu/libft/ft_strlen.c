@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:25:10 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/10 17:03:21 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 16:07:01 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/21 15:44:08 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
+#include "libft.h"
 
-size_t		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t	index;
+	size_t	n;
 
-	index = 0;
-	while (s[index] != '\0')
-		index++;
-	return (index);
+	n = 0;
+	while (s[n] != 0)
+	{
+		n++;
+	}
+	return (n);
 }

@@ -1,18 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_putd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 15:31:34 by gmarais           #+#    #+#             */
-/*   Updated: 2013/11/20 16:02:04 by gmarais          ###   ########.fr       */
+/*   Created: 2013/11/21 13:27:47 by gmarais           #+#    #+#             */
+/*   Updated: 2013/12/01 14:19:54 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int		ft_toupper(int c)
+void	ft_putd(char *name, double nbr)
 {
-	if (c < 97 || c > 122)
-		return (c);
-	return (c - 32);
+	int	i;
+
+	ft_putstr(name);
+	ft_putstr(" = ");
+	if (nbr < 0)
+	{
+		ft_putchar('-');
+		nbr = -1 * nbr;
+	}
+	ft_putnbr(nbr);
+	if (nbr - (int)nbr)
+	{
+		ft_putchar('.');
+		i = 1000000;
+		nbr = (nbr - (int)nbr) * i;
+		while ((nbr / (i / 10)) < 1 && i > 1)
+		{
+			ft_putchar('0');
+			i /= 10;
+		}
+		ft_putnbr(nbr);
+	}
+	ft_putchar('\n');
 }

@@ -3,31 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:27:27 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:43:17 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 17:17:15 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/22 17:41:18 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	size;
 
 	i = 0;
-	if (*s2 == 0)
+	size = ft_strlen(s2);
+	if (size == 0)
 		return ((char *)s1);
-	while (s1[i] != '\0')
+	while (s1[i])
 	{
-		j = 0;
-		while (s1[i + j] == s2[j] && s1[i + j])
-		{
-			j++;
-		}
-		if (s2[j] == '\0')
-			return ((char *) (s1 + i));
+		if (ft_strncmp((char *)&s1[i], s2, size) == 0)
+			return ((char *)&s1[i]);
 		i++;
 	}
 	return (NULL);

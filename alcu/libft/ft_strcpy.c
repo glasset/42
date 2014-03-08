@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/19 16:25:37 by glasset           #+#    #+#             */
-/*   Updated: 2013/12/10 17:02:00 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 11:19:26 by gmarais           #+#    #+#             */
+/*   Updated: 2013/12/01 14:27:48 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcpy(char *s1, const char *s2)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (s2[i] != '\0')
 	{
 		s1[i] = s2[i];
-		i++;
+		i = i + 1;
 	}
 	s1[i] = '\0';
 	return (s1);
 }
-

@@ -3,22 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 18:30:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/01/26 22:19:13 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/24 15:00:56 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/29 17:32:22 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 int		ft_strequ(char const *s1, char const *s2)
 {
-	while (*s1 || *s2)
-	{
-		if (*s1 != *s2)
-			return (0);
-		s1++;
-		s2++;
-	}
-	return (1);
+	if (ft_strcmp(s1, s2) == 0)
+		return (1);
+	return (0);
 }
-

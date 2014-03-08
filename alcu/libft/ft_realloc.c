@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 15:31:34 by gmarais           #+#    #+#             */
-/*   Updated: 2013/11/20 16:02:04 by gmarais          ###   ########.fr       */
+/*   Created: 2013/11/27 13:07:14 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/27 13:19:47 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int		ft_toupper(int c)
+void	*ft_realloc(void *s, size_t n)
 {
-	if (c < 97 || c > 122)
-		return (c);
-	return (c - 32);
+	void	*copy;
+
+	copy = malloc(n);
+	if (s != NULL)
+	{
+		copy = ft_memcpy(copy, s, n);
+		free(s);
+	}
+	return (copy);
 }

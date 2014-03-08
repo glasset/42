@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 16:07:24 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/23 13:41:33 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/20 15:18:44 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/20 15:28:46 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isprint(int c)
 {
-	if ((c >= ' ' && c <= '?') || (c >= '@' && c <= '~'))
-		return (1);
-	return (0);
+	if (c < 32 || c > 126)
+	{
+		return (0);
+	}
+	return (1);
 }

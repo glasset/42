@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/29 12:21:11 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/29 18:22:51 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/26 16:39:56 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/27 12:48:09 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (alst && new)
-	{
-		new->next = (*alst);
-		(*alst) = new;
-	}
+	new->next = *alst;
+	*alst = new;
 }

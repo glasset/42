@@ -6,29 +6,30 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 17:09:59 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 17:38:46 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:44:35 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <puissance.h>
+#include "puissance.h"
 
-int		check_value(t_env *e, int choice)
+int			check_value(t_env *e, int choice)
 {
 	int		i;
 
-	if (choice > 0 &&  choice < e->col)
+	if (choice > 0 && choice <= e->col)
 	{
-		i = e->line;
-		while (i && e->board[i][choice] != '.')
+		i = e->line - 1;
+		while (i > -1 && e->board[i][choice - 1] != '.')
 			i--;
-		if (!i)
+		if (i == -1)
 			return (-1);
+		e->curr_line = i;
 		return (choice);
 	}
 	return (-1);
 }
 
-int		human(t_env *e)
+static int	human(t_env *e)
 {
 	char	*line;
 	int		choice;
@@ -36,24 +37,25 @@ int		human(t_env *e)
 	choice = -1;
 	while (choice == -1)
 	{
-		line = get_next_line(0, &line);
-		choice = ft_atoi(line);
-		choice = check_value(e, choice);
+		if (get_next_line(0, &line) > 0)
+		{
+			choice = ft_atoi(line);
+			choice = check_value(e, choice);
+			if (choice == -1)
+				ft_putendl_fd("Usage: incorrect column number.", 2);
+		}
 	}
 	return (choice);
 }
 
-int		check_victory(t_env *e, int	last_play)
-{
-
-}
-
-int		round(t_env *e, int	player)
+int			play_round(t_env *e, int	player)
 {
 	if (player)
 	{
-		return (check_victory(e, human(e)));
+		if (check_victory('O', e, human(e)))
+			return (1);
 	}
-	else
-	
+	else if (check_victory('X', e, human(e)))
+			return (2);
+	return (0);
 }

@@ -3,20 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 10:48:53 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/07 18:22:54 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/19 11:13:09 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/21 15:40:12 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "libft.h"
 
-void		ft_putstr(char const *s)
+void	ft_putstr(char const *s)
 {
-	int		i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	write(1, s, i);
+	write(1, s, ft_strlen(s));
 }

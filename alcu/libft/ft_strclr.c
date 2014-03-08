@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/25 18:27:03 by glasset           #+#    #+#             */
-/*   Updated: 2013/11/26 12:46:27 by glasset          ###   ########.fr       */
+/*   Created: 2013/11/21 17:21:57 by gmarais           #+#    #+#             */
+/*   Updated: 2013/11/21 17:26:09 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void	ft_strclr(char *s)
 {
-	while (*s)
-		*s++ = 0;
+	ft_bzero(s, ft_strlen(s));
 }
