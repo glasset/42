@@ -6,7 +6,7 @@
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 21:42:57 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/08 22:11:55 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/08 22:23:45 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				*init_tab(t_env e, int *tab)
 	i = 0;
 	if (tab)
 	{
-
+		while (check(valuee, mid + i))
 	}
 	return (tab);
 }
