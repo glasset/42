@@ -6,7 +6,7 @@
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 21:42:57 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/09 17:49:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:37:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			evaluate_p(t_env *e, int col, char p)
 	tmp = ft_sum(ev_diagonal(p, e, e->curr_line, col - 1));
 	if (tmp > ct)
 		ct = tmp;
-	if (e->curr_line - 1 >= 0)
+	if (e->curr_line > 0)
 	{
 		e->curr_line--;
 		if (check_victory(PAWNS_HUM, e, col))
