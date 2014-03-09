@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   victory.c                                          :+:      :+:    :+:   */
+/*   easy_ia.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 18:20:28 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/08 20:59:26 by gmarais          ###   ########.fr       */
+/*   Created: 2014/03/08 21:42:57 by gmarais           #+#    #+#             */
+/*   Updated: 2014/03/08 22:23:45 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-static int		check_vertical(char p, char **board, int line, int col)
+static int		ev_vertical(char p, char **board, int line, int col)
 {
 	int		i;
 
 	i = 1;
 	while (board[++line] && board[line][col] && board[line][col] == p)
 		i++;
-	if (i >= 4)
-		return (1);
+	if (i > 1)
+		return (i);
 	return (0);
 }
 
-static int		check_horizontal(char p, char *line, int col_right)
+static int		ev_horizontal(char p, char *line, int col_right)
 {
 	int		col_left;
 
@@ -33,12 +33,12 @@ static int		check_horizontal(char p, char *line, int col_right)
 		;
 	while (line[++col_right] && line[col_right] == p)
 		;
-	if (col_right - col_left >= 5)
-		return (1);
+	if (col_right - col_left > 2)
+		return (col_right - col_left - 1);
 	return (0);
 }
 
-static int		sub_check_diagonal(char p, t_env *e, int line, int col)
+static int		sub_ev_diagonal(char p, t_env *e, int line, int col)
 {
 	int		dline;
 	int		dcol;
@@ -53,19 +53,19 @@ static int		sub_check_diagonal(char p, t_env *e, int line, int col)
 	dcol = col;
 	while (--dline > 0 && --dcol >= 0 && e->board[dline][dcol] == p)
 		i++;
-	if (i >= 4)
-		return (1);
+	if (i > 1)
+		return (i);
 	return (0);
 }
 
-static int		check_diagonal(char p, t_env *e, int line, int col)
+static int		ev_diagonal(char p, t_env *e, int line, int col)
 {
 	int		dline;
 	int		dcol;
 	int		i;
+	int		ct;
 
-	if (sub_check_diagonal(p, e, line, col))
-		return (1);
+	ct = sub_ev_diagonal(p, e, line, col);
 	i = 1;
 	dline = line;
 	dcol = col;
@@ -75,19 +75,22 @@ static int		check_diagonal(char p, t_env *e, int line, int col)
 	dcol = col;
 	while (--dline >= 0 && ++dcol <= e->col && e->board[dline][dcol] == p)
 		i++;
-	if (i >= 4)
-		return (1);
-	return (0);
+	if (i > 1 && ct < i)
+		return (i);
+	return (ct);
 }
 
-int				check_victory(char p, t_env *e, int curr_col)
+int			evaluate_p(t_env *e, int col, char p)
 {
-	e->board[e->curr_line][curr_col - 1] = p;
-	if (check_vertical(p, e->board, e->curr_line, curr_col - 1))
-		return(1);
-	if (check_horizontal(p, e->board[e->curr_line], curr_col - 1))
-		return(1);
-	if (check_diagonal(p, e, e->curr_line, curr_col - 1))
-		return(1);
-	return (0);
+	int		tmp;
+	int		ct;
+
+	ct = ev_vertical(p, e->board, e->curr_line, col);
+	tmp = ev_horizontal(p, e->board[e->curr_line], col);
+	if (tmp > ct)
+		ct = tmp;
+	tmp = ev_diagonal(p, e, e->curr_line, col);
+	if (tmp > ct)
+		ct = tmp;
+	return (ct);
 }

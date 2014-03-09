@@ -17,7 +17,8 @@ SRC = main.c		\
 	print_board.c	\
 	play.c			\
 	victory.c		\
-#	easy_ia.c
+	evaluate.c		\
+	easy_ia.c
 
 OBJ = $(SRC:.c=.o)
 

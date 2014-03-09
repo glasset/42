@@ -37,6 +37,8 @@ static int		human(t_env *e)
 	choice = -1;
 	while (choice == -1)
 	{
+		ft_putstr(e->name);
+		ft_putstr(": ");
 		if (get_next_line(0, &line) > 0)
 		{
 			choice = ft_atoi(line);
@@ -57,7 +59,7 @@ int				play_round(t_env *e, int player)
 		if (check_victory('O', e, human(e)))
 			return (1);
 	}
-	else if (check_victory('X', e, human(e)))
+	else if (check_victory('X', e, easy_ia(e)))
 			return (2);
 	i = 0;
 	while (i++ <= e->col)

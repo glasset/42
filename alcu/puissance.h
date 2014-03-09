@@ -33,13 +33,21 @@ typedef struct			s_env
 	int					curr_line;
 }						t_env;
 
+/*
+** Generic game functions:
+*/
 int				put_error(char *str, int ernum);
 int				only_nb(char *str, int min);
 int				init_board(t_env *e);
 int				check_victory(char p, t_env *e, int	curr_col);
-void			print_board(t_env *e);
 int				init_env(t_env *e, char **av, char **env);
 int				play_round(t_env *e, int	player);
 int				check_value(t_env *e, int choice);
+void			print_board(t_env *e);
+/*
+** Easy IA functions:
+*/
+int				easy_ia(t_env *e);
+int				evaluate_p(t_env *e, int col, char p);
 
 #endif /* !PUISSANCE_H */
