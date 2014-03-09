@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   puissance.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:17:22 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 21:49:36 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:55:31 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef enum			e_players
 
 typedef struct			s_env
 {
+	int					(*f_player)(struct s_env *);
 	int					line;
 	int					col;
 	char				**board;
@@ -44,9 +45,12 @@ int				init_env(t_env *e, char **av, char **env);
 int				play_round(t_env *e, int	player);
 int				check_value(t_env *e, int choice);
 void			print_board(t_env *e);
+int				ft_sum(int n);
+void			put_charcolor(char c, char *color);
 /*
 ** Easy IA functions:
 */
+int				human(t_env *e);
 int				easy_ia(t_env *e);
 int				evaluate_p(t_env *e, int col, char p);
 

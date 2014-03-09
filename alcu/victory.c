@@ -6,7 +6,7 @@
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 18:20:28 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/08 20:59:26 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:53:01 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int				check_victory(char p, t_env *e, int curr_col)
 {
 	e->board[e->curr_line][curr_col - 1] = p;
 	if (check_vertical(p, e->board, e->curr_line, curr_col - 1))
-		return(1);
+		return (1);
 	if (check_horizontal(p, e->board[e->curr_line], curr_col - 1))
-		return(1);
+		return (1);
 	if (check_diagonal(p, e, e->curr_line, curr_col - 1))
-		return(1);
+		return (1);
 	return (0);
 }

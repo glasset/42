@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:09:40 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 21:49:38 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:54:19 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void			print_winner(int winner, t_env *e)
 	print_board(e);
 	if (winner == 1)
 	{
-		ft_putstr(e->name);
-		ft_putendl(": wins.");
+		put_charcolor(PAWNS_HUM, "\033[1;33m");
+		ft_putendl(": wins!");
 	}
 	else if (winner == 2)
 	{
-		ft_putendl("IA: wins.\nYou are so bad!");
+		put_charcolor(PAWNS_IA, "\033[1;31m");
+		ft_putendl(": wins!");
 	}
 	else
 		ft_putendl("(>X_X)> Draw! <(X_X<)");
@@ -67,7 +68,7 @@ int				main(int ac, char **av, char **env)
 	int			player;
 	int			winner;
 
-	if (ac != 3)
+	if (ac != 4 && ac != 3)
 		return (put_error("Usage: puissance4 [num_line] [num_column]\n", -1));
 	if (init_env(&e, av, env) || init_board(&e) == -1)
 		return (-1);

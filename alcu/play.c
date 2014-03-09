@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 17:09:59 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 22:13:02 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:54:39 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				check_value(t_env *e, int choice)
 	return (-1);
 }
 
-static int		human(t_env *e)
+int				human(t_env *e)
 {
 	char	*line;
 	int		choice;
@@ -56,10 +56,10 @@ int				play_round(t_env *e, int player)
 
 	if (player)
 	{
-		if (check_victory('O', e, human(e)))
+		if (check_victory(PAWNS_HUM, e, human(e)))
 			return (1);
 	}
-	else if (check_victory('X', e, easy_ia(e)))
+	else if (check_victory(PAWNS_IA, e, e->f_player(e)))
 			return (2);
 	i = 0;
 	while (i++ <= e->col)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:23:56 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/08 18:56:35 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:53:53 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,12 @@ int					init_env(t_env *e, char **av, char **env)
 	if (e->line < MIN_L || e->col < MIN_C)
 		return (put_error("ERROR : invalid parameters.\n", -1));
 	e->name = get_user(env);
+	if (av[3])
+	{
+		if (!ft_strcmp("-p", av[3]))
+			e->f_player = &human;
+	}
+	else
+		e->f_player = &easy_ia;
 	return (0);
 }

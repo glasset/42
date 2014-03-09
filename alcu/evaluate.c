@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easy_ia.c                                          :+:      :+:    :+:   */
+/*   evaluate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 21:42:57 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/08 22:23:45 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:49:48 by gmarais          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int			evaluate_p(t_env *e, int col, char p)
 	int		tmp;
 	int		ct;
 
-	ct = ev_vertical(p, e->board, e->curr_line, col);
-	tmp = ev_horizontal(p, e->board[e->curr_line], col);
+	ct = ft_sum(ev_vertical(p, e->board, e->curr_line, col - 1));
+	tmp = ft_sum(ev_horizontal(p, e->board[e->curr_line], col - 1));
 	if (tmp > ct)
 		ct = tmp;
-	tmp = ev_diagonal(p, e, e->curr_line, col);
+	tmp = ft_sum(ev_diagonal(p, e, e->curr_line, col - 1));
 	if (tmp > ct)
 		ct = tmp;
 	return (ct);
