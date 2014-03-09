@@ -46,7 +46,7 @@ static int		print_result(int result)
 
 int				easy_ia(t_env *e)
 {
-    int			*tab = NULL;
+    int			*tab;
 	int			i;
 	int			result;
 	int			weight;

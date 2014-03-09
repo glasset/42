@@ -55,7 +55,7 @@ void			print_winner(int winner, t_env *e)
 	}
 	else if (winner == 2)
 	{
-		ft_putendl("IA: wins.\nYou failed noob!");
+		ft_putendl("IA: wins.\nYou are so bad!");
 	}
 	else
 		ft_putendl("(>X_X)> Draw! <(X_X<)");
