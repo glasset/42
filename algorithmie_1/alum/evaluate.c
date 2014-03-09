@@ -6,7 +6,7 @@
 /*   By: gmarais <gmarais@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 21:42:57 by gmarais           #+#    #+#             */
-/*   Updated: 2014/03/09 15:49:48 by gmarais          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:05:41 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,13 @@ int			evaluate_p(t_env *e, int col, char p)
 	tmp = ft_sum(ev_diagonal(p, e, e->curr_line, col - 1));
 	if (tmp > ct)
 		ct = tmp;
+	if (e->curr_line - 1 >= 0)
+	{
+		e->curr_line--;
+		if (check_victory(PAWNS_HUM, e, col))
+			ct = 1;
+		e->board[e->curr_line][col - 1] = '.';
+		e->curr_line++;
+	}
 	return (ct);
 }
