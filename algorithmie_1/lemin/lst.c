@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 16:00:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/18 15:30:11 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/11 16:56:34 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -35,6 +35,7 @@ t_lst				*lst_add_end(t_lst *l_x, char *name, int *xy, int pos)
 	{
 		tmp->name = name;
 		tmp->xy = xy;
+		tmp->tube = NULL;
 		tmp->pos = pos;
 		if (l_x->start == NULL)
 		{

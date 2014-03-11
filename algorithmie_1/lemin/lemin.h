@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 13:03:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/18 16:26:56 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/11 16:46:33 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct			s_ch
 	char				*name;
 	int					pos;
 	int					*xy;
+	struct s_lst		*tube;
 	struct s_ch			*next;
 	struct s_ch			*prev;
 }						t_ch;

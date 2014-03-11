@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:00 by glasset           #+#    #+#             */
-/*   Updated: 2014/02/18 16:26:58 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/11 16:56:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -48,15 +48,73 @@ int				check_line(char *line)
 	return (ROOM);
 }
 
+int				init_tube(char **cord, t_env *e)
+{
+	size_t		i;
+	int			cmp;
+
+	cmp = 0;
+	i = 0;
+	while (i < e->room->len)
+	{
+		if (!ft_strcmp(cord[0], e->room->start->name))
+			cmp += 1;
+		if (!ft_strcmp(cord[1], e->room->start->name))
+			cmp += 1;
+		e->room->start = e->room->start->next;
+		i++;
+	}
+	return (cmp);
+}
+
+void			make_tube(char **cord, t_env *e, int status)
+{
+	size_t		i;
+	int			*xy;
+
+	xy = (int *)malloc(sizeof(int) *2);
+	xy[0] = 0;
+	xy[1] = 0;
+	i = 0;
+	if (init_tube(cord, e) == 2)
+	{
+		while (i < 2)
+		{
+			if (!ft_strcmp(cord[0], e->room->start->name))
+			{
+				if (e->room->start->tube == NULL)
+					e->room->start->tube = lst_new();
+				e->room->start->tube = lst_add_end(e->room->start->tube, cord[1], xy, status);
+			write(1, e->room->start->tube->start->name, 1);
+			write(1, "\n", 1);
+			i++;
+			}
+			if (!ft_strcmp(cord[1], e->room->start->name))
+			{
+				if (e->room->start->tube == NULL)
+					e->room->start->tube = lst_new();
+				e->room->start->tube = lst_add_end(e->room->start->tube, cord[0], xy, 0);
+			write(1, e->room->start->tube->start->name, 1);
+			write(1, "\n", 1);
+			i++;
+			}
+			write(1, cord[0], 1);
+			write(1, cord[1], 1);
+			write(1, "\n", 1);
+			e->room->start = e->room->start->next;
+		}
+	}
+}
+
 void			make(char **cord, int status, t_env *e)
 {
 	int			*xy;
+
+	xy = (int *)malloc(sizeof(int) *2);
 	if (!cord)
 		error();
 	if (status == 0)
-	{
-		/* remplir liaisons */
-	}
+		make_tube(cord, e, 0);
 	else
 	{
 		xy[0] = ft_atoi(cord[1]);
@@ -95,10 +153,7 @@ void			parser(t_env *e)
 		if (status >= 0)
 		{
 			if (status == START || status == END)
-			{
-				ft_putendl(line);
 				get_next_line(0, &line);
-			}
 			tmp = ft_strsplit(line, char_split(status));
 			make(tmp, status, e);
 		}
@@ -107,7 +162,6 @@ void			parser(t_env *e)
 			if (check_ants(line, e) == -1)
 				status = -3;
 		}
-		ft_putendl(line);
 		free(line);
 		if (status == -3)
 			break ;
