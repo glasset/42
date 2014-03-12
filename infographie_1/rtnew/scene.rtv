@@ -48,32 +48,3 @@ S [4][0][-18][4][0.8][0.1][0.0][0.1][0x1111ff]
 P [0][-4][0][0][1][0][0.2][0.1][0.8][0.0][0xffffff]
 S [4][-2][18][4][0x1111ff][0.8]
 L [10][10][-9][0xff11ff]
-
-####################test 2######################
-
-info
-{
-	numbers of light: 1;
-	numbers of object: 5;
-	point of view: -20 5 -70;
-	look at: 0 0 0;
-	color ambient: 0.1;
-}
-
-Sphere
-{
-	position: 2, 3, 4;
-	diffuse: 0.4;
-	specular: 0.3;
-	reflection: 0.6;
-	refraction: 0.0;
-	color: 0xff1111;
-	mat: BOIS;
-	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
-}
-
-light
-{
-	position: 10, 10, -9;
-	color: 0xff11ff;
-}
