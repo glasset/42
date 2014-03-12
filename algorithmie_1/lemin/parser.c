@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:00 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/12 11:24:31 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/12 15:19:10 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -59,7 +59,7 @@ int				init_tube(char **cord, t_env *e)
 	{
 		if (!ft_strcmp(cord[0], e->room->start->name))
 			cmp += 1;
-		if (!ft_strcmp(cord[1], e->room->start->name))
+		else if (!ft_strcmp(cord[1], e->room->start->name))
 			cmp += 1;
 		e->room->start = e->room->start->next;
 		i++;
@@ -73,8 +73,6 @@ void			make_tube(char **cord, t_env *e, int status)
 	int			*xy;
 
 	xy = (int *)malloc(sizeof(int) *2);
-	xy[0] = 0;
-	xy[1] = 0;
 	i = 0;
 	if (init_tube(cord, e) == 2)
 	{
