@@ -31,7 +31,7 @@
 #Plan: P [x][y][z][normalx][normaly][normalz][diffuse][specular][reflection]
 #		[refraction][color hex]
 #Cylinder: c [x][y][z][dirx][diry][dirz][radius][diffuse][specular][reflection]
-#		[refraction][color hex]
+#		[refraction][color hex]
 #Cone: C [x][y][z][dirx][diry][dirz][coef][diffuse][specular][reflection]
 #		[refraction][color hex]
 #Triangle: T[x][y][z][x1][y1][z1][x2][y2][z2][diffuse][specular][reflection]
