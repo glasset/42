@@ -6,7 +6,7 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/03/12 15:44:24 by glasset          ###   ########.fr        #
+#    Updated: 2014/03/12 16:06:58 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ $(NAME) : $(SRC)
 	@make -C libft/
 	@gcc -g -Wall -Wextra -Werror -c $? -I libft/includes 
 	@gcc -o $(NAME) $(OBJ) -L libft -lft
-	@echo "$(NAME) compil down."
+	@echo "file $(NAME) created."
 
 .PHONY: clean
 clean:
