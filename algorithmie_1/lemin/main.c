@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:06 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/11 16:49:48 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/12 11:24:32 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -29,7 +29,7 @@ int				main(void)
 	i = 0;
 	e.room = lst_new();
 	parser(&e);
-	printf("%d ants\n", e.ants);
+	printf("%d ants\n\n", e.ants);
 	while(i < e.room->len)
 	{
 		printf("name: %s\npos: %d\nx:%d|y:%d\n", e.room->start->name,
@@ -45,6 +45,7 @@ int				main(void)
 			}
 		}
 		i++;
+		write(1, "\n", 1);
 	}
 	return (0);
 }

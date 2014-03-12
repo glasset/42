@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:00 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/11 16:56:37 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/12 11:24:31 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -85,22 +85,15 @@ void			make_tube(char **cord, t_env *e, int status)
 				if (e->room->start->tube == NULL)
 					e->room->start->tube = lst_new();
 				e->room->start->tube = lst_add_end(e->room->start->tube, cord[1], xy, status);
-			write(1, e->room->start->tube->start->name, 1);
-			write(1, "\n", 1);
-			i++;
+				i++;
 			}
-			if (!ft_strcmp(cord[1], e->room->start->name))
+			else if (!ft_strcmp(cord[1], e->room->start->name))
 			{
 				if (e->room->start->tube == NULL)
 					e->room->start->tube = lst_new();
 				e->room->start->tube = lst_add_end(e->room->start->tube, cord[0], xy, 0);
-			write(1, e->room->start->tube->start->name, 1);
-			write(1, "\n", 1);
-			i++;
+				i++;
 			}
-			write(1, cord[0], 1);
-			write(1, cord[1], 1);
-			write(1, "\n", 1);
 			e->room->start = e->room->start->next;
 		}
 	}
@@ -119,8 +112,8 @@ void			make(char **cord, int status, t_env *e)
 	{
 		xy[0] = ft_atoi(cord[1]);
 		xy[1] = ft_atoi(cord[2]);
+		e->room = lst_add_end(e->room, cord[0], xy, status);
 	}
-	e->room = lst_add_end(e->room, cord[0], xy, status);
 }
 
 int				check_ants(char *line, t_env *e)
