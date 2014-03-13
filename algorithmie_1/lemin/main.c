@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:06 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/12 16:05:43 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/13 13:55:38 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -21,6 +21,21 @@ void			error()
 	exit(0);
 }
 
+void			print_res(t_env *e)
+{
+
+	seek_room(e, 1, "s");
+//	while (e->room->start->weight != 0)
+//	{
+		ft_putstr(e->room->start->name);
+		write(1, "->", 2);
+		ft_putstr(e->room->start->back);
+		seek_room(e, 0, e->room->start->back);
+//	}
+	ft_putstr(e->room->start->name);
+	write(1, "\n", 1);
+}
+
 int				main(void)
 {
 	t_env		e;
@@ -28,5 +43,7 @@ int				main(void)
 	e.room = lst_new();
 	parser(&e);
 	print(&e);
+	shoort(&e);
+	print_res(&e);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 13:03:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/12 16:05:44 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/13 13:55:39 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct			s_ch
 {
 	char				*name;
 	int					pos;
+	int					weight;
+	char				*back;
 	int					*xy;
 	struct s_lst		*tube;
 	struct s_ch			*next;
@@ -49,5 +51,7 @@ t_lst			*lst_add_end(t_lst *l_xm, char *name, int *xy, int pos);
 void			parser(t_env *e);
 void			print(t_env *e);
 void			error(void);
+void			shoort(t_env *e);
+void			seek_room(t_env *e, int pos, char *name);
 
 #endif /* !LEMIN_H */

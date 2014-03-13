@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 16:00:55 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/12 15:19:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/13 13:07:51 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -33,6 +33,8 @@ t_lst				*lst_add_end(t_lst *l_x, char *name, int *xy, int pos)
 	tmp = (t_ch *)malloc(sizeof(t_ch));
 	if (tmp && l_x)
 	{
+		tmp->weight = -1;
+		tmp->back = NULL;
 		tmp->name = name;
 		tmp->xy = xy;
 		tmp->tube = NULL;

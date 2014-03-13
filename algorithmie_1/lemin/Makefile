@@ -6,13 +6,13 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/03/12 16:06:58 by glasset          ###   ########.fr        #
+#    Updated: 2014/03/13 12:47:29 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 
-SRC = ./lst.c ./main.c ./parser.c ./print.c\
+SRC = ./lst.c ./main.c ./parser.c ./print.c ./djidji.c\
 
 OBJ = $(SRC:.c=.o)
 
