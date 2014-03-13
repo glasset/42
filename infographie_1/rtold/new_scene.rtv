@@ -1,0 +1,78 @@
+# ************************************************************************* #
+# ...####....####...######..##..##..######..........#####...######..##..##. #
+# ..##......##..##..##......###.##..##..............##..##....##....##..##. #
+# ...####...##......####....##.###..####............#####.....##....##..##. #
+# ......##..##..##..##......##..##..##........##....##..##....##.....####.. #
+# ...####....####...######..##..##..######....##....##..##....##......##... #
+# .By:......Mdebelle........Jbalestr..........Fcorbel.........Glasset...... #
+# ************************************************************************* #
+
+information
+{
+	numbers of light: 1;
+	numbers of object: 5;
+	point of view: -20 5 -70;
+	look at: 0 0 0;
+	color ambient: 0.1;
+}
+
+light
+{
+	position: 10, 10, -9;
+	color: 0xff11ff;
+}
+
+Sphere
+{
+	position: 2, 3, 4;
+	radius: 3;
+	diffuse: 0.4;
+	specular: 0.3;
+	reflection: 0.6;
+	refraction: 0.0;
+	color: 0xff1111;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
+}
+
+Plan
+{
+	postion: 2, 3, 4;
+	normal: 1, 0, 0;
+	diffuse: 0.4;
+	specular: 0.3;
+	reflection: 0.6;
+	refraction: 0.0;
+	color: 0xff1111;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
+}
+
+Cylinder
+{
+	postion: 2, 3, 4;
+	direction: 1, 0, 0;
+	radius: 3;
+	diffuse: 0.4;
+	specular: 0.3;
+	reflection: 0.6;
+	refraction: 0.0;
+	color: 0xff1111;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
+}
+
+Cone
+{
+	postion: 2, 3, 4;
+	direction: 1, 0, 0;
+	coef: 0,2;
+	diffuse: 0.4;
+	specular: 0.3;
+	reflection: 0.6;
+	refraction: 0.0;
+	color: 0xff1111;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
+}
+

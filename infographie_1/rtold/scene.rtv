@@ -1,0 +1,50 @@
+# ************************************************************************* #
+# ...####....####...######..##..##..######..........#####...######..##..##. #
+# ..##......##..##..##......###.##..##..............##..##....##....##..##. #
+# ...####...##......####....##.###..####............#####.....##....##..##. #
+# ......##..##..##..##......##..##..##........##....##..##....##.....####.. #
+# ...####....####...######..##..##..######....##....##..##....##......##... #
+# .By:......Mdebelle........Jbalestr..........Fcorbel.........Glasset...... #
+# ************************************************************************* #
+
+#[number light]light
+|[1]light
+
+#[number object]object
+|[5]object
+
+#pov: [x][y][z]
+|Point of view: -20 5 -70
+
+#look at: [x][y][z]
+|Look at: 0 0 0
+
+#ambient between 0 & 1
+|Color ambient: 0.1
+
+# diffuse coeff between 0 and 1
+# specular coeff between 0 and 1
+# reflection coeff between 0 and 1
+# refraction coeff between 0 and 1
+#Sphere: S [x][y][z][radius][diffuse][specular][reflection]
+#		[refraction][color hex]
+#Plan: P [x][y][z][normalx][normaly][normalz][diffuse][specular][reflection]
+#		[refraction][color hex]
+#Cylinder: c [x][y][z][dirx][diry][dirz][radius][diffuse][specular][reflection]
+#		[refraction][color hex]
+#Cone: C [x][y][z][dirx][diry][dirz][coef][diffuse][specular][reflection]
+#		[refraction][color hex]
+#Triangle: T[x][y][z][x1][y1][z1][x2][y2][z2][diffuse][specular][reflection]
+#		[refraction][color hex] Funt a faire
+
+S [4][-2][18][4][0.4][0.1]0.4][0x11ff11]
+L [10][10][-9][0xff11ff]
+S [4][0][-8][4][0.8][1.5][0.3][0.5][0xff1111]
+S [4][0][-8][4][0.8][0.1][0.3][0.5][0xff1111]
+S [4x][f0][-8][4][0.8][0.1][0.3][0.5][0xff1111]
+S [-12][1][0][2][0.5][0.4][0.1][0.2][0x11ff11]
+S [4][-2][18][4][0.4][0.1][0.0][0.4][0x1111ff]
+S [4][0][-18][4][0.8][0.1][0.0][0.1][0x1111ff]
+P [0][-4][0][0][1][0][0.2][0.1][0.8][0.0][0xffffff]
+S [4][-2][18][4][0x1111ff][0.8]
+L [10][10][-9][0xff11ff]
