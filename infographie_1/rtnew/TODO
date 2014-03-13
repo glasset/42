@@ -31,6 +31,4 @@ idees :
 	opti :objets constitués de triangle avec boite englobante
 	ajouter des infos si on appuie sur une touche ? temps d'exec, nb objets, ....
 
-Il faut gerer le bug des ombres !
-
 NE PAS OUBLIER D'ENLEVER LE FICHIER TODO

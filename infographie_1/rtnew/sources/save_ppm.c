@@ -6,12 +6,13 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:07:19 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/05 15:04:09 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/05 17:40:36 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "ray_tracer.h"
 
 char			*ft_itoa(int n)
@@ -43,14 +44,14 @@ char			*ft_itoa(int n)
 
 int				save_ppm(t_env *e)
 {
-/*	t_img		*img;
+	t_img		*img;
 	int			fd;
 	int			i;
 	int			j;
 	int			k;
 
 	img = &e->screens[RAY_TRACE].background;
-	if ((fd = open("save.ppm", O_CREAT | O_TRUNC | O_WRONLY) < 2))
+	if ((fd = open("save.ppm", O_CREAT | O_TRUNC | O_WRONLY, 0755)) < 2)
 		return (0);
 	write(fd, "P6\n", 3);
 	write(fd, ft_itoa(WIDTH), ft_strlen(ft_itoa(WIDTH)));
@@ -63,16 +64,16 @@ int				save_ppm(t_env *e)
 		i = -1;
 		while (++i < WIDTH)
 		{
-			k = y * img->size_line + (x * img->bpp);
+			k = j * img->size_line + (i * img->bpp);
 			if (k > 0 && k < img->max_size)
 			{
-				write(fd, &img.img[k], 1);
-				write(fd, &img.img[k + 1], 1);
-				write(fd, &img.img[k + 2], 1);
+				write(fd, &img->img[k], 1);
+				write(fd, &img->img[k + 1], 1);
+				write(fd, &img->img[k + 2], 1);
+				write(fd, " ", 1);
 			}
 		}
 	}
-	close(fd);*/
-	e = e;
+	close(fd);
 	return (1);
 }

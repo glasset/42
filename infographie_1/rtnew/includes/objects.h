@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/13 13:49:36 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/07 10:26:43 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/13 13:37:38 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,43 @@ typedef struct		s_light
 
 typedef struct		s_cylinder
 {
-	t_vertex		pos;
-	t_vector		dir;
 	double			radius;
 }					t_cylinder;
 
+typedef struct		s_tore
+{
+	double			radius;
+}					t_tore;
+
+typedef struct		s_hyperbole
+{
+	double			coeff;
+	int				open;
+}					t_hyperbole;
+
+typedef struct		s_parabole
+{
+	double			coeff;
+}					t_parabole;
+
 typedef struct		s_cone
 {
-	t_vertex		pos;
-	t_vector		dir;
 	double			coeff;
 }					t_cone;
 
 typedef struct		s_sphere
 {
-	t_vertex		pos;
 	double			radius;
 }					t_sphere;
 
 typedef struct		s_plan
 {
-	t_vertex		pos;
 	t_vector		normal;
 }					t_plan;
 
 typedef enum		e_type
 {
-	T_SPHERE, T_PLAN, T_CYLINDER, T_CONE
+	T_SPHERE, T_PLAN, T_CYLINDER, T_CONE, T_PARABOLE, T_HYPERBOLE, T_TORE
 }					t_type;
 
 /*
@@ -99,6 +109,8 @@ typedef union		u_prim
 	t_plan			plan;
 	t_cylinder		cylinder;
 	t_cone			cone;
+	t_parabole		parabole;
+	t_hyperbole		hyperbole;
 }					t_prim;
 
 /*
@@ -113,6 +125,12 @@ typedef struct		s_mesh
 {
 	t_prim			prim;
 	t_color			color;
+	double			**trans;
+	double			**scale;
+	double			**rot_x;
+	double			**rot_y;
+	double			**rot_z;
+	double			**result;
 	double			diff;
 	double			spec;
 	double			refl;

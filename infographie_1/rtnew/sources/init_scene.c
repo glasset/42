@@ -3,97 +3,157 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
+/*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/01 17:56:47 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/07 16:14:20 by glasset          ###   ########.fr       */
+/*   Created: 2014/03/12 15:42:52 by jbalestr          #+#    #+#             */
+/*   Updated: 2014/03/13 13:54:08 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my.h"
+#include <math.h>
 #include <stdlib.h>
-
-/*
-**	add pointer sur fonction pour init_mesh
-*/
-int				init_mesh(t_env *e, char *str)
-{
-	static int	c = 0;
-	int			tmp;
-
-	if (e->nb_mesh == c)
-		return (-1);
-	if (e->nb_mesh == -1)
-		return (-3);
-	if (str[0] == 'S')
-		tmp = init_s(e, str, c);
-	if (str[0] == 'c')
-		tmp =  init_cyl(e, str, c);
-	if (str[0] == 'C')
-		tmp  = init_cone(e, str, c);
-	if (str[0] == 'P')
-		tmp = init_p(e, str, c);
-	if (tmp == 0)
-		c++;
-	return (tmp);
-}
-
-int				init_l(t_env *e, char *str)
-{
-	char		**tmp;
-	static int	c = 0;
-
-	if (e->nb_light == c)
-		return (-2);
-	if (e->nb_light == -1)
-		return (-3);
-	tmp = ft_strsplit(str, '[');
-	if (no_name(tmp, 5) == -4)
-		return (-4);
-	e->lights[c].color = get_color(tmp[4]);
-	e->lights[c++].pos = init_vec(ft_atoi(tmp[1]),
-	ft_atoi(tmp[2]), ft_atoi(tmp[3]));
-	return (0);
-}
-
-int				badcoeff(char **tmp, int start)
-{
-	int			j;
-
-	while (tmp[start + 1] != NULL)
-	{
-		j = 0;
-		if (ft_atod(tmp[start]) >= 0.0 && ft_atod(tmp[start]) <= 1.0)
-			j++;
-		if (j == 0)
-			return (0);
-		start++;
-	}
-	return (1);
-}
-
-int				ambient(t_env *e, char *str)
-{
-	int		i;
-	char	*nb;
-
-	i = 0;
-	while (str[i] != ':')
-		i++;
-	nb = ft_strsub(str, (i + 1), ft_strlen(str));
-	if (ft_atod(nb) >= 0.0 && ft_atod(nb) <= 1.0)
-		e->ambient = ft_atod(nb);
-	else
-		return (-6);
-	return (0);
-}
+#include "ray_tracer.h"
 
 void			init_scene(t_env *e, char *path)
 {
-	e->nb_mesh = -1;
-	e->nb_light = -1;
-	e->ambient = 0.1;
-	e->look_at_point = init_vec(0, 0, 0);
-	e->cam.pos = init_vec(0, 0, 0);
-	parse(e, path);
+	(void)path;
+	e->nb_mesh = 4;
+	e->meshes = (t_mesh *)malloc(sizeof(t_mesh) * e->nb_mesh);
+	e->meshes[0].type = T_SPHERE;
+	e->meshes[0].prim.sphere.radius = 2.0;
+	e->meshes[0].color.r = 0.9;
+	e->meshes[0].color.g = 0.8;
+	e->meshes[0].color.b = 0.8;
+	e->meshes[0].diff = 0.8;
+	e->meshes[0].spec = 0.8;
+	e->meshes[0].refl = 0.0;
+	e->meshes[0].refr = 0.0;
+	e->meshes[0].trans = malloc_matrix(4, 4);
+	e->meshes[0].scale = malloc_matrix(4, 4);
+	e->meshes[0].rot_x = malloc_matrix(4, 4);
+	e->meshes[0].rot_y = malloc_matrix(4, 4);
+	e->meshes[0].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[0].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[0].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[0].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[0].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[0].trans, 8.0, 2.0, -2.0);
+	compute_matrix(&e->meshes[0]);
+	e->meshes[1].type = T_SPHERE;
+	e->meshes[1].prim.sphere.radius = 5.0;
+	e->meshes[1].color.r = 0.1;
+	e->meshes[1].color.g = 0.0;
+	e->meshes[1].color.b = 0.8;
+	e->meshes[1].diff = 0.8;
+	e->meshes[1].spec = 1.0;
+	e->meshes[1].refl = 0.0;
+	e->meshes[1].refr = 0.0;
+	e->meshes[1].trans = malloc_matrix(4, 4);
+	e->meshes[1].scale = malloc_matrix(4, 4);
+	e->meshes[1].rot_x = malloc_matrix(4, 4);
+	e->meshes[1].rot_y = malloc_matrix(4, 4);
+	e->meshes[1].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[1].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[1].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[1].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[1].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[1].trans, -3.0, 0.0, 0.0);
+	compute_matrix(&e->meshes[1]);
+	e->meshes[2].type = T_PLAN;
+	e->meshes[2].prim.plan.normal = init_vec(1.0, 0.0, 0.0);
+	e->meshes[2].color.r = 0.1;
+	e->meshes[2].color.g = 0.8;
+	e->meshes[2].color.b = 0.5;
+	e->meshes[2].diff = 0.8;
+	e->meshes[2].spec = 1.0;
+	e->meshes[2].refl = 0.0;
+	e->meshes[2].refr = 0.0;
+	e->meshes[2].trans = malloc_matrix(4, 4);
+	e->meshes[2].scale = malloc_matrix(4, 4);
+	e->meshes[2].rot_x = malloc_matrix(4, 4);
+	e->meshes[2].rot_y = malloc_matrix(4, 4);
+	e->meshes[2].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[2].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[2].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[2].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[2].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[2].trans, -25.0, 0.0, 0.0);
+	compute_matrix(&e->meshes[2]);
+	e->meshes[3].type = T_CYLINDER;
+	e->meshes[3].prim.cylinder.radius = 5;
+	e->meshes[3].color.r = 0.8;
+	e->meshes[3].color.g = 0.1;
+	e->meshes[3].color.b = 0.5;
+	e->meshes[3].diff = 0.8;
+	e->meshes[3].spec = 1.0;
+	e->meshes[3].refl = 0.0;
+	e->meshes[3].refr = 0.0;
+	e->meshes[3].trans = malloc_matrix(4, 4);
+	e->meshes[3].scale = malloc_matrix(4, 4);
+	e->meshes[3].rot_x = malloc_matrix(4, 4);
+	e->meshes[3].rot_y = malloc_matrix(4, 4);
+	e->meshes[3].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[3].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[3].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[3].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[3].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[3].trans, 19.0, 9.0, 0.0);
+	compute_matrix(&e->meshes[3]);
+	/*
+	e->meshes[4].type = T_HYPERBOLE;
+	e->meshes[4].prim.hyperbole.coeff = 0.2;
+	e->meshes[4].prim.hyperbole.open = 50;
+	e->meshes[4].color.r = 0.8;
+	e->meshes[4].color.g = 0.9;
+	e->meshes[4].color.b = 0.2;
+	e->meshes[4].diff = 0.8;
+	e->meshes[4].spec = 1.0;
+	e->meshes[4].refl = 0.0;
+	e->meshes[4].refr = 0.0;
+	e->meshes[4].trans = malloc_matrix(4, 4);
+	e->meshes[4].scale = malloc_matrix(4, 4);
+	e->meshes[4].rot_x = malloc_matrix(4, 4);
+	e->meshes[4].rot_y = malloc_matrix(4, 4);
+	e->meshes[4].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[4].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[4].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[4].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[4].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[4].trans, 99.0, -5.0, 0.0);
+	compute_matrix(&e->meshes[4]);
+	e->meshes[5].type = T_PARABOLE;
+	e->meshes[5].prim.parabole.coeff = 2.2;
+	e->meshes[5].color.r = 0.6;
+	e->meshes[5].color.g = 0.9;
+	e->meshes[5].color.b = 0.1;
+	e->meshes[5].diff = 0.8;
+	e->meshes[5].spec = 1.0;
+	e->meshes[5].refl = 0.0;
+	e->meshes[5].refr = 0.0;
+	e->meshes[5].trans = malloc_matrix(4, 4);
+	e->meshes[5].scale = malloc_matrix(4, 4);
+	e->meshes[5].rot_x = malloc_matrix(4, 4);
+	e->meshes[5].rot_y = malloc_matrix(4, 4);
+	e->meshes[5].rot_z = malloc_matrix(4, 4);
+	inv_scale_matrix(&e->meshes[5].scale, 1.0, 1.0, 1.0);
+	inv_rot_matrix_x(&e->meshes[5].rot_x, 0.0);
+	inv_rot_matrix_y(&e->meshes[5].rot_y, 0.0);
+	inv_rot_matrix_z(&e->meshes[5].rot_z, 0.0);
+	inv_trans_matrix(&e->meshes[5].trans, 99.0, 29.0, 0.0);
+	compute_matrix(&e->meshes[5]);
+*/
+	e->cam.pos = init_vec(55.0, -15.0, -100.0);
+	//e->cam.pos = init_vec(500.0, 500.0, 0.0);
+	e->look_at_point = init_vec(0.0, 0.0, 0.0);
+	e->ambient = 0.2;
+	e->nb_light = 2;
+	e->lights = (t_light *)malloc(sizeof(t_light) * e->nb_light);
+	e->lights[0].color.r = 0.5;
+	e->lights[0].color.g = 0.5;
+	e->lights[0].color.b = 0.5;
+	e->lights[0].pos = init_vec(500.0, 0.0, 0.0);
+	e->lights[1].color.r = 0.5;
+	e->lights[1].color.g = 0.5;
+	e->lights[1].color.b = 0.5;
+	e->lights[1].pos = init_vec(-120, 10, -70);
 }

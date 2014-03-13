@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 16:18:35 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/05 13:12:27 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/12 17:52:47 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void		put_pixel(t_env *e, int x, int y)
 void			draw_image(t_env *e)
 {
 	t_mesh		*mesh;
+	t_vertex	inter;
 	t_ray		ray;
 	int			x;
 	int			y;
@@ -71,8 +72,8 @@ void			draw_image(t_env *e)
 		while (++y < HEIGHT)
 		{
 			compute_ray(e, &ray, x, y);
-			if (intersect_mesh(e, &ray, &mesh))
-				e->color = compute_color(e, &ray, mesh, 0, 1.0);
+			if (intersect_mesh(e, &ray, &mesh, &inter))
+				e->color = compute_color(e, &ray, mesh, 0, 1.0, &inter);
 			else
 			{
 				e->color.r = 0x0;

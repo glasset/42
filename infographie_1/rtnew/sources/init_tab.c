@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 17:51:57 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/05 12:51:50 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/13 13:28:01 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void		init_types(t_env *e)
 	e->inter_tab[T_PLAN] = inter_plan;
 	e->inter_tab[T_CYLINDER] = inter_cylinder;
 	e->inter_tab[T_CONE] = inter_cone;
+	e->inter_tab[T_PARABOLE] = inter_parabole;
+	e->inter_tab[T_HYPERBOLE] = inter_hyperbole;
 }
 
 static void		init_normals(t_env *e)
@@ -26,6 +28,8 @@ static void		init_normals(t_env *e)
 	e->normals[T_PLAN] = normal_plan;
 	e->normals[T_CYLINDER] = normal_cylinder;
 	e->normals[T_CONE] = normal_cone;
+	e->normals[T_PARABOLE] = normal_cone;
+	e->normals[T_HYPERBOLE] = normal_cone;
 }
 
 void			init_tab(t_env *e)
