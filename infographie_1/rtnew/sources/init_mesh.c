@@ -6,13 +6,14 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:56:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 15:44:38 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/14 16:31:05 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "parser.h"
+#include <stdio.h>
 
 m				*ft_inm(void)
 {
@@ -90,6 +91,13 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 	}
 	if (!ft_strcmp(str, "Sphere"))
 		flag = init_flag(e, T_SPHERE, c);
+	if (!ft_strcmp(str, "Pan"))
+		flag = init_flag(e, T_PLAN, c);
+	if (!ft_strcmp(str, "Cylinder"))
+		flag = init_flag(e, T_CYLINDER, c);
+	if (!ft_strcmp(str, "Cone"))
+		flag = init_flag(e, T_CONE, c);
+
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == END_OBJ)
@@ -98,7 +106,7 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 			return (l);//check all init
 		}
 		if (checkline_mesh(line) == -1)
-			write(1, "BAD\n", 4);//error("bad lineda");
+			printf("ENLEVER PRINTF ICI%d%s\n",c_l + l, line); // A CHANGER
 		else
 			ft[checkline_mesh(line)](e, line, c, flag);
 		free(line);

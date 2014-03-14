@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:30:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 15:43:13 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/14 16:28:54 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ static int			check_line(char *str)
 	if (!ft_strcmp(str, "Sphere"))
 		return (2);
 	if (!ft_strcmp(str, "Plan"))
-		return (0);
+		return (2);
+	if (!ft_strcmp(str, "Cylinder"))
+		return (2);
+	if (!ft_strcmp(str, "Cone"))
+		return (2);
 	if (!ft_strcmp(str, "light"))
 		return (3);
 	return (0);
@@ -143,6 +147,7 @@ void		parse(t_env *e, char *path)
 	while (get_next_line(fd, &line))
 	{
 		current_m += ft[check_line(line)](e, current_m, fd, line);
+		current_m++;
 		free(line);
 	}
 	

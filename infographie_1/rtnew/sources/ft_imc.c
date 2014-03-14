@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:37:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 15:13:45 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/14 16:31:10 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int				comment_m(t_env *e, char *str, int c, int flag)
 
 int				m_normal(t_env *e, char *str, int c, int flag)
 {
-	(void)e;
-	(void)str;
-	(void)c;
-	(void)flag;
+	char		**tmp;
+
+	tmp = ft_strsplit(str, ' ');
+	if (flag == T_PLAN)
+		e->meshes[c].prim.plan.normal = init_vec(ft_atod(tmp[1]), ft_atod(tmp[2]),
+				ft_atod(tmp[3]));
 	return (0);
 }
 
@@ -41,10 +43,11 @@ int				m_direction(t_env *e, char *str, int c, int flag)
 
 int				m_coef(t_env *e, char *str, int c, int flag)
 {
-	(void)e;
-	(void)str;
-	(void)c;
-	(void)flag;
+	char		**tmp;
+
+	tmp = ft_strsplit(str, BREAK);
+	if (flag == T_CONE)
+		e->meshes[c].prim.cone.coeff = ft_atod(tmp[1]);
 	return (0);
 }
 
@@ -78,10 +81,11 @@ int				m_radius(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
 
-	(void)flag;
 	tmp = ft_strsplit(str, BREAK);
 	if (flag == T_SPHERE)
 		e->meshes[c].prim.sphere.radius = ft_atod(tmp[1]);
+	if (flag == T_CYLINDER)
+		e->meshes[c].prim.cylinder.radius = ft_atod(tmp[1]);
 	return (0);
 }
 

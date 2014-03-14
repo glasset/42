@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:24:51 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 15:43:16 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/14 17:24:44 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			check_arg(char *str, int flag)
 	return (0);
 }
 
+#include <stdio.h>
 t_color			get_color(char *str)
 {
 	t_color		fin;
@@ -79,8 +80,9 @@ t_color			get_color(char *str)
 			ccolor = ccolor * 16 + (str[i] - 'a' + 10);
 		i++;
 	}
-	fin.r = (ccolor % 256) / 255;
-	fin.g = (ccolor / 256 % 256) / 255;
-	fin.b = (ccolor / 256 / 256) / 255;
+	printf("{%d}\n", ccolor);
+	fin.r = (double)(ccolor % 256) / 255.0;
+	fin.g = (double)(ccolor / 256 % 256) / 255.0;
+	fin.b = (double)(ccolor / 256 / 256 % 256 ) / 255.0;
 	return (fin);
 }
