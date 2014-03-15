@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:22:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/15 10:38:59 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 12:05:59 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ int				m_refraction(t_env *e, char *str, int c, int flag);
 int				m_position(t_env *e, char *str, int c, int flag);
 int				comment_m(t_env *e, char *str, int c, int flag);
 
-int				m_normal(t_env *e, char *str, int c, int flag);//b
-int				m_direction(t_env *e, char *str, int c, int flag);//b
-int				m_coef(t_env *e, char *str, int c, int flag);//b
+int				m_normal(t_env *e, char *str, int c, int flag);
+int				m_scale(t_env *e, char *str, int c, int flag);
+int				m_rotate(t_env *e, char *str, int c, int flag);
+int				m_coef(t_env *e, char *str, int c, int flag);
 
 void		parse(t_env *e, char *path);
 

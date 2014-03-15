@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:37:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/15 11:24:02 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 12:16:44 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,18 @@ int				m_normal(t_env *e, char *str, int c, int flag)
 	return (0);
 }
 
-int				m_direction(t_env *e, char *str, int c, int flag)
+int				m_rotate(t_env *e, char *str, int c, int flag)
 {
-	(void)e;
-	(void)str;
-	(void)c;
+	char		**tmp;
+
 	(void)flag;
+	tmp = ft_strsplit(str, ' ');
+	e->meshes[c].rot_x = malloc_matrix(4, 4);
+	e->meshes[c].rot_y = malloc_matrix(4, 4);
+	e->meshes[c].rot_z = malloc_matrix(4, 4);
+	inv_rot_matrix_x(&e->meshes[c].rot_x, ft_atod(tmp[1]));
+	inv_rot_matrix_y(&e->meshes[c].rot_y, ft_atod(tmp[2]));
+	inv_rot_matrix_z(&e->meshes[c].rot_z, ft_atod(tmp[3]));
 	return (0);
 }
 
@@ -131,23 +137,35 @@ int				m_refraction(t_env *e, char *str, int c, int flag)
 	return (0);
 }
 
-int				m_position(t_env *e, char *str, int c, int flag)
+int				m_scale(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
 
 	(void)flag;
 	tmp = ft_strsplit(str, ' ');
-	e->meshes[c].trans = malloc_matrix(4, 4);
 	e->meshes[c].scale = malloc_matrix(4, 4);
-	e->meshes[c].rot_x = malloc_matrix(4, 4);
-	e->meshes[c].rot_y = malloc_matrix(4, 4);
-	e->meshes[c].rot_z = malloc_matrix(4, 4);
-	inv_scale_matrix(&e->meshes[c].scale, 1.0, 1.0, 1.0);
-	inv_rot_matrix_x(&e->meshes[c].rot_x, 0.0);
-	inv_rot_matrix_y(&e->meshes[c].rot_y, 0.0);
-	inv_rot_matrix_z(&e->meshes[c].rot_z, 0.0);
-	inv_trans_matrix(&e->meshes[c].trans, ft_atod(tmp[1]), ft_atod(tmp[2]),
-			ft_atod(tmp[3]));
-	compute_matrix(&e->meshes[c]);
+	inv_scale_matrix(&e->meshes[c].scale, ft_atod(tmp[1]), ft_atod(tmp[2]), ft_atod(tmp[3]));
+	return (0);
+}
+
+int				m_position(t_env *e, char *str, int c, int flag)
+{
+	static char	**tmp;
+	static int	i = 0;
+
+	(void)flag;
+	if (i == 0)
+	{
+		tmp = ft_strsplit(str, ' ');
+		e->meshes[c].trans = malloc_matrix(4, 4);
+		i = 1;
+	}
+	else
+	{
+		inv_trans_matrix(&e->meshes[c].trans, ft_atod(tmp[1]), ft_atod(tmp[2]),
+				ft_atod(tmp[3]));
+		compute_matrix(&e->meshes[c]);
+		i = 0;
+	}
 	return (0);
 }

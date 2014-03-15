@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:30:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/15 11:35:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:59:22 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,22 @@ void		parse(t_env *e, char *path)
 
 	current_m = 1;
 	if ((fd = open(path, O_RDONLY)) == -1)
+	{
+		write(1, "\033[31m[ERROR]\033[0mWrong file.\n", 28);
 		exit(0);
+	}
 	while (get_next_line(fd, &line))
 	{
+		if (current_m == 4)
+		{
+			if (line[5] != '#')
+			{
+				write(1, "\033[31m[ERROR]\033[0mWrong format file.\n", 35);
+				exit(0);
+			}
+		}
 		current_m += ft[check_line(line)](e, current_m, fd, line);
 		current_m++;
 		free(line);
-	}
-	
+	}	
 }

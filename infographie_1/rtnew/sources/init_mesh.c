@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:56:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/15 11:35:36 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 12:16:16 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ m				*ft_inm(void)
 	ft[4] = &m_reflection;
 	ft[5] = &m_refraction;
 	ft[6] = &m_normal;
-	ft[7] = &m_direction;
+	ft[7] = &m_rotate;
 	ft[8] = &m_radius;
 	ft[9] = &m_coef;
 	ft[10] = &m_position;
+	ft[11] = &m_scale;
 	return (ft);
 }
 
@@ -53,7 +54,7 @@ int				checkline_mesh(char *str)
 		return (5);
 	if (!ft_strcmp(tmp[0], "normal"))
 		return (6);
-	if (!ft_strcmp(tmp[0], "direction"))
+	if (!ft_strcmp(tmp[0], "rotation"))
 		return (7);
 	if (!ft_strcmp(tmp[0], "radius"))
 		return (8);
@@ -61,6 +62,8 @@ int				checkline_mesh(char *str)
 		return (9);
 	if (!ft_strcmp(tmp[0], "position"))
 		return (10);
+	if (!ft_strcmp(tmp[0], "scale"))
+		return (11);
 	return (-1);
 }
 
@@ -94,12 +97,12 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 		flag = init_flag(e, T_CYLINDER, c);
 	if (!ft_strcmp(str, "Cone"))
 		flag = init_flag(e, T_CONE, c);
-
 	while (get_next_line(fd, &line))
 	{
 		tmp = 0;
 		if (line[0] == END_OBJ)
 		{
+			m_position(e, "", c,flag);
 			error_p(str, "\033[32m[Ok]\033[0m(Object add)", c_l);
 			c++;
 			return (l);//check all init
