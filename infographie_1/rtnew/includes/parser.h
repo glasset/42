@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:22:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 15:44:57 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 10:38:59 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			comment(t_env *e, int c_l, int fd, char *str);
 int			cut_space(char *str);
 int			ft_strlen(char *str);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
-
+void		error_p(char *s1, char *s2, int l);
 /*
 **	init_info.c
 */

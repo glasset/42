@@ -6,14 +6,13 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:56:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 16:31:05 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:35:36 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "parser.h"
-#include <stdio.h>
 
 m				*ft_inm(void)
 {
@@ -65,8 +64,6 @@ int				checkline_mesh(char *str)
 	return (-1);
 }
 
-#include <stdio.h>
-
 int				init_mesh(t_env *e, int c_l, int fd, char *str)
 {
 	static int	c = 0;
@@ -74,13 +71,13 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 	int			flag;
 	char		*line;
 	m			*ft;
+	int			tmp;
 
-	(void)c_l;
 	ft = ft_inm();
 	l = 1;
 	if (c == e->nb_mesh || e->nb_mesh == -1)
 	{
-		write(1, "er\n", 3);//error ("L:x Object ignored");
+		error_p(str, "Object ignored check number of object", c_l);
 		while (get_next_line(fd, &line))
 		{
 			if (line[0] == END_OBJ)
@@ -100,15 +97,19 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 
 	while (get_next_line(fd, &line))
 	{
+		tmp = 0;
 		if (line[0] == END_OBJ)
 		{
+			error_p(str, "\033[32m[Ok]\033[0m(Object add)", c_l);
 			c++;
 			return (l);//check all init
 		}
 		if (checkline_mesh(line) == -1)
-			printf("ENLEVER PRINTF ICI%d%s\n",c_l + l, line); // A CHANGER
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m(unknown line)", l + c_l);
 		else
-			ft[checkline_mesh(line)](e, line, c, flag);
+			tmp = ft[checkline_mesh(line)](e, line, c, flag);
+		if (tmp == -1)
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m(wrong value)", c_l + l);
 		free(line);
 		l++;
 	}

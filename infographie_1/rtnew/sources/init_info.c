@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:41:58 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 16:31:08 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:33:59 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,13 @@ int			pov(t_env *e, char *str)
 	if (tmp[1] == NULL)
 		return (-1);
 	tmp = ft_strsplit(tmp[1], ' ');
-	i = i ;
-/*	while (tmp[++i] != NULL)
+	while (tmp[++i] != NULL)
 	{
 		if (check_arg(tmp[i], 0) == -1)
 			return (-1);
 	}
 	if (i != 3)
-		return (-1);*/
+		return (-1);
 	e->cam.pos = init_vec(ft_atod(tmp[0]), ft_atod(tmp[1]),
 			ft_atod(tmp[2]));
 
@@ -142,19 +141,26 @@ int			information(t_env *e, int c_l, int fd, char *str)
 	char	*line;
 	int		l;
 	i		*ft;
+	int		tmp;
 
-	(void)c_l;
-	(void)str;
 	l = 1;
 	ft = ft_inf();
 	while (get_next_line(fd, &line))
 	{
 		if (line[0] == END_OBJ)
+		{
+			error_p(str, "\033[32m[Ok]\033[0m(info initialize)", c_l);
 			return (l);//error(all_init(e), l));
+		}
 		if (checkline_inf(line) == -1)
-			write(1, "BADI\n", 5);// 3error("BAD LINE IGNORED);
+				error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m(unknown line)", l + c_l);
 		else
-			ft[checkline_inf(line)](e, line);
+			tmp = ft[checkline_inf(line)](e, line);
+		if (tmp == -1)
+		{
+				error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[ERROR]\033[0m(check value)", l + c_l);
+				exit (0);
+		}
 		free(line);
 		l++;
 	}

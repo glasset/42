@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:30:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 16:28:54 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:35:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,16 @@ int				checkline_light(char *str)
 
 int			light(t_env *e, int c_l, int fd, char *str)
 {
-//	char		**tmp;
 	char		*line;
 	static int	c = 0;
 	int			li;
 	l			*ft;
-(void)c_l;
-(void)str;
+
 	ft = ft_inl();
 	li = 1;
 	if (c == e->nb_light || e->nb_light == -1)
 	{
-		write(1, "errL\n", 5);//error ("L:x light ignored");
+		error_p(str, "light ignored check number of light", c_l);
 		while (get_next_line(fd, &line))
 		{
 			if (line[0] == END_OBJ)
@@ -119,11 +117,12 @@ int			light(t_env *e, int c_l, int fd, char *str)
 	{
 		if (line[0] == END_OBJ)
 		{
+			error_p(str, "\033[32m[Ok]\033[0m(Light add)", c_l);
 			c++;
 			return (li);//check all init
 		}
 		if (checkline_light(line) == -1)
-			write(1, "BADL\n", 5);//error("bad lineda");
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m(unknown line)", li + c_l);
 		else
 			ft[checkline_light(line)](e, line, c);
 		free(line);

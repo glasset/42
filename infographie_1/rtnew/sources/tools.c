@@ -6,12 +6,45 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:24:51 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 17:24:44 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:31:37 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "parser.h"
+
+void		ft_putnbr(int n)
+{
+	char	c;
+
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		n = -n;
+	}
+	if (n < 10)
+	{
+		c = n + '0';
+		write(1, &c, 1);
+	}
+	else
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+}
+
+void		error_p(char *s1, char *s2, int l)
+{
+	write(1, "l", 1);
+	ft_putnbr(l);
+	write(1, ": ", 2);
+	write(1, s2, ft_strlen(s2));
+	write(1, ": \"", 3);
+	write(1, s1, ft_strlen(s1));
+	write(1, "\"\n", 2);
+}
 
 f			*funct(void)
 {
@@ -49,7 +82,7 @@ int			check_arg(char *str, int flag)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == '.' || str[i] == ';' || str[i] == ' ')
+		if (str[i] == '.' || str[i] == ';' || str[i] == ' ' || str[i] == '-')
 			i++;
 		else if (str[i] < '0' || str[i] > '9')
 			return (-1);
@@ -63,7 +96,6 @@ int			check_arg(char *str, int flag)
 	return (0);
 }
 
-#include <stdio.h>
 t_color			get_color(char *str)
 {
 	t_color		fin;
@@ -80,7 +112,6 @@ t_color			get_color(char *str)
 			ccolor = ccolor * 16 + (str[i] - 'a' + 10);
 		i++;
 	}
-	printf("{%d}\n", ccolor);
 	fin.r = (double)(ccolor % 256) / 255.0;
 	fin.g = (double)(ccolor / 256 % 256) / 255.0;
 	fin.b = (double)(ccolor / 256 / 256 % 256 ) / 255.0;

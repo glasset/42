@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:37:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/14 16:31:10 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/15 11:24:02 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,23 @@ int				init_flag(t_env *e, int type, int c)
 int				color_m(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
+	int			i;
 
+	i = 0;
 	(void)flag;
 	tmp = ft_strsplit(str, BREAK);
+	while (tmp[1][i])
+		i++;
+	if (i != 10)
+	{
+		tmp[1][0] = '0';
+		tmp[1][1] = '\0';
+		i = -1;
+	}
+	else
+		i = 0;
 	e->meshes[c].color = get_color(tmp[1]);
-	return (0);
+	return (i);
 }
 
 int				m_diffuse(t_env *e, char *str, int c, int flag)
