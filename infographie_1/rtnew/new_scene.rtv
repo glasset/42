@@ -39,7 +39,7 @@ Sphere
 
 Sphere
 {
-	position: 10 -5 1;
+	position: -5 -5 1;
 	scale: 1 1 1;
 	rotation: 0 0 0;
 	radius: 2;
@@ -56,7 +56,7 @@ Sphere
 {
 	scale: 1 1 1;
 	rotation: 0 0 0;
-	position: -10 -5 1;
+	position: 5 -5 1;
 	radius: 2;
 	diffuse: 0.4;
 	specular: 0.3;
@@ -72,13 +72,13 @@ Plan
 {
 	scale: 1 1 1;
 	rotation: 0 0 0;
-	position: 0 -10 -50;
-	normal: 0 1 0;
+	position: 0 0 10;
+	normal: -1 1 1;
 	diffuse: 0.4;
 	specular: 0.3;
 	reflection: 0.6;
 	refraction: 0.0;
-	color: 0xff00ff;
+	color: 0xffffff;
 	mat: BOIS;
 	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
