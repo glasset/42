@@ -6,13 +6,13 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/18 12:59:00 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/13 12:05:18 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 13:05:42 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdlib.h>
-#include "lemin.h"
-#include <stdio.h>
 #include <unistd.h>
+#include "lemin.h"
 
 int				check_nbr(char *line) /* A REFAIRE */
 {
@@ -21,7 +21,7 @@ int				check_nbr(char *line) /* A REFAIRE */
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (/*line[i] < 48 && line[i] > 57 && */line[i] == ' ' || line[i] == '-')
+		if (line[i] == ' ' || line[i] == '-')
 			return (-1);
 		i++;
 	}
@@ -82,53 +82,21 @@ void			make_tube(char **cord, t_env *e, int status)
 			{
 				if (e->room->start->tube == NULL)
 					e->room->start->tube = lst_new();
-				e->room->start->tube = lst_add_end(e->room->start->tube, cord[1], xy, status);
+				e->room->start->tube = lst_add_end(e->room->start->tube,
+						cord[1], xy, status);
 				i++;
 			}
 			else if (!ft_strcmp(cord[1], e->room->start->name))
 			{
 				if (e->room->start->tube == NULL)
 					e->room->start->tube = lst_new();
-				e->room->start->tube = lst_add_end(e->room->start->tube, cord[0], xy, 0);
+				e->room->start->tube = lst_add_end(e->room->start->tube,
+						cord[0], xy, 0);
 				i++;
 			}
 			e->room->start = e->room->start->next;
 		}
 	}
-}
-
-void			make(char **cord, int status, t_env *e)
-{
-	int			*xy;
-
-	xy = (int *)malloc(sizeof(int) *2);
-	if (!cord)
-		error();
-	if (status == 0)
-		make_tube(cord, e, 0);
-	else
-	{
-		xy[0] = ft_atoi(cord[1]);
-		xy[1] = ft_atoi(cord[2]);
-		e->room = lst_add_end(e->room, cord[0], xy, status);
-	}
-}
-
-int				check_ants(char *line, t_env *e)
-{
-	if (e->ants == -1)
-		e->ants = ft_atoi(line);
-	else
-		return (-1);
-	return (0);
-}
-
-char			char_split(int status)
-{
-	if (status == END || status == START || status == ROOM)
-		return (' ');
-	else
-		return ('-');
 }
 
 void			parser(t_env *e)

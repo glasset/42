@@ -6,7 +6,7 @@
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 12:02:14 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/15 16:07:50 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:57:57 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -70,7 +70,7 @@ int				lenght(t_env *e, char *curr, char *next)
 	return (y + x);
 }
 
-void				update(t_env *e, int w, char *curr, char *next)
+void			update(t_env *e, int w, char *curr, char *next)
 {
 	t_ch		*tmp;
 
@@ -93,22 +93,23 @@ void			shoort(t_env *e)
 {
 	size_t		i;
 	int			W;
-	int			x = 1;
+	int			x;
 
+	x = 1;
 	while (seek_nop(e, START, "s"))
 	{
 		if (x ==1)
 		{
-			seek_room(e, 2, "e");
-			e->room->start->back = "e";
-			e->room->start->weight = 0;
+			init(e);
 			x = 0;
 		}
 		i = 0;
 		while (i < e->room->start->tube->len)
 		{
-			W = lenght(e, e->room->start->name, e->room->start->tube->start->name);
-			update(e, W, e->room->start->name, e->room->start->tube->start->name);
+			W = lenght(e, e->room->start->name,
+					e->room->start->tube->start->name);
+			update(e, W, e->room->start->name,
+					e->room->start->tube->start->name);
 			i++;
 			e->room->start->tube->start = e->room->start->tube->start->next;
 			if (i == e->room->start->tube->len)
