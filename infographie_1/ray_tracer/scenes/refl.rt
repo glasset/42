@@ -32,8 +32,8 @@ Plan
 	specular: 0.0;
 	reflection: 1.0;
 	refraction: 0.0;
-	color: 0x888888;
-	mat: marble;
+	color: 0x111199;
+	material: marble;
 	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
 

@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:56:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/21 12:10:02 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 15:38:31 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ int				checkline_mesh(char *str)
 		return (13);
 	if (!ft_strcmp(tmp[0], "material"))
 		return (14);
-	
+	if (!ft_strcmp(tmp[0], "perlin"))
 		return (15);
-
 	return (-1);
 }
 
@@ -99,9 +98,9 @@ void			init_base(t_env *e, int flag, int c)
 	inv_rot_matrix_y(&e->meshes[c].rot_y, 0.0);
 	inv_rot_matrix_z(&e->meshes[c].rot_z, 0.0);
 	e->meshes[c].mat.type = NO_MAT;
-	e->meshes[c].color.r = 1.0;
-	e->meshes[c].color.g = 1.0;
-	e->meshes[c].color.b = 1.0;
+	e->meshes[c].color.r = 0.5;
+	e->meshes[c].color.g = 0.5;
+	e->meshes[c].color.b = 0.5;
 	e->meshes[c].diff = 0.8;
 	e->meshes[c].spec = 0.8;
 	e->meshes[c].refl = 0.0;

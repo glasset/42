@@ -6,7 +6,7 @@
 /*   By: glasset </var/mail/glasset>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 12:37:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/22 14:00:48 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 15:38:34 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int				m_perlin(t_env *e, char *str, int c, int flag)
 	tmp = ft_strsplit(tmp[1], BREAK2);
 	if (check_col(tmp[0]) == -1)
 	{
-		e->meshes[c].mat.col1 = get_color("0x555555");
+		e->meshes[c].mat.col1 = get_color(COLOR_PERL);
 		i = -1;
 	}
 	else
 		e->meshes[c].mat.col1 = get_color(tmp[0]);
 	if (check_col(tmp[1]) == -1)
 	{
-		e->meshes[c].mat.col2 = get_color("0x555555");
+		e->meshes[c].mat.col2 = get_color(COLOR_PERL);
 		i = -1;
 	}
 	else
 		e->meshes[c].mat.col2 = get_color(tmp[1]);
 	if (check_col(tmp[2]) == -1)
 	{
-		e->meshes[c].mat.col3 = get_color("0x555555");
+		e->meshes[c].mat.col3 = get_color(COLOR_PERL);
 		i = -1;
 	}
 	else
@@ -209,10 +209,7 @@ int				color_m(t_env *e, char *str, int c, int flag)
 	tmp = ft_strsplit(str, BREAK);
 	tmp[1] = ft_strsub(tmp[1], cut_space(tmp[1]), ft_strlen(tmp[1]));
 	if (check_col(tmp[1]) == -1)
-	{
-		e->meshes[c].color = get_color("0x555555");
 		return (-1);
-	}	
 	e->meshes[c].color = get_color(tmp[1]);
 	return (0);
 }

@@ -7,6 +7,9 @@
 # .By:......Mdebelle........Jbalestr..........Fcorbel.........Glasset...... #
 # ************************************************************************* #
 
+#material: wood / marble / zebra.
+#material only for plan: checker1 / checker2 / checker3.
+
 information
 {
 	numbers of light: 2;
@@ -21,8 +24,6 @@ light
 	position: 500, 0, 0;
 	color: 0x555555;
 }
-
-#material: wood / marble / checker1 / checker2 / checker3/ zebra
 
 light
 {

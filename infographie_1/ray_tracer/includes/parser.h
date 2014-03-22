@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:22:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/21 12:01:48 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 15:24:50 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define BREAK ':'
 # define BREAK2 ','
 # define COMMENT '#'
+# define COLOR_PERL "0x555555"
 # include <string.h>
 # include "ray_tracer.h"
 # include "gnl.h"
@@ -72,7 +73,6 @@ int				m_reflection(t_env *e, char *str, int c, int flag);
 int				m_refraction(t_env *e, char *str, int c, int flag);
 int				m_position(t_env *e, char *str, int c, int flag);
 int				comment_m(t_env *e, char *str, int c, int flag);
-
 int				m_normal(t_env *e, char *str, int c, int flag);
 int				m_scale(t_env *e, char *str, int c, int flag);
 int				m_rotate(t_env *e, char *str, int c, int flag);
