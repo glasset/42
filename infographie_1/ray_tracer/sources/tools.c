@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:24:51 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/21 12:09:59 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 13:51:30 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ t_color			get_color(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] >= 'A' && str[i] <= 'F')
+			str[i] += 32;
 		if (str[i] >= '0' && str[i] <= '9')
 			ccolor =  ccolor * 16 + (str[i] - '0');
 		else if (str[i] >= 'a' && str[i] <= 'f')

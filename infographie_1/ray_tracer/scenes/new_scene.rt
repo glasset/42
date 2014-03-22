@@ -27,7 +27,7 @@ light
 light
 {
 	position: 400, 200, 0;
-	color: 0xffffff;
+	color: 0x333333;
 }
 
 Sphere
@@ -98,7 +98,7 @@ Plan
 	specular: 1.0;
 	reflection: 0.0;
 	refraction: 0.0;
-	color: 0x22bb66;
+	color: 0x00d2ff;
 	material: checker1;
 	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
 }
@@ -113,7 +113,7 @@ Cone
 	specular: 1.0;
 	reflection: 0.0;
 	refraction: 0.0;
-	color: 0xff55ff;
+	color: 0xe9ae11;
 	material: zebra;
 	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
 }

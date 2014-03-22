@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:30:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/21 10:20:28 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/22 14:01:01 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,17 @@ int				pos_l(t_env *e, char *str, int c)
 int				color_l(t_env *e, char *str, int c)
 {
 	char		**tmp;
-	int			i;
 
-
-	i = 0;
 	tmp = ft_strsplit(str, BREAK);
 	tmp[1] = ft_strsub(tmp[1], cut_space(tmp[1]), ft_strlen(tmp[1]));
-	while (tmp[1][i])
-		i++;
-	if (i != 9)
+	if (check_col(tmp[1]) == -1)
 	{
-		tmp[1][0] = 'f';
-		tmp[1][1] = '\0';
-		i = -1;
+		e->lights[c].color = get_color("0x555555");
+		return (-1);
 	}
 	else
-		i = 0;
-	e->lights[c].color = get_color(tmp[1]);
-	return (i);
+		e->lights[c].color = get_color(tmp[1]);
+	return (0);
 }
 
 l				*ft_inl(void)
@@ -151,14 +144,17 @@ int			light(t_env *e, int c_l, int fd, char *str)
 			return (li);
 		}
 		if (checkline_light(line) == -1)
-			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m unknown line", li + c_l);
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)),
+					"\033[31m[WARNING]\033[0m unknown line", li + c_l);
 		else
 			tmp = ft[checkline_light(line)](e, line, c);
 		if (tmp == -1)
-			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[WARNING]\033[0m wrong value", c_l + li);
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)),
+					"\033[31m[WARNING]\033[0m wrong value", c_l + li);
 		if (tmp == -2)
 		{
-			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)), "\033[31m[ERROR]\033[0m light ignored", c_l + li);
+			error_p(ft_strsub(line, cut_space(line), ft_strlen(line)),
+					"\033[31m[ERROR]\033[0m light ignored", c_l + li);
 			free(line);
 			return (li);
 		}
