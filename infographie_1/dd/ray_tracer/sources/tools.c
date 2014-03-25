@@ -6,52 +6,13 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:24:51 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/22 15:35:36 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/25 14:45:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "parser.h"
-
-int			check_col(char *str)
-{
-	int		i;
-
-	i = cut_space(str);
-	while(str[i])
-	{
-		if (str[i] == ';')
-			break;
-		i++;
-	}
-	if ((i - cut_space(str)) != 8)
-		return (-1);
-	return (0);
-}
-
-void		error_p(char *s1, char *s2, int l)
-{
-	write(1, "l", 1);
-	ft_putnbr(l);
-	write(1, ": ", 2);
-	write(1, s2, ft_strlen(s2));
-	write(1, ": \"", 3);
-	write(1, s1, ft_strlen(s1));
-	write(1, "\"\n", 2);
-}
-
-f			*funct(void)
-{
-	f		*ft;
-
-	ft = malloc(sizeof(ft) * 4);
-	ft[0] = &comment;
-	ft[1] = &information;
-	ft[2] = &init_mesh;
-	ft[3] = &light;
-	return (ft);
-}
 
 int			cut_space(char *str)
 {
@@ -61,13 +22,6 @@ int			cut_space(char *str)
 	while (str[i] < '!')
 		i++;
 	return (i);
-}
-
-int			comment_b(t_env *e, char *str)
-{
-	(void)e;
-	(void)str;
-	return (1);
 }
 
 int			check_arg(char *str, int flag)

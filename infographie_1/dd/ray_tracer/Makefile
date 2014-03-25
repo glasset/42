@@ -6,7 +6,7 @@
 #    By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/22 15:58:47 by jbalestr          #+#    #+#              #
-#    Updated: 2014/03/19 17:37:11 by jbalestr         ###   ########.fr        #
+#    Updated: 2014/03/25 14:47:35 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ SRC =	main.c init.c events.c key_events.c helpers.c init_keys.c \
 		mouse_events.c reflection.c refraction.c save_ppm.c inv_matrix.c \
 		matrix.c trans_matrix.c perlin_noise.c perlin_tools.c \
 		init_choose_scene.c init_items.c refresh_load.c display.c \
-		ft_atod.c ft_imc.c ft_strsplit.c init_info.c init_mesh.c parser.c \
-		tools.c ft_atoi.c ft_strcmp.c ft_strsub.c anti_aliasing.c \
-		init_obj.c read_obj.c obj_file_helper.c
+		anti_aliasing.c init_obj.c read_obj.c obj_file_helper.c \
+		ft_atod.c ft_atoi.c ft_info_1.c ft_light_1.c ft_meshe_1.c ft_meshe_2.c \
+		ft_meshe_3.c ft_meshe_4.c ft_strsplit.c init_light.c init_info.c \
+		init_mesh.c parser.c tools_2.c tools.c
 OBJ =	$(SRC:.c=.o)
 EXT =	includes/ray_tracer.h includes/objects.h includes/perlin.h
 S =		$(addprefix $(SDIR), $(SRC))
