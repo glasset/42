@@ -1,0 +1,30 @@
+objets :
+	- triangle
+
+plus tard :
+	lire les fichiers .obj (et encore mieux .mtl)
+	brouillard
+
+encore plus tard mais ca serait plus qu'epic -> gerer la 3d avec des lunette Pooooooooohhhhhhhhh
+
+------------------- A LA FIN -----------------------
+----- changer les droits de tous les fichiers !
+----- rajouter les header dans tous les fichier
+----- check en masse de la norme
+----- verifier avec leaks
+----- NE PAS OUBLIER D'ENLEVER LE FICHIER TODO
+----------------------------------------------------
+
+Creer un bouton de gestion de fichier objet
+Ajouter la fonction FREE
+
+Ajouter Infos avec appuie de touche
+{
+// r : fais tourner limage
+// s : save image to ppm
+si temps
+ 1 : sepia
+ 2 : effet "scan_line" TV
+ 3 : effet pixelisé
+}
+
