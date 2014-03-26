@@ -44,7 +44,7 @@ Sphere
 	color: 0xff5555;
 	material: wood;
 	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
-#}
+}
 
 #Triangle
 {
