@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 14:07:19 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 11:18:48 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:45:37 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static void		print_header(int fd)
 	write(fd, "\n255\n", 5);
 }
 
-/*
-** img->endian = 0 -> Ubuntu
-*/
 static void		put_pixel(int fd, t_img *img, int k)
 {
 	if (!img->endian)

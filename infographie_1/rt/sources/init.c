@@ -6,12 +6,11 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 16:39:46 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 19:03:14 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 17:18:35 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include "ray_tracer.h"
 
@@ -23,35 +22,6 @@ t_vector		init_vec(double x, double y, double z)
 	new.y = y;
 	new.z = z;
 	return (new);
-}
-
-static void		del_env(t_env *e)
-{
-	if (!e)
-		return ;
-	(void)e;
-	// del all malloc
-	// verifier avec leaks
-}
-
-/*
-** b_exit : quit
-** t_env : environnement to delete
-** str : message to display
-*/
-void			ft_error(int b_exit, t_env *e, char *str)
-{
-	del_env(e);
-	if (str)
-	{
-		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
-	}
-	if (b_exit)
-	{
-		write(2, "Exit.\n", 6);
-		exit(1);
-	}
 }
 
 t_compute		init_compute(t_ray ray, t_mesh *m, t_vertex i, t_ray ray_light)
@@ -75,6 +45,8 @@ t_env			*init_env(void)
 		ft_error(1, e, E_MLX);
 	if (!(e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, NAME)))
 		ft_error(1, e, E_WIN);
+	e->screens = NULL;
+	e->start = lst_new();
 	e->check_parse = 0;
 	e->progressive_load = 1;
 	e->ocean = 0;

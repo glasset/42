@@ -6,10 +6,11 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 12:33:07 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 16:22:12 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 19:09:26 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "perlin.h"
 #include "ray_tracer.h"
 
 t_color			diffuse(t_env *e, t_light *light, t_mesh *m, t_ray *ray)

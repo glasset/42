@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:22:29 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 19:09:09 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 19:50:51 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 # define COMMENT	'#'
 # define COLOR_PERL	"0x555555"
 
-
-typedef			struct s_imesh
+typedef struct	s_imesh
 {
 	int			l;
 	int			flag;
@@ -35,11 +34,19 @@ typedef			struct s_imesh
 	int			ret_m;
 }				t_imesh;
 
+typedef int		(*t_f)(t_env *e, int c_l, int fd, char *str);
+typedef int		(*t_i)(t_env *e, char *str);
+typedef int		(*t_l)(t_env *e, char *str, int c);
+typedef int		(*t_m)(t_env *e, char *str, int nb_m, int flag);
+
+t_f				*funct(void);
+t_i				*ft_inf(void);
+t_l				*ft_inl(void);
+t_m				*ft_inm(void);
+
 /*
 **	parser.c
 */
-typedef			int(*f)(t_env *, int, int, char *);
-f				*funct(void);
 int				parse(t_env *e, char *path);
 int				comment(t_env *e, int c_l, int fd, char *str);
 
@@ -47,9 +54,6 @@ int				comment(t_env *e, int c_l, int fd, char *str);
 **	init_info.c ft_info_1.c
 */
 int				information(t_env *e, int c_l, int fd, char *str);
-
-typedef			int(*i)(t_env *e, char *str);
-i				*ft_inf(void);
 int				checkline_inf(char *str);
 int				comment_b(t_env *e, char *str);
 int				ambient(t_env *e, char *str);
@@ -62,9 +66,6 @@ int				nb_light(t_env *e, char *str);
 **	ft_light_1.c init_light.c
 */
 int				light(t_env *e, int c_l, int fd, char *str);
-
-typedef			int(*l)(t_env *e, char *str, int c);
-l				*ft_inl(void);
 int				comment_l(t_env *e, char *str, int c);
 int				color_l(t_env *e, char *str, int c);
 int				pos_l(t_env *e, char *str, int c);
@@ -74,11 +75,8 @@ int				checkline_light(char *str);
 **	init_mesh.c ft_meshe_*.c
 */
 int				init_mesh(t_env *e, int c_l, int fd, char *str);
-
 int				call_ft(t_env *e, t_imesh *j, int c, int c_l);
 int				check_end_mesh(t_env *e, t_imesh *j, char *str, int c_l);
-typedef			int(*m)(t_env *e, char *str, int nb_m, int flag);
-m				*ft_inm(void);
 int				checkline_mesh(char *str);
 int				min_arg(int flag);
 int				check_mesh_nb(char *str, int fd, int c_l);
@@ -117,6 +115,7 @@ int				check_col(char *str);
 int				ft_atoi(const char *str);
 double			ft_atod(char *str);
 char			**ft_strsplit(char const *s, char c);
+int				free_ret(int ret, char **tmp);
+int				free_l(int ret, char *tmp);
 
-#endif /* !PARSER_H */
-
+#endif

@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 06:34:28 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 19:28:16 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 17:15:13 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ void			mouse_event_choose_scene(t_env *e)
 	{
 		ft_putstr("This button is empty !\n");
 		return ;
-	}	
+	}
 	ft_putstr("Reading scene : ");
 	ft_putstr(e->cur_button->name);
 	ft_putstr("\n");
-	// init_scene ici avec en parametre la chaine vers la scene, il faut verifier si le fichier existe toujours, et ajotuer le nom de dossier devant scenes/
 	if (e->cur_button)
 	{
-		// add iinit_scene if
-		init_scene(e, e->cur_button->name);
+		if (init_scene(e, e->cur_button->name) == -1)
+			return ;
 		if (e->video)
 			create_pics(e);
 		else
@@ -35,7 +34,14 @@ void			mouse_event_choose_scene(t_env *e)
 	}
 }
 
-void			mouse_event_left_slide_scene(t_env *e)
+void			mouse_event_yolo(t_env *e)
+{
+	(void)e;
+	ft_putstr("You push the YOLO button :D\n");
+	ft_putstr("... you failed to push the button :/\n");
+}
+
+void			mouse_event_ls(t_env *e)
 {
 	if (e->cur_screen == MENU)
 		e->cur_screen = MENU + (e->nb_panel - 1);
@@ -44,7 +50,7 @@ void			mouse_event_left_slide_scene(t_env *e)
 	e->cur_panel = e->cur_screen - MENU;
 }
 
-void			mouse_event_right_slide_scene(t_env *e)
+void			mouse_event_rs(t_env *e)
 {
 	if (e->cur_screen == MENU + (e->nb_panel - 1))
 		e->cur_screen = MENU;

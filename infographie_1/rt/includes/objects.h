@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/13 13:49:36 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 17:27:50 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 15:35:49 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,4 @@ typedef struct		s_mesh
 	t_mat			mat;
 }					t_mesh;
 
-#endif /* !OBJECTS_H */
+#endif

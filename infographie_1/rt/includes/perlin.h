@@ -6,21 +6,24 @@
 /*   By: fcorbel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 13:20:58 by fcorbel           #+#    #+#             */
-/*   Updated: 2014/03/26 16:21:57 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 19:09:56 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PERLIN_H
 # define PERLIN_H
 
-# define PERSISTANCE 0.7
-# define FREQUENCY 0.2
-# define OCTAVES 5
+# define PERSISTANCE	0.7
+# define FREQUENCY		0.2
+# define OCTAVES		5
 
-# define OCEAN 10
-# define DIF 1
-# define SPE 2
-# define INTER 3
+# define DIF			1
+# define SPE			2
+# define INTER			3
+
+# define B_AND_W		1
+# define SEPIA			2
+# define NEGATIVE		3
 
 # include "ray_tracer.h"
 
@@ -57,5 +60,8 @@ t_color			checker2(t_vertex var, t_color pix1, t_color pix2, int n);
 t_color			checker3(t_vertex var, t_color pix1, t_color pix2, int n);
 t_color			no_mat(t_vertex var, t_color pix1, t_color pix2, int n);
 t_color			cell_shading(t_env *e, t_color color);
+void			post_processing(t_env *e, int type);
+t_color			get_color_pp(t_env *e, int x, int y);
+void			put_pixel_pp(t_env *e, int x, int y);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inter_mesh_2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdebelle <mdebelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/03/27 05:14:22 by mdebelle          #+#    #+#             */
+/*   Updated: 2014/03/27 16:51:22 by jbalestr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 #include "ray_tracer.h"
 
@@ -67,13 +79,12 @@ double			inter_triangle(t_mesh *mesh, t_ray *ray, t_ray *m_ray)
 	w.x = pos.x - mesh->prim.triangle.v1.x;
 	w.y = pos.y - mesh->prim.triangle.v1.y;
 	w.z = pos.z - mesh->prim.triangle.v1.z;
-	//tmp = cross(w, mesh->prim.triangle.v3);
 	abdt[0] = -dot(cross(w, mesh->prim.triangle.v3), dir) / abdt[2];
 	tmp = cross(mesh->prim.triangle.v2, w);
 	abdt[1] = -dot(tmp, dir) / abdt[2];
 	tmp = cross(mesh->prim.triangle.v2, mesh->prim.triangle.v3);
 	abdt[3] = dot(tmp, w) / abdt[2];
-	if (abdt[0] > 0 && abdt[1] > 0 && abdt[0] + abdt[1] <= 1)
+	if (abdt[0] > 0.0 && abdt[1] > 0.0 && (abdt[0] + abdt[1]) <= 1.0)
 	{
 		m_ray->pos = pos;
 		m_ray->dir = dir;

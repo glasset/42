@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/13 15:30:30 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 18:51:04 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 19:50:50 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int			comment(t_env *e, int c_l, int fd, char *str)
 	return (0);
 }
 
-f			*funct(void)
+t_f			*funct(void)
 {
-	f		*ft;
+	t_f		*ft;
 
 	ft = malloc(sizeof(ft) * 4);
 	ft[0] = &comment;
@@ -63,7 +63,7 @@ static int	check_fd(int fd)
 {
 	if (fd < 0)
 	{
-		write(1, "\033[31m[ERROR]\033[0m Wrong file.\n", 28);
+		write(1, "\033[31m[ERROR]\033[0m Wrong file.\n", 29);
 		return (-1);
 	}
 	return (0);
@@ -75,24 +75,25 @@ int			parse(t_env *e, char *path)
 	int		fd;
 	int		current_m;
 	int		error;
-	f		*ft;
+	t_f		*ft;
 
-	ft = funct();
 	current_m = 1;
 	fd = open(path, O_RDONLY);
 	if (check_fd(fd) == -1)
 		return (-1);
+	ft = funct();
+	e->start = lst_add(fd, e->start);
 	while (get_next_line(fd, &line))
 	{
 		error = ft[check_line(line)](e, current_m, fd, line);
 		if (error == -1)
 		{
-			close(fd);
-			return (-1);
+			free(ft);
+			return (free_l(-1, line));
 		}
 		current_m += error + 1;
 		free(line);
 	}
-//	close(fd);
+	free(ft);
 	return (0);
 }

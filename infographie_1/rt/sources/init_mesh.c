@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:56:07 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 18:54:04 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 19:46:18 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include "parser.h"
 
-m				*ft_inm(void)
+t_m				*ft_inm(void)
 {
-	m			*ft;
+	t_m			*ft;
 
 	ft = malloc(sizeof(ft) * 16);
 	ft[0] = &comment_m;
@@ -40,47 +40,50 @@ m				*ft_inm(void)
 
 static int		check_lm(char **tmp)
 {
+	if (!ft_strcmp(tmp[0], "radius"))
+		return (free_ret(8, tmp));
+	if (!ft_strcmp(tmp[0], "coef"))
+		return (free_ret(9, tmp));
 	if (!ft_strcmp(tmp[0], "position"))
-		return (10);
+		return (free_ret(10, tmp));
 	if (!ft_strcmp(tmp[0], "scale"))
-		return (11);
+		return (free_ret(11, tmp));
 	if (!ft_strcmp(tmp[0], "open"))
-		return (12);
+		return (free_ret(12, tmp));
 	if (!ft_strcmp(tmp[0], "vertex"))
-		return (13);
+		return (free_ret(13, tmp));
 	if (!ft_strcmp(tmp[0], "material"))
-		return (14);
+		return (free_ret(14, tmp));
 	if (!ft_strcmp(tmp[0], "perlin"))
-		return (15);
-	return (-1);
+		return (free_ret(15, tmp));
+	return (free_ret(-1, tmp));
 }
 
 int				checkline_mesh(char *str)
 {
 	char	**tmp;
+	char	*line;
 
 	if (str[0] == START_OBJ || str[0] == COMMENT)
 		return (0);
 	tmp = ft_strsplit(str, BREAK);
+	line = tmp[0];
 	tmp[0] = ft_strsub(tmp[0], cut_space(tmp[0]), ft_strlen(tmp[0]));
+	free(line);
 	if (!ft_strcmp(tmp[0], "color"))
-		return (1);
+		return (free_ret(1, tmp));
 	if (!ft_strcmp(tmp[0], "diffuse"))
-		return (2);
+		return (free_ret(2, tmp));
 	if (!ft_strcmp(tmp[0], "specular"))
-		return (3);
+		return (free_ret(3, tmp));
 	if (!ft_strcmp(tmp[0], "reflection"))
-		return (4);
+		return (free_ret(4, tmp));
 	if (!ft_strcmp(tmp[0], "refraction"))
-		return (5);
+		return (free_ret(5, tmp));
 	if (!ft_strcmp(tmp[0], "normal"))
-		return (6);
+		return (free_ret(6, tmp));
 	if (!ft_strcmp(tmp[0], "rotation"))
-		return (7);
-	if (!ft_strcmp(tmp[0], "radius"))
-		return (8);
-	if (!ft_strcmp(tmp[0], "coef"))
-		return (9);
+		return (free_ret(7, tmp));
 	return (check_lm(tmp));
 }
 
@@ -129,6 +132,7 @@ int				init_mesh(t_env *e, int c_l, int fd, char *str)
 		else if (j.tmp == 2)
 			j.count++;
 		j.l++;
+		free(j.line);
 	}
 	return (j.l);
 }

@@ -6,7 +6,7 @@
 /*   By: fcorbel <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 13:17:59 by fcorbel           #+#    #+#             */
-/*   Updated: 2014/03/26 16:31:16 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:41:34 by fcorbel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_color			perlin_wood(t_vertex var, t_color pix1, t_color pix2, int n)
 	e.c2 = init_vec(0.0, 0.0, 0.2);
 	e.value = fmod(ft_perlin(var.x, var.y, var.z), step);
 	if (e.value > step / 2)
-        e.value = step - e.value;
+		e.value = step - e.value;
 	f = (1 - cos(M_PI * e.value / (step / 2))) / 2;
 	e.color.r = e.c1.x * (1 - f) + e.c2.x * f;
 	e.color.g = e.c1.y * (1 - f) + e.c2.y * f;
@@ -73,9 +73,8 @@ double			perlin_ocean(t_env *e, t_vertex pos, int type, int light)
 	double		coef;
 	double		var;
 
-	(void)type;
 	coef = 0;
-	if (e->ocean)
+	if (e->ocean && type == T_PLAN)
 	{
 		if (light == DIF)
 		{

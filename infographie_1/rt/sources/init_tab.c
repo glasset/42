@@ -6,11 +6,12 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 17:51:57 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 17:32:17 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 19:08:38 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray_tracer.h"
+#include "perlin.h"
 
 static void		init_types(t_env *e)
 {

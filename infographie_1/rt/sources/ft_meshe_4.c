@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/26 09:45:03 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 19:08:52 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:44:45 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,39 @@
 int				m_scale(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
+	char		**tmp1;
 
 	(void)flag;
-	tmp = ft_strsplit(str, BREAK);
-	tmp = ft_strsplit(tmp[1], BREAK2);
+	tmp1 = ft_strsplit(str, BREAK);
+	tmp = ft_strsplit(tmp1[1], BREAK2);
+	free_ret(0, tmp1);
 	if (check_arg(tmp[0], 1) == -1)
-		return (-2);
+		return (free_ret(-2, tmp));
 	if (check_arg(tmp[1], 1) == -1)
-		return (-2);
+		return (free_ret(-2, tmp));
 	if (check_arg(tmp[2], 1) == -1)
-		return (-2);
+		return (free_ret(-2, tmp));
 	inv_scale_matrix(&e->meshes[c].scale, ft_atod(tmp[0]), ft_atod(tmp[1]),
 			ft_atod(tmp[2]));
-	return (0);
+	return (free_ret(0, tmp));
 }
 
 int				m_position(t_env *e, char *str, int c, int flag)
 {
-	static char	**tmp;
+	static char	**tmp = NULL;
+	char		**tmp1;
 
-	(void)flag;
 	if (e->i_pos == 0)
 	{
-		tmp = ft_strsplit(str, BREAK);
-		tmp = ft_strsplit(tmp[1], BREAK2);
+		tmp1 = ft_strsplit(str, BREAK);
+		tmp = ft_strsplit(tmp1[1], BREAK2);
+		free_ret(0, tmp1);
 		if (check_arg(tmp[0], 0) == -1)
-			return (-2);
+			return (free_ret(-2, tmp));
 		if (check_arg(tmp[1], 0) == -1)
-			return (-2);
+			return (free_ret(-2, tmp));
 		if (check_arg(tmp[2], 0) == -1)
-			return (-2);
+			return (free_ret(-2, tmp));
 		e->meshes[c].trans = malloc_matrix(4, 4);
 		e->i_pos = 1;
 	}
@@ -53,6 +56,7 @@ int				m_position(t_env *e, char *str, int c, int flag)
 		inv_trans_matrix(&e->meshes[c].trans, ft_atod(tmp[0]), ft_atod(tmp[1]),
 				ft_atod(tmp[2]));
 		compute_matrix(&e->meshes[c]);
+		free_ret(flag, tmp);
 	}
 	return (2);
 }
@@ -69,8 +73,7 @@ int				min_arg(int flag)
 int				m_vertex(t_env *e, int c, int i, double *dot)
 {
 	if (i == 0)
-		e->meshes[c].prim.triangle.v1 = init_vec(dot[0], dot[1],
-				dot[2]);
+		e->meshes[c].prim.triangle.v1 = init_vec(dot[0], dot[1], dot[2]);
 	if (i == 1)
 		e->meshes[c].prim.triangle.v2 = sub(init_vec(dot[0], dot[1], dot[2]),
 				e->meshes[c].prim.triangle.v1);

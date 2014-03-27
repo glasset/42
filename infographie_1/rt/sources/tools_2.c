@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 14:21:26 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 12:30:16 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:13:21 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char		*ft_strsub(char const *s, unsigned int start, size_t len)
 	int		i;
 
 	i = 0;
-	tmp = (char*)malloc(sizeof(s) * len);
+	tmp = (char *)malloc(sizeof(s) * len);
 	if (tmp)
 	{
 		while (len--)
@@ -74,4 +74,17 @@ void		error_p(char *s1, char *s2, int l)
 	write(1, ": \"", 3);
 	write(1, s1, ft_strlen(s1));
 	write(1, "\"\n", 2);
+	free(s1);
+}
+
+int			free_ret(int ret, char **tmp)
+{
+	int		i;
+
+	i = -1;
+	while (tmp[++i] != NULL)
+		free(tmp[i]);
+	free(tmp);
+	tmp = NULL;
+	return (ret);
 }

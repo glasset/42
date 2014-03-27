@@ -6,12 +6,13 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/05 13:17:13 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 16:22:59 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 19:09:23 by jbalestr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ray_tracer.h"
+#include "perlin.h"
 
 t_color			reflection(t_env *e, t_compute c, int depth, double refr)
 {
@@ -22,9 +23,7 @@ t_color			reflection(t_env *e, t_compute c, int depth, double refr)
 	double		refl;
 
 	tmp = init_color(0.0, 0.0, 0.0);
-	if (c.mesh->refl < 0.0001)
-		return (tmp);
-	if (depth >= 2)
+	if (c.mesh->refl < 0.0001 || depth >= 8)
 		return (tmp);
 	n = e->normals[c.mesh->type](c.mesh, &c.ray_light.pos);
 	r = sub(c.ray.dir, prod_val(n, 2.0 * dot(c.ray.dir, n)));
@@ -35,7 +34,8 @@ t_color			reflection(t_env *e, t_compute c, int depth, double refr)
 	{
 		refl = c.mesh->refl;
 		tmp = compute_color(e, c, depth + 1, refr);
-		col = e->effects[c.mesh->mat.type](c.inter, c.mesh->color, c.mesh->mat.col1, 2);
+		col = e->effects[c.mesh->mat.type](c.inter, c.mesh->color,
+											c.mesh->mat.col1, 2);
 		tmp.r = tmp.r * refl * col.r;
 		tmp.g = tmp.g * refl * col.g;
 		tmp.b = tmp.b * refl * col.b;

@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/27 16:18:35 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 18:03:38 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 11:09:15 by fcorbel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,6 @@ void			compute_up_left(t_env *e)
 	tmp = sub(tmp, prod_val(e->cam.right, 0.5 / 2.0));
 	tmp = add(e->cam.pos, tmp);
 	e->up_left = tmp;
-}
-
-static void		put_pixel(t_env *e, int x, int y)
-{
-	int			k;
-
-	k = y * e->screens[RAY_TRACE].background.size_line
-		+ (x * e->screens[RAY_TRACE].background.bpp);
-	if (k >= 0 && k < e->screens[RAY_TRACE].background.max_size)
-	{
-		e->color.r = e->color.r > 1 ? 1 : e->color.r;
-		e->color.g = e->color.g > 1 ? 1 : e->color.g;
-		e->color.b = e->color.b > 1 ? 1 : e->color.b;
-		e->color.r = e->color.r < 0 ? 0 : e->color.r;
-		e->color.g = e->color.g < 0 ? 0 : e->color.g;
-		e->color.b = e->color.b < 0 ? 0 : e->color.b;
-		e->screens[RAY_TRACE].background.img[k] = (int)(e->color.r * 255);
-		e->screens[RAY_TRACE].background.img[k + 1] = (int)(e->color.g * 255);
-		e->screens[RAY_TRACE].background.img[k + 2] = (int)(e->color.b * 255);
-	}
 }
 
 void			compute_ray(t_env *e, t_ray *r, int x, int y)
@@ -83,35 +63,4 @@ void			launch_ray(t_env *e, int x, int y)
 	}
 	else
 		e->color = init_color(0.0, 0.0, 0.0);
-}
-
-void			draw_image(t_env *e)
-{
-	int			x;
-	int			y;
-
-	x = -1;
-	compute_up_left(e);
-	ft_putstr("\033[31mCreating picture...\n[\033[0m");
-	while (++x < WIDTH)
-	{
-		y = -1;
-		while (++y < HEIGHT)
-		{
-			launch_ray(e, x, y);
-			put_pixel(e, x, y);
-		}
-		if (x % (int)((WIDTH / 10) + 1) == 0)
-			ft_putstr("\033[31m|\033[0m");
-		else if (x % (int)((WIDTH / 50) + 1) == 0)
-		{
-			ft_putstr("|");
-			if (e->progressive_load)
-				refresh_load(e, x / (double)WIDTH);
-		}
-	}
-	if (e->progressive_load)
-		refresh_load(e, 0);
-	ft_putstr("\033[31m]\033[0m 100%\n");
-	e->cur_screen = RAY_TRACE;
 }

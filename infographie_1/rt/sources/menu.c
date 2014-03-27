@@ -6,7 +6,7 @@
 /*   By: mdebelle <mdebelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 22:54:12 by mdebelle          #+#    #+#             */
-/*   Updated: 2014/03/26 18:54:36 by jbalestr         ###   ########.fr       */
+/*   Updated: 2014/03/27 05:15:29 by mdebelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ int				check_scene_name(char *s)
 	return (1);
 }
 
+static int		is_valid_file(char *s)
+{
+	if (check_scene_name(s))
+	{
+		ft_putstr("Scene name : ");
+		ft_putstr(s);
+		write(1, "\n", 1);
+		return (1);
+	}
+	ft_putstr("Invalid scene name : ");
+	ft_putstr(s);
+	write(1, "\n", 1);
+	return (0);
+}
+
 int				count_scene(t_env *e)
 {
 	int				nb_button;
@@ -45,17 +60,7 @@ int				count_scene(t_env *e)
 		while ((ep = readdir(dp)))
 		{
 			if (ep->d_name[0] != '.')
-			{
-				if (check_scene_name(ep->d_name))
-				{
-					ft_putstr("Scene name : ");
-					nb_button++;
-				}
-				else
-					ft_putstr("Invalid scene name : ");
-				ft_putstr(ep->d_name);
-				write(1, "\n", 1);
-			}
+				nb_button = nb_button + is_valid_file(ep->d_name);
 		}
 		closedir(dp);
 	}

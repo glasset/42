@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include "ray_tracer.h"
 
 int				key_hook_press(int keycode, t_env *e)

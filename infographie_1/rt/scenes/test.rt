@@ -7,66 +7,79 @@
 # .By:......Mdebelle........Jbalestr..........Fcorbel.........Glasset...... #
 # ************************************************************************* #
 
-#material: wood / marble / zebra.
-#material only for plan: checker1 / checker2 / checker3.
-
 information
 {
-	numbers of light: 2;
-	numbers of object: 8;
-	point of view: 55, -15, -100;
-	look at: 0, 0, 0;
+	numbers of light: 1;
+	numbers of object: 4;
+	point of view: 0, 15, -100;
+	look at: 0, 5, 0;
 	color ambient: 0.2;
 }
 
 light
 {
-	position: 500, 0, 0;
-	color: 0x555555;
+	position: 50, 50, -100;
+	color: 0xeeeeee;
 }
 
-light
+Plan
 {
-	position: 400, 200, 0;
-	color: 0x333333;
-}
-
-Sphere
-{
-	position: -3, 0, 0;
 	scale: 1, 1, 1;
+	normal: 0, 1, 0;
 	rotation: 0, 0, 0;
-	radius: 5;
+	position: 0, 0, 0;
 	diffuse: 0.8;
 	specular: 1.0;
 	reflection: 1.0;
 	refraction: 0.0;
-	color: 0xff5555;
-	material: wood;
-	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
+	color: 0x9999FF;
+	material: NO_MAT;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
 
-#Triangle
+Sphere
 {
-	normal: 0, 1, 1;
-	vertex: 1, 1, 1;
-	vertex: 1, 1, 1;
-	vertex: 1, 1, 1;
+	position: -5, 8, 0;
+	scale: 1.0, 1, 1;
+	rotation: 0, 0, 0;
+	radius: 5;
+	diffuse: 0.8;
+	specular: 0.0;
+	reflection: 1.0;
+	refraction: 0.0;
+	color: 0xff5555;
+	material: ;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
 
 Sphere
 {
 	scale: 1, 1, 1;
 	rotation: 0, 0, 0;
-	position: 8, -12, -2;
-	radius: 2;
+	position: 12, 8, 15;
+	radius: 6;
+	diffuse: 0.8;
+	specular: 0.0;
+	reflection: 1.0;
+	refraction: 0.0;
+	color: 0xfdee23;
+	material: ;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
+}
+
+Sphere
+{
+	scale: 1, 1, 1;
+	rotation: 0, 0, 0;
+	position: 12, 8, -15;
+	radius: 5;
 	diffuse: 0.8;
 	specular: 0.8;
-	reflection: 0.0;
+	reflection: 1.0;
 	refraction: 0.0;
 	color: 0xfdee23;
 	material: marble;
-	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
 
 Parabole
@@ -89,21 +102,6 @@ Hyperbole
 	color: 0xf011ee;
 }
 
-Plan
-{
-	scale: 1, 1, 1;
-	normal: 1, 1, 0;
-	rotation: 0, 0, 0;
-	position: -25, 0, 0;
-	diffuse: 0.8;
-	specular: 1.0;
-	reflection: 0.0;
-	refraction: 0.0;
-	color: 0x00d2ff;
-	material: checker1;
-	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
-}
-
 Cone
 {
 	position: 19, 9, 0;
@@ -114,9 +112,9 @@ Cone
 	specular: 1.0;
 	reflection: 0.0;
 	refraction: 0.0;
-	color: 0xe9ae11;
-	material: zebra;
-	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
+	color: 0xff55ff;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }
 
 Cylinder
@@ -130,6 +128,6 @@ Cylinder
 	reflection: 0.0;
 	refraction: 0.0;
 	color: 0x5555ff;
-	material: wood;
-	perlin: 0xff11ff, 0xff11ff, 0xff11ff;
+	mat: BOIS;
+	perlin: 0Xff11ff, 0Xff11ff, 0Xff11ff;
 }

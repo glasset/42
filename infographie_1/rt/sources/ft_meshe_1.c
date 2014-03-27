@@ -6,7 +6,7 @@
 /*   By: glasset <glasset@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/25 13:54:09 by glasset           #+#    #+#             */
-/*   Updated: 2014/03/26 19:08:50 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 18:44:48 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int				comment_m(t_env *e, char *str, int c, int flag)
 int				m_perlin(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
+	char		**tmp1;
 	int			i;
 
-	(void)flag;
 	i = 0;
-	tmp = ft_strsplit(str, BREAK);
-	tmp = ft_strsplit(tmp[1], BREAK2);
+	tmp1 = ft_strsplit(str, BREAK);
+	tmp = ft_strsplit(tmp1[1], BREAK2);
+	free_ret(flag, tmp1);
 	i = check_col(tmp[0]);
 	i += check_col(tmp[1]);
 	i += check_col(tmp[2]);
@@ -38,7 +39,7 @@ int				m_perlin(t_env *e, char *str, int c, int flag)
 		e->meshes[c].mat.col1 = get_color(COLOR_PERL);
 		e->meshes[c].mat.col2 = get_color(COLOR_PERL);
 		e->meshes[c].mat.col3 = get_color(COLOR_PERL);
-		return (-1);
+		return (free_ret(-1, tmp));
 	}
 	else
 	{
@@ -46,7 +47,7 @@ int				m_perlin(t_env *e, char *str, int c, int flag)
 		e->meshes[c].mat.col2 = get_color(tmp[1]);
 		e->meshes[c].mat.col3 = get_color(tmp[2]);
 	}
-	return (0);
+	return (free_ret(0, tmp));
 }
 
 int				m_mat(t_env *e, char *str, int c, int flag)
@@ -69,30 +70,36 @@ int				m_mat(t_env *e, char *str, int c, int flag)
 	else if (!ft_strcmp(line, "zebra;"))
 		e->meshes[c].mat.type = ZEBRA;
 	else
-		return (-1);
-	return (0);
+	{
+		free_l(0, line);
+		return (free_ret(-1, tmp));
+	}
+	free_l(0, line);
+	return (free_ret(0, tmp));
 }
 
 int				m_v(t_env *e, char *str, int c, int flag)
 {
 	char		**tmp;
+	char		**tmp1;
 	static int	i = 0;
 	double		dot[3];
 
-	tmp = ft_strsplit(str, BREAK);
-	tmp = ft_strsplit(tmp[1], BREAK2);
+	tmp1 = ft_strsplit(str, BREAK);
+	tmp = ft_strsplit(tmp1[1], BREAK2);
+	free_ret(0, tmp1);
 	if (check_arg(tmp[0], 0) == -1 || check_arg(tmp[1], 0) == -1
 			|| check_arg(tmp[2], 0) == -1)
-		return (-2);
+		return (free_ret(-2, tmp));
 	dot[0] = ft_atod(tmp[0]);
 	dot[1] = ft_atod(tmp[1]);
 	dot[2] = ft_atod(tmp[2]);
 	if (flag == T_TRIANGLE)
 	{
 		i = m_vertex(e, c, i, dot);
-		return (2);
+		return (free_ret(2, tmp));
 	}
-	return (-1);
+	return (free_ret(-1, tmp));
 }
 
 int				m_open(t_env *e, char *str, int c, int flag)
@@ -101,10 +108,10 @@ int				m_open(t_env *e, char *str, int c, int flag)
 
 	tmp = ft_strsplit(str, BREAK);
 	if (check_arg(tmp[1], 0) == -1)
-		return (-2);
+		return (free_ret(-2, tmp));
 	if (flag == T_HYPERBOLE)
 		e->meshes[c].prim.hyperbole.open = ft_atod(tmp[1]);
 	else
-		return (-1);
-	return (2);
+		return (free_ret(-1, tmp));
+	return (free_ret(2, tmp));
 }

@@ -6,7 +6,7 @@
 #    By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/22 15:58:47 by jbalestr          #+#    #+#              #
-#    Updated: 2014/03/26 18:50:50 by jbalestr         ###   ########.fr        #
+#    Updated: 2014/03/27 12:08:47 by jbalestr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC =	main.c init.c events.c key_events.c helpers.c init_keys.c \
 		ft_atod.c ft_atoi.c ft_info_1.c ft_info_2.c ft_light_1.c \
 		ft_meshe_1.c ft_meshe_2.c ft_meshe_3.c ft_meshe_4.c ft_strsplit.c \
 		init_info.c init_light.c init_mesh_2.c init_mesh.c parser.c tools_2.c \
-		tools.c normal_2.c
+		tools.c normal_2.c draw_images_and_loader.c key_events_2.c \
+		post_process.c pixelise.c lst.c delete.c
 OBJ =	$(SRC:.c=.o)
 EXT =	includes/ray_tracer.h includes/objects.h includes/perlin.h \
 		includes/parser.h includes/light.h includes/video.h

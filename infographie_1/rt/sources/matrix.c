@@ -6,7 +6,7 @@
 /*   By: jbalestr <jbalestr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/07 19:03:37 by jbalestr          #+#    #+#             */
-/*   Updated: 2014/03/26 15:27:09 by glasset          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:39:15 by fcorbel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		free_matrix(double **matrix, int size)
 	if (!matrix)
 		return ;
 	while (++i < size)
-			free(matrix[i]);
+		free(matrix[i]);
 	free(matrix);
 }
 

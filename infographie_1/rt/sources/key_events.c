@@ -32,7 +32,12 @@ void	key_event_esc(t_env *e)
 {
 	if (e->cur_screen >= MENU && e->cur_screen < MENU + e->nb_panel)
 		ft_error(1, e, "Deleting objects...");
-	else if (e->cur_screen == RAY_TRACE || e->cur_screen == OPTIONS)
+	else if (e->cur_screen == RAY_TRACE)
+	{
+		escape_screen(e);
+		e->cur_screen = MENU;
+	}
+	else if (e->cur_screen == OPTIONS)
 		e->cur_screen = MENU;
 	else if (e->cur_screen == CHOOSE)
 		e->cur_screen = MENU;
