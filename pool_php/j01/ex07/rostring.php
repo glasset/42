@@ -1,11 +1,15 @@
 #!/usr/bin/php
 <?PHP
-if ($argc == 2)
+if ($argc > 1)
 {
+	$i = 1;
 	$string = trim($argv[1], " ");
 	$m_t = preg_split('/[\s]+/', $string);
-	foreach($m_t as $elem)
-		echo $elem." ";
-	echo "\n";
+	while($m_t[$i])
+	{
+		echo $m_t[$i]." ";
+		$i++;
+	}
+	echo $m_t[0]."\n";
 }
 ?>
