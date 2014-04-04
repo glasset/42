@@ -8,7 +8,7 @@ if ($argc == 4)
 		echo $argv[1] + $argv[3]."\n";
 	else if ($nb == 45)
 		echo $argv[1] - $argv[3]."\n";
-	else if ($nb == 100)
+	else if ($nb == 42)
 		echo $argv[1] * $argv[3]."\n";
 	else if ($nb == 47)
 		echo $argv[1] / $argv[3]."\n";
