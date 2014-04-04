@@ -1,6 +1,6 @@
 <?PHP
 header('WWW-Autenticate: Basic realm=\'\'Espace membres\'\'');
-header('Closing connection #');
+header('HTTP/1.0 401 Unauthorized');
 $log = "zaz";
 $pwd = "jaimelespetitsponeys";
 $cl = $_SERVER['PHP_AUTH_USER'];
