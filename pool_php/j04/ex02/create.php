@@ -1,5 +1,4 @@
 <?PHP
-session_start();
 $i = 0;
 mkdir("../private");
 if ($_POST["login"] !== "" && $_POST["passwd"] !== "")
