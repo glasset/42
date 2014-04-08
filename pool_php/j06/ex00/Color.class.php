@@ -1,9 +1,9 @@
-<?
+<?php
 Class Color
 {
-	private $red = 0;
-	private $green = 0;
-	private $blue = 0;
+	public $red = 0;
+	public $green = 0;
+	public $blue = 0;
 	public static $verbose = 0;
 	public function __construct(array $kwargs)
 	{
