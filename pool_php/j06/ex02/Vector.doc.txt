@@ -4,8 +4,6 @@ The Vector class handles x, y, z direction.
 An instance can be constructed from destination, origine value:
 new Vector( array( 'dest' => new Vertex(...), 'orig' => new Vertex(...) ) );
 
-w is optional and set by default as 1.0.
-
 The class provide getters for each variables and the following methods:
 float    magnitude();
 Vector   normalize();
