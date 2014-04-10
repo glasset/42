@@ -9,7 +9,7 @@ Class UnholyFactory
 			if (!array_key_exists($k->tmp, $this->tmp))
 			{
 				print "(Factory absorbed a fighter of type ".$k->tmp.")\n";
-				$this->tmp[$k->tmp] = $k->tmp;
+				$this->tmp[$k->tmp] = get_class($k);
 			}
 			else
 				print "(Factory already absorbed a fighter of type foot soldier)\n";
@@ -20,10 +20,12 @@ Class UnholyFactory
 	public function fabricate($k)
 	{
 		if (array_key_exists($k,$this->tmp))
+		{
 			print "(Factory fabricates a fighter of type $k)\n";
-		else
-			print "(Factory hasn't absorbed any fighter of type $k)\n";
-		return ("Footsoldier");
+			return (new $this->tmp[$k]);
+		}
+		print "(Factory hasn't absorbed any fighter of type $k)\n";
+		return null;
 	}
 }
 ?>
