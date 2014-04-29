@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_script.c                                        :+:      :+:    :+:   */
+/*   script.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/29 13:33:56 by glasset           #+#    #+#             */
-/*   Updated: 2014/04/29 16:55:12 by glasset          ###   ########.fr       */
+/*   Created: 2014/04/29 14:56:43 by glasset           #+#    #+#             */
+/*   Updated: 2014/04/29 16:41:14 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "script.h"
-#include <signal.h>
-#include <stdlib.h>
 
-void	sigint(int sig)
-{
-	if (sig == sig)
-	end_file();
-	exit(0);
-}
+#ifndef SCRIPT_H
+#define SCRIPT_H
 
-int		main(int argc, char **argv)
+typedef struct		s_env
 {
-	if (argc > 1)
-		init_file(argv[1]);
-	else
-		init_file("typescript");
-	signal(SIGINT, &sigint);
-	while(1)
-	{
-	}
-	return (0);
-}
+	int				fd;
+	char			*name;
+}					t_env;
+
+t_env				e;
+
+void		init_file(char *name);
+void		ft_puts(char *str, int fd);
+void		end_file(void);
+
+#endif

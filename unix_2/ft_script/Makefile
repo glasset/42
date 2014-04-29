@@ -6,13 +6,13 @@
 #    By: glasset <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 10:39:11 by glasset           #+#    #+#              #
-#    Updated: 2014/04/29 13:36:18 by glasset          ###   ########.fr        #
+#    Updated: 2014/04/29 15:17:34 by glasset          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_script
 
-SRC = ./ft_script.c
+SRC = ./ft_script.c init.c helpers.c
 
 OBJ = $(SRC:.c=.o)
 

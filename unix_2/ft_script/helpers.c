@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_script.c                                        :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/29 13:33:56 by glasset           #+#    #+#             */
-/*   Updated: 2014/04/29 16:55:12 by glasset          ###   ########.fr       */
+/*   Created: 2014/04/29 15:03:18 by glasset           #+#    #+#             */
+/*   Updated: 2014/04/29 15:17:39 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "script.h"
-#include <signal.h>
-#include <stdlib.h>
+#include <unistd.h>
 
-void	sigint(int sig)
+int			ft_strl(char *str)
 {
-	if (sig == sig)
-	end_file();
-	exit(0);
+	int		i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
 }
 
-int		main(int argc, char **argv)
+void		ft_puts(char *str, int fd)
 {
-	if (argc > 1)
-		init_file(argv[1]);
-	else
-		init_file("typescript");
-	signal(SIGINT, &sigint);
-	while(1)
-	{
-	}
-	return (0);
+	write(fd, str, ft_strl(str));
 }
