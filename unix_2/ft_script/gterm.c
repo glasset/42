@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   script.h                                           :+:      :+:    :+:   */
+/*   gterm.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glasset <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/04/29 14:56:43 by glasset           #+#    #+#             */
-/*   Updated: 2014/04/30 14:21:23 by glasset          ###   ########.fr       */
+/*   Created: 2014/04/30 13:48:05 by glasset           #+#    #+#             */
+/*   Updated: 2014/04/30 14:22:16 by glasset          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/select.h>
+#include "script.h"
 
-#ifndef SCRIPT_H
-#define SCRIPT_H
-# include <termios.h>
-
-typedef struct		s_env
+void		readg()
 {
-	int				fd;
-	int				fd_master;
-	int				fd_slave;
-	char			*name;
-	char			*path;
-	int				pid;
-	struct termios	term;
-	struct winsize	win;
-}					t_env;
+	fd_set	readf;
 
-t_env				e;
+	while (1)
+	{
+		FD_ZERO(&readf);
+		FD_SET(0, &readf);
+		FD_SET(e.fd_master, &readf);
+		if ((select(e.fd_master + 1, &readf, NULL, NULL, NULL)) >= 0)
+			write(e.fd, "|",1);
+	}
+	exit (0);
+}
 
-void		gterm();
-void		openty(void);
-void		init_file(char *name);
-void		ft_puts(char *str, int fd);
-void		end_file(void);
-
-#endif
+void		gterm()
+{
+	if (e.pid == 0)
+	{
+		execve(e.path, NULL, NULL);
+		exit(0);
+	}
+	else
+	{
+		readg();
+	}
+}
