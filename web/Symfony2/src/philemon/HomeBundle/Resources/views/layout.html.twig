@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block sidebar %}
+	{% if is_granted("ROLE") %}
+		Bien le bonjour {{ app.user.username }} !
+	{% else %}
+		Arc en ciel!
+	{% endif %}
+{% endblock %}

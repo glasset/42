@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>{{ modules.name|e }}</h1>
+{% for mod in logs %}
+	{% if users.username == mod.user and modules.name == mod.module %}
+		<p> Vous etes inscrit </p>
+	{% endif %}
+	{% else %}
+	<p><a href="{{ path('philemon_module_register') }}">s'inscrire </p>
+{% endfor %}
+{% endblock %}

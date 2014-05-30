@@ -1,0 +1,12 @@
+philemon_module_homepage:
+    pattern:  /module
+    defaults: { _controller: philemonModuleBundle:Module:index }
+
+philemon_module_all:
+    pattern: /module/{slug}
+    defaults: { _controller: philemonModuleBundle:Module:show, slug:defautl }
+
+philemon_module_register:
+    pattern:  /module/register
+    defaults: { _controller: philemonModuleBundle:Module:register }
+
