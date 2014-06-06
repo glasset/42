@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+{% if register == true %}
+	<a href="{{ path('philemon_module_unregister', {'module_id': mod.id}) }}">Unregister</a>
+{% else %}
+	<a href="{{ path('philemon_module_register', {'module_id': mod.id}) }}">Register</a>
+{% endif %}
+<h3>Activities</h3>
+<ul class="nav nav-list bs-docs-sidenav">
+{% if act %}
+{% for a in act %}
+	<li>
+	{% if register == true %}
+		<a href="{{ path('philemon_activity_show', {'activity_id': a.id}) }}">{{ a.name }}</a>
+	{% else %}
+	{{ a.name }}
+	{% endif %}
+	</li>
+{% endfor %}
+{% endif %}
+</ul>
+{% endblock %}

@@ -1,0 +1,5 @@
+vendor
+app/cache/dev
+bin
+app/logs
+web/uploads

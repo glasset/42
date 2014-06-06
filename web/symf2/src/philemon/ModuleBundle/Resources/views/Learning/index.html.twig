@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+{% if is_granted('ROLE_ADMIN') %}
+<form action="#" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" value="Uploader" />
+</form>
+{% endif %}
+<h1>E-Learning</h1>
+<ul class="nav nav-list">
+{% for m in mods %}
+	<li>
+		{{ m.name }}
+		<ul class="nav nav-list">
+			{% for a in act %}
+				{% if a.module == m %}
+				<li>
+					<a href="{{ path('philemon_learning_show', {'activity_id': a.id}) }}">{{ a.name }}</a>
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}

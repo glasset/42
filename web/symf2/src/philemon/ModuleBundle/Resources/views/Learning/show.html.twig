@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<h1>E-Learning</h1>
+{% for l in learnings %}
+	<li>
+		<a href="{{ asset('uploads/pdf/'~l.name) }}">{{ l.name }}</a>
+	</li>
+{% endfor %}
+{% endblock %}

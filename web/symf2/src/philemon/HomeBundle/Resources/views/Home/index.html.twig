@@ -1,0 +1,55 @@
+{% extends 'philemonHomeBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="highlight" onclick="$('#target').toggle();"> <i class="fa fa-book"></i> <b>Projet a venir</b>
+<div id="target">
+{% for m in mod %}
+	{% for l in modl %}
+		{% if l.module.id == m.id %}
+			<li> <a href="{{ path('philemon_module_show', {'id': m.id}) }}"><b>{{ m.name }}</b></a>.</li>
+			{% for a in m.activities %}
+				<ul>
+				{% for al in actl %}
+				{% if a.id == al.activity.id %}
+				{{ "vous etes bien inscrit au projet" }}
+				{% else %}
+				{{ "vous n'etes pas inscrit au projet" }}
+				{% endif %}
+				{% else %}
+				{{ "vous n'etes pas inscrit au projet" }}
+				{% endfor %}
+				<a href="{{ path('philemon_activity_show', {'activity_id': a.id}) }}">{{ a.name }}</a>.</ul>
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+</ul>
+</div>
+</div>
+<div class="highlight" onclick="$('#target1').toggle();"><i class="fa fa-share-square-o"></i> <b>Peer correcting</b>
+<div id="target1">
+{% for last in cor %}
+{% if last.score is null %}
+ <li> Vous devez notez <a href="{{ path('philemon_profile', { 'slug': last.user }) }}">{{ last.user }}</a> sur {{ last.activity }}. </li>
+{% else %}
+ <li> Vous avez notez <a href="{{ path('philemon_profile', { 'slug': last.user }) }}">{{ last.user }}</a> {{ last.score }} sur <a href="{{ path('philemon_activity_show', {'activity_id': last.activity.id}) }}">{{ last.activity }}</a>.</li>
+{% endif %}
+{% endfor %}
+{% for last in mark %}
+{% if last.score is null %}
+ <li> Vous devez etre notez par <a href="{{ path('philemon_profile', { 'slug': last.corrector }) }}">{{ last.corrector }}</a> sur {{ last.activity }}. </li>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+
+<div class="highlight" onclick="$('#target2').toggle();"><i class="fa fa-bookmark-o"></i> <b>Last mark</b>
+<div id="target2">
+{% for last in mark %}
+{% if last.score %}
+ <li><a href="{{ path('philemon_profile', { 'slug': last.corrector }) }}">{{ last.corrector }}</a> vous a notez {{ last.score }} sur <a href="{{ path('philemon_activity_show', {'activity_id': last.activity.id}) }}">{{ last.activity }}</a> pensez a verifier la note. </li>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endblock %}
