@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+{% if all is not null %}
+{{'la note a etais apprecier: '~ all.rate ~ ' / 5' }}</br>
+{{'commentaire:'~  all.ratetext }}
+{% else %}
+{{ "la note n'a pas encore ete apprecier" }}
+{% endif %}
+{% endblock %}
