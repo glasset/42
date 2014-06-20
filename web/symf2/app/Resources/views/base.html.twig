@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
 		<script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.js') }}"></script>
+		<script src="{{ asset('js/search.js') }}"></script>
 		{% block javascripts %}
 		{% endblock %}
 	</head>
@@ -28,11 +29,11 @@
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left form-search" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Rechercher">
+						<input type="text" class="form-control input-search" placeholder="Rechercher">
 					</div>
-					<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+					<button type="submit" class="btn btn-default btn-search"><span class="glyphicon glyphicon-search"></span></button>
 				</form>
 				<ul class="nav navbar-nav side-nav">
 					<li><a href="{{ path('philemon_module_homepage') }}"><i class="fa fa-briefcase"></i> Module</a></li>
@@ -40,6 +41,7 @@
 					<li><a href="{{ path('ccdn_homepage') }}"><i class="fa fa-users"></i> Forum</a></li>
 					<li><a href="{{ path('hackzilla_ticket') }}"><i class="fa fa-ticket"></i> Ticket</a></li>
 					<li><a href="{{ path('calendar_index') }}"><i class="fa fa-calendar"></i> Calendar</a></li>
+					<li><a href="{{ path('philemon_trombi') }}"><i class="fa fa-users"></i> Trombi</a></li>
 					{% if is_granted('ROLE_ADMIN') %}
 						<li><a href="{{ path('sonata_admin_redirect') }}"><i class="fa fa-user"></i> Admin</a></li>
 						<li><a href="{{ path('ccdn_forum_admin_index') }}"><i class="fa fa-user"></i> Forum Admin</a></li>

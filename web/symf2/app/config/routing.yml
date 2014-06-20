@@ -1,3 +1,7 @@
+philemon_trombi:
+    resource: "@philemonTrombiBundle/Resources/config/routing.yml"
+    prefix:   /
+
 philemon_ft_calendar:
     resource: "@philemonFtCalendarBundle/Resources/config/routing.yml"
     prefix:   /
@@ -52,4 +56,3 @@ hackzilla_ticket:
 BladeTesterCalendarBundle:
     resource: "@BladeTesterCalendarBundle/Resources/config/routing.yml"
     prefix:   /
-

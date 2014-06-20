@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new philemon\ModuleBundle\philemonModuleBundle(),
 			new philemon\FtCalendarBundle\philemonFtCalendarBundle(),
 			new BladeTester\CalendarBundle\BladeTesterCalendarBundle(),
+      new philemon\TrombiBundle\philemonTrombiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -51,7 +52,7 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
-	
+
 	public function __construct($environment, $debug)
 	{
 	    date_default_timezone_set( 'Europe/Paris' );
