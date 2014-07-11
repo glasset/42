@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+</br>
+<div class="container">
+<div class="highlight">
+{{ form_start(form) }}
+<h5> nom de l'event: </h5>
+{{ form_widget(attribute(form, 'name'), {'attr': {'class':'form-control'}}) }}
+<h5> lieu de l'event: </h5>
+{{ form_widget(attribute(form, 'place'), {'attr': {'class':'form-control'}}) }}
+<h5> description: </h5>
+{{ form_widget(attribute(form, 'description'), {'attr': {'class':'form-control'}}) }}
+<h5> date de l'event: </h5>
+{{ form_widget(attribute(form, 'date'), {'attr': {'class':'form-control'}}) }}
+{{ form_errors(form) }}
+</br>
+<input type="submit" class="btn btn-primary" onclick="return confirm('Confirmer?');" />
+{{ form_end(form) }} 
+</div>
+</div>
+{% endblock %}

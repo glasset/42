@@ -1,0 +1,15 @@
+recowin_calendar_homepage:
+    path:     /
+    defaults: { _controller: RecowinCalendarBundle:Default:index }
+
+recowin_calendar:
+    path:     /calendar/{years}/{month}
+    defaults: { _controller: RecowinCalendarBundle:Default:show }
+
+recowin_event:
+    path: /event/{years}/{month}/{day}
+    defaults: { _controller: RecowinCalendarBundle:Default:event }
+
+recowin_add:
+    path: /add
+    defaults: { _controller: RecowinCalendarBundle:Default:add }
