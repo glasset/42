@@ -1,0 +1,4 @@
+recowin_calendar:
+    resource: "@RecowinCalendarBundle/Resources/config/routing.yml"
+    prefix:   /
+

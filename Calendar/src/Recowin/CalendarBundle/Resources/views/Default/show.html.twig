@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+</br>
+<div class="container">
+	<div class="highlight">
+<a href="{{ path('recowin_calendar', { 'years': 'now'|date('Y'), 'month': 'now'|date('m')})}}"<button type="button" class="btn btn-primary btn-xs">Aujourd'hui</button></a>
+		<center> <h1> 
+			<a href="{{ path('recowin_calendar', { 'years': my - 1, 'month': mm})}}"<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-arrow-left"></i></button></a>
+				{{ my }}
+<a href="{{ path('recowin_calendar', { 'years': my + 1, 'month': mm})}}"<button type="button" class="btn btn-primary btn-xs"><i class="fa fa-arrow-right"></i></button></a>
+</h1></center>
+<center><h5>|
+{% for key, m in months %}
+{% if mm == key %}<u>{% endif %}
+<a href="{{ path('recowin_calendar', { 'years': my, 'month': key}) }}">{{ m }}</a>{% if mm == key %}</u> {% endif %} |
+{% endfor %}
+</center></h5>
+</br>
+{% for key, y in cal %}
+	{% for key, m in y %}
+<table class="table table-bordered">
+<thead>
+<tr class="info">
+{% for d in days %}
+<th> {{ d }} </th>
+{% endfor %}
+</tr>
+</thead>
+<tbody>
+<tr>
+		{% for key, d in m %}
+		{% if key == 1 and  d - 1 != 0 %} <td colspan="{{ d - 1}}"></td>{% endif %}
+			<td class="{% if 'now'|date('Y-m-d') == my ~'-' ~mm ~'-'~key %}{{'warning'}}{% elseif note[key] == 1 %}{{'success'}}{% endif %}"><a href ="{{ path('recowin_event', { 'years': my, 'month': mm, 'day': key}) }}">{{ key }} {% if note[key] == 1 %}<i class="fa fa-file-text"></i>{% endif %}</a> </td>
+		{% if d == 7 %} </tr><tr> {% endif %}
+{% endfor %}
+</tr>
+</tbody>
+<table>
+{% endfor %}
+{% endfor %}
+<center><a href="{{ path('recowin_add')}}"><button type="button" class="btn btn-primary btn-lg">Add Event</button></a></center>
+</br>
+<h5>Legende:</h5>
+<mark class="bg-warning">Aujourd'hui</mark></br><mark class="bg-success">Event</mark>
+</br>
+</div>
+</div>
+{% endblock %}
