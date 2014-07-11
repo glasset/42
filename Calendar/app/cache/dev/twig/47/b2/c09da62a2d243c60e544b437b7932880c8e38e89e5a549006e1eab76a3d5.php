@@ -29,41 +29,44 @@ class __TwigTemplate_47b2c09da62a2d243c60e544b437b7932880c8e38e89e5a549006e1eab7
     {
         // line 4
         echo "</br>
+<div class=\"container\">
+<div class=\"highlight\">
 ";
-        // line 5
+        // line 7
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start');
         echo "
 <h5> nom de l'event: </h5>
 ";
-        // line 7
+        // line 9
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "name"), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 <h5> lieu de l'event: </h5>
 ";
-        // line 9
+        // line 11
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "place"), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 <h5> description: </h5>
 ";
-        // line 11
+        // line 13
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "description"), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 <h5> date de l'event: </h5>
 ";
-        // line 13
+        // line 15
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "date"), 'widget', array("attr" => array("class" => "form-control")));
         echo "
 ";
-        // line 14
+        // line 16
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'errors');
         echo "
 </br>
 <input type=\"submit\" class=\"btn btn-primary\" onclick=\"return confirm('Confirmer?');\" />
 ";
-        // line 17
+        // line 19
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo " 
-
+</div>
+</div>
 ";
     }
 
@@ -79,6 +82,6 @@ class __TwigTemplate_47b2c09da62a2d243c60e544b437b7932880c8e38e89e5a549006e1eab7
 
     public function getDebugInfo()
     {
-        return array (  64 => 17,  58 => 14,  54 => 13,  49 => 11,  44 => 9,  39 => 7,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  66 => 19,  60 => 16,  56 => 15,  51 => 13,  46 => 11,  41 => 9,  36 => 7,  31 => 4,  28 => 3,);
     }
 }

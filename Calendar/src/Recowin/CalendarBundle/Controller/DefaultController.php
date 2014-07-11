@@ -44,10 +44,12 @@ class DefaultController extends Controller
 	}
 
 	public function addAction(){
-		$form = $this->createFormBuilder();
+		$ev = new eventc();
+		$ev->setDate(new \DateTime());
+		$form = $this->createFormBuilder($ev);
 		$form->add('description', 'textarea');
-		$form->add('place', 'textarea');
-		$form->add('name', 'textarea');
+		$form->add('place', 'text');
+		$form->add('name', 'text');
 		$form->add('date', 'date');
 		$form = $form->getForm();
 
@@ -55,11 +57,10 @@ class DefaultController extends Controller
 		if ($request->getMethod() == 'POST') {
 			$form->bind($request);
 			if ($form->isValid()) {
-				$ev = new eventc();
 				$ev->setDescription($form->get('description')->getdata());
 				$ev->setName($form->get('name')->getdata());
 				$ev->setPlace($form->get('place')->getdata());
-				$ev->setDates($form->get('date')->getdata());
+				$ev->setDate($form->get('date')->getdata());
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($ev);
 				$em->flush();

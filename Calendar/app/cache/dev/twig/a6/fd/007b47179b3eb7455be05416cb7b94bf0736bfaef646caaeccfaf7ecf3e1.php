@@ -33,13 +33,15 @@ class __TwigTemplate_a6fd007b47179b3eb7455be05416cb7b94bf0736bfaef646caaeccfaf7e
         // line 5
         echo twig_escape_filter($this->env, ((((("Le " . (isset($context["d"]) ? $context["d"] : $this->getContext($context, "d"))) . "/") . (isset($context["m"]) ? $context["m"] : $this->getContext($context, "m"))) . "/") . (isset($context["y"]) ? $context["y"] : $this->getContext($context, "y"))), "html", null, true);
         echo "</h2></center>
+<div class=\"container\">
+<div class=\"highlight\">
 ";
-        // line 6
+        // line 8
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable((isset($context["res"]) ? $context["res"] : $this->getContext($context, "res")));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["d"]) {
-            // line 7
+            // line 9
             echo "<h5>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["d"]) ? $context["d"] : $this->getContext($context, "d")), "name"), "html", null, true);
             echo " ";
@@ -47,7 +49,7 @@ class __TwigTemplate_a6fd007b47179b3eb7455be05416cb7b94bf0736bfaef646caaeccfaf7e
             echo "</h5>
 <div class=\"highlight\">
 <u><b>description</b></u>: ";
-            // line 9
+            // line 11
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["d"]) ? $context["d"] : $this->getContext($context, "d")), "description"), "html", null, true);
             echo "
 </div>
@@ -55,17 +57,19 @@ class __TwigTemplate_a6fd007b47179b3eb7455be05416cb7b94bf0736bfaef646caaeccfaf7e
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 12
+            // line 14
             echo "<center><h6>Aucun event prevus pour ce jour la</h6></center>
 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['d'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 14
+        // line 16
         echo "<center><a href=\"";
         echo $this->env->getExtension('routing')->getPath("recowin_add");
         echo "\"><button type=\"button\" class=\"btn btn-primary btn-lg\">Add Event</button></a></center>
+</div>
+</div>
 ";
     }
 
@@ -81,6 +85,6 @@ class __TwigTemplate_a6fd007b47179b3eb7455be05416cb7b94bf0736bfaef646caaeccfaf7e
 
     public function getDebugInfo()
     {
-        return array (  66 => 14,  59 => 12,  51 => 9,  43 => 7,  38 => 6,  34 => 5,  31 => 4,  28 => 3,);
+        return array (  68 => 16,  61 => 14,  53 => 11,  45 => 9,  40 => 8,  34 => 5,  31 => 4,  28 => 3,);
     }
 }

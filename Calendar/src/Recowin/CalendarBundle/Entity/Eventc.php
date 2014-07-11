@@ -67,7 +67,7 @@ class Eventc {
      *
      * @return \DateTime 
      */
-    public function getDates()
+    public function getDate()
     {
         return $this->dates;
     }
@@ -77,7 +77,7 @@ class Eventc {
      *
      * @param \DateTime $dates
      */
-    public function setDates($dates)
+    public function setDate($dates)
     {
         $this->dates = $dates;
 
