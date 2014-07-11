@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+</br>
+<center><h2>{{'Le ' ~ ds~ '/' ~ m ~ '/' ~y }}</h2></center>
+<div class="container">
+<div class="highlight">
+{% for d in res %}
+<h5>{{ d.name }} {{ '(se deroule a ' ~ d.place ~')'}} 
+<a href="{{ path('recowin_del', { 'id': d.id, 'years': y, 'month': m, 'day': ds}) }}"><button type="button" class="btn btn-danger btn-xs">Delete Event</button></a>
+</h5>
+<div class="highlight">
+<u><b>description</b></u>: {{ d.description }}
+</div>
+{% else %}
+<center><h6>Aucun event prevus pour ce jour la</h6></center>
+{% endfor %}
+<center><a href="{{ path('recowin_add')}}"><button type="button" class="btn btn-primary btn-lg">Add Event</button></a></center>
+</div>
+</div>
+{% endblock %}
+
