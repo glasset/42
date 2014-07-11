@@ -1,7 +1,0 @@
-parameters:
-#    recowin_calendar.example.class: Recowin\CalendarBundle\Example
-
-services:
-#    recowin_calendar.example:
-#        class: %recowin_calendar.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
