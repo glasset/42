@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<title>{% block title %}Recowin{% endblock %}</title>
+
+	<link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+    {% block navigation %}
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+		  <a class="navbar-brand" href="{{ path('recowin_calendar_homepage') }}"><i class="fa fa-home"></i> Recowin</a>
+	  </div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav side-nav">
+					<li><a href="{{ path('recowin_calendar', { 'years': 'now'|date('Y'), 'month': 'now'|date('m') }) }}"><i class="fa fa-calendar"></i> Calendar</a></li>
+				</ul>
+			</div>
+        </nav>
+        {% endblock %}
+      {% block body %}
+      {% endblock %}
+      </div>
+    </div>
+    <script src="{{ asset('js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+
+  </body>
+</html>
